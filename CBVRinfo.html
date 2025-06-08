@@ -19,7 +19,9 @@
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
-        body { font-family: 'Gothic A1', sans-serif; background-color: #f0f4f8; }
+/* 기본 폰트 설정 (웹폰트 사용을 권장합니다) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', sans-serif; background-color: #f0f4f8; }
         .gradient-text { background: linear-gradient(to right, #00796b, #004d40); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .stat-card { background: white; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); text-align: center; border-bottom: 4px solid transparent; transition: all 0.3s ease-in-out; }
         .stat-card:hover { transform: translateY(-5px); border-bottom-color: #f57c00; }
@@ -35,6 +37,75 @@
         .flowchart-step:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-color: #00796b; }
         .flowchart-arrow { font-size: 2rem; color: #00796b; font-weight: 800; }
         .recursion-box { border-left: 3px solid; padding: 1.5rem; border-radius: 0.5rem; }
+
+.pushable {
+    position: relative;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px; /* 클릭 시 외곽선 위치 조절 */
+    font-family: 'Pretendard', sans-serif; /* 웹폰트 적용 */
+}
+
+.shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsla(0, 0%, 0%, 0.15); /* 그림자 색상 */
+    transform: translateY(2px); /* 그림자 위치 */
+    filter: blur(4px); /* 그림자를 부드럽게 퍼지게 함 */
+    transition: transform 250ms;
+}
+
+.edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(209, 100%, 35%); /* 버튼의 옆면(두께) 색상 */
+}
+
+.front {
+    display: block;
+    padding: 12px 32px;
+    border-radius: 12px;
+    font-size: 1.25rem; /* 폰트 크기 */
+    font-weight: bold;
+    color: white;
+    background: hsl(209, 100%, 55%); /* 버튼의 전면 색상 */
+    
+    /* 전면을 살짝 위로 올려서 'edge'가 보이게 함 (입체감) */
+    transform: translateY(-6px);
+    
+    /* 애니메이션 성능 최적화 */
+    will-change: transform;
+    transition: transform 250ms;
+}
+
+/* 마우스를 올렸을 때 */
+.pushable:hover .front {
+    transform: translateY(-8px); /* 버튼이 살짝 더 위로 올라감 */
+}
+
+/* 클릭했을 때 */
+.pushable:active .front {
+    transform: translateY(-2px); /* 버튼이 눌리는 효과 */
+}
+
+/* (선택) 버튼 전체에 대한 효과 */
+.pushable:hover .shadow {
+    transform: translateY(4px);
+}
+
+.pushable:active .shadow {
+    transform: translateY(1px);
+}
     </style>
 </head>
 <body class="text-gray-800">
@@ -50,6 +121,7 @@
                 <a href="#conclusion" class="bg-teal-700 text-white px-4 py-2 rounded-full hover:bg-teal-800 transition">결론</a>
             </div>
         </nav>
+	<center><a href="https://notebooklm.google.com/notebook/6327a245-fd58-4033-a176-05da06c80ff9"><button class="pushable"> <span class="shadow"></span> <span class="edge"></span> <span class="front"> AI 와 대화하기 </span> </button></a></center>
     </header>
 
     <main class="container mx-auto px-6 py-12 md:py-20">
