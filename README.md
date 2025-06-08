@@ -1,0 +1,2 @@
+# wejump
+wejump strategy
