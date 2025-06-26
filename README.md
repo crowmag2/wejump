@@ -18,3 +18,7 @@
 [[요약]채널기준변율리밸런싱.pdf](https://crowmag2.github.io/wejump/%5B%EC%9A%94%EC%95%BD%5D%EC%B1%84%EB%84%90%EA%B8%B0%EC%A4%80%EB%B3%80%EC%9C%A8%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1.pdf "[요약]채널기준변율리밸런싱.pdf")
 
 [채널기준변율리밸런싱.pdf](https://crowmag2.github.io/wejump/%EC%B1%84%EB%84%90%EA%B8%B0%EC%A4%80%EB%B3%80%EC%9C%A8%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1.pdf "채널기준변율리밸런싱.pdf")
+
+[CBVR 투자 유치 전략 대시보드](https://crowmag2.github.io/wejump/CBVRrun.html "CBVR 투자 유치 전략 대시보드")
+
+[CBVR 전략 대화형 인포그래픽](https://crowmag2.github.io/wejump/CBVRinfo.html "CBVR 전략 대화형 인포그래픽")
