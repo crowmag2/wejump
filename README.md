@@ -1,5 +1,6 @@
-# [WeJump 투자전략 연구소 저장소](https://crowmag2.github.io/wejump/ "WeJump 투자전략 연구소 저장소")
-## [WeJump 투자전략 연구소 블로그 주소 : https://wejump3.tistory.com](https://wejump3.tistory.com "WeJump 투자전략 연구소 블로그")
+# [WeJump 투자전략 연구소 문서 저장소](https://crowmag2.github.io/wejump/ "WeJump 투자전략 연구소 저장소")
+## [WeJump 투자전략 연구소 블로그](https://wejump3.tistory.com "WeJump 투자전략 연구소 블로그")
+## [WeJump 투자전략 연구소 유튜브 채널](https://www.youtube.com/@wejump3 "WeJump 투자전략 연구소 유튜브 채널")
 
 [PPT_CBVR.pdf](https://crowmag2.github.io/wejump/PPT_CBVR.pdf "PPT_CBVR.pdf")
 
