@@ -16,28 +16,23 @@
             --border-color: #dfe1e6;
             --sidebar-width: 225px;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: "Paperlogy", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
         }
-
         .container {
             display: flex;
         }
-
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -49,18 +44,15 @@
             padding: 2rem 0;
             overflow-y: auto;
         }
-
         .sidebar-header {
             padding: 0 1.5rem 0 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--primary-color);
         }
-        
         .sidebar-nav ul {
             list-style: none;
         }
-
         .sidebar-nav a {
             display: block;
             padding: 0.75rem 1.5rem;
@@ -70,26 +62,22 @@
             transition: background-color 0.2s, color 0.2s;
             border-left: 3px solid transparent;
         }
-
         .sidebar-nav a:hover,
         .sidebar-nav a.active {
             background-color: var(--background-color);
             color: var(--primary-color);
             border-left-color: var(--primary-color);
         }
-
         main {
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
             padding: 2rem 3rem;
             overflow-y: auto;
         }
-
         h1, h2, h3, h4 {
             font-weight: 700;
             margin-bottom: 1rem;
         }
-        
         .section-description {
             font-size: 1.1rem;
             color: #5e6c84;
@@ -97,7 +85,6 @@
             margin: -0.5rem auto 2rem auto;
             text-align: center;
         }
-
         .hero-section {
             padding: 4rem 2rem;
             text-align: center;
@@ -106,24 +93,20 @@
             border-radius: 8px;
             margin-bottom: 2rem;
         }
-
         .hero-section h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
-        
         .hero-section p {
             font-size: 1.2rem;
             opacity: 0.9;
         }
-
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-
         .card {
             background-color: var(--card-bg-color);
             border: 1px solid var(--border-color);
@@ -132,7 +115,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             height: 100%;
         }
-
         .card-header {
             font-size: 1.25rem;
             font-weight: 700;
@@ -140,16 +122,13 @@
             padding-bottom: 1rem;
             margin-bottom: 1rem;
         }
-        
         ul.bulleted-list {
             list-style-position: inside;
             padding-left: 0;
         }
-        
         ul.bulleted-list li {
             margin-bottom: 0.5rem;
         }
-
         ul.icon-list {
             list-style: none;
             padding-left: 0;
@@ -165,7 +144,6 @@
             color: var(--primary-color);
             margin-top: 4px;
         }
-        
         .stat-block {
             text-align: center;
             padding: 1rem 0;
@@ -179,7 +157,6 @@
             font-size: 1rem;
             color: #42526e;
         }
-        
         .simulation-chart-container {
             position: relative;
             width: 100%;
@@ -214,7 +191,6 @@
             stroke-width: 2.5;
             stroke-linejoin: round;
         }
-        
         .reference-link {
             font-size: 0.9rem;
             text-align: right;
@@ -225,12 +201,10 @@
             text-decoration: none;
             font-weight: 600;
         }
-
         section {
             padding-top: 3rem;
-            margin-top: -2rem; 
+            margin-top: -2rem;
         }
-
         .table-container {
             overflow-x: auto;
         }
@@ -249,7 +223,6 @@
             background-color: var(--background-color);
             font-weight: 700;
         }
-        
         footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -258,14 +231,12 @@
             font-size: 0.9rem;
             color: #5e6c84;
         }
-
         .bottom-cta-container {
             text-align: center;
             padding: 2rem 0;
             margin-top: 2rem;
             border-top: 1px solid var(--border-color);
         }
-
         .cta-button {
             display: inline-block;
             background-color: var(--primary-color);
@@ -278,12 +249,10 @@
             transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
         .cta-button:hover {
             background-color: #003e99;
             transform: translateY(-2px);
         }
-
         .cta-button.secondary {
              background-color: var(--card-bg-color);
              color: var(--primary-color);
@@ -293,6 +262,47 @@
              background-color: #eef4ff;
         }
 
+        /* --- 반응형 및 사이드바 토글 CSS --- */
+        .sidebar-toggle {
+            display: none; /* PC에서는 기본적으로 숨김 */
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* 화면이 1024px 이하일 때 적용될 스타일 */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%); /* 사이드바를 왼쪽 화면 밖으로 이동 */
+                transition: transform 0.3s ease-in-out;
+                z-index: 1001; /* 토글 버튼보다 위에 위치 */
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            }
+
+            .sidebar.active {
+                transform: translateX(0); /* active 클래스가 붙으면 원위치로 */
+            }
+
+            main {
+                margin-left: 0; /* main 영역이 화면 전체를 사용 */
+                width: 100%;
+                padding: 1.5rem; /* 모바일 패딩 조정 */
+            }
+
+            .sidebar-toggle {
+                display: block; /* 모바일에서 토글 버튼 보이기 */
+            }
+        }
     </style>
 </head>
 <body>
@@ -316,6 +326,10 @@
         </aside>
 
         <main>
+            <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <section id="simulation">
                 <h2>전략 성과 분석 (2010 ~ 2025) 👄 <a href="https://m.site.naver.com/1LbHh" target=_blank>음성안내</a> 🤖 <a href="https://notebooklm.google.com/notebook/6327a245-fd58-4033-a176-05da06c80ff9" target=_blank>AI에 직접 질문</a></h2>
                 <div class="card">
@@ -364,7 +378,6 @@
                      <p class="reference-link">수익률 분석 출처: <a href="https://crowmag2.github.io/wejump/CBVRinfo.html" target="_blank">CBVR 장기 성과 분석 리포트</a></p>
                 </div>
             </section>
-            
             <section id="intro">
                 <div class="hero-section">
                     <h1>CBVR: 투자의 새로운 서사</h1>
@@ -381,7 +394,6 @@
                     </ul>
                 </div>
             </section>
-
             <section id="target-audience">
                 <h2 style="text-align: center;">CBVR은 누구를 위한 전략인가?</h2>
                 <p class="section-description">개인 투자자에게는 성장의 즐거움을, 기관에게는 혁신의 도구를 제공하며, CBVR은 모두를 위한 새로운 투자 생태계를 만듭니다.</p>
@@ -406,7 +418,6 @@
                     </div>
                 </div>
             </section>
-
             <section id="market">
                 <h2>시장의 목소리: 경쟁 환경과 타겟 고객</h2>
                 <div class="card">
@@ -461,7 +472,6 @@
                      </div>
                 </div>
             </section>
-            
             <section id="vision">
                 <h2>비전의 구현: 성장 로드맵과 운영</h2>
                  <div class="card">
@@ -482,7 +492,6 @@
                     </div>
                 </div>
             </section>
-
             <section id="risk">
                 <h2>리스크 관리와 규제 준수</h2>
                 <div class="card">
@@ -527,7 +536,6 @@
                     </div>
                 </div>
             </section>
-
             <section id="investment">
                 <h2>투자 유치 계획</h2>
                 <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
@@ -556,7 +564,6 @@
                     </div>
                 </div>
             </section>
-
             <section id="gtm">
                 <h2>시장 진출(GTM) 전략</h2>
                  <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
@@ -578,7 +585,6 @@
                     </div>
                 </div>
             </section>
-            
             <section id="epilogue">
                 <h2>에필로그: 투자의 미래를 쓰는 플랫폼으로의 도약</h2>
                 <div class="card">
@@ -586,15 +592,13 @@
                     <p>CBVR 사업의 성공은 기술적 정교함을 넘어, 시장에 대한 깊은 이해, 철저한 규제 준수, 체계적인 사업 실행 능력, 그리고 투자자와의 효과적인 소통 능력에 달려있음. 본 보고서에서 제시된 전략들을 충실히 이행하여, 단순한 투자 도구를 넘어 금융 시장에 새로운 가치를 창출하고 신뢰받는 혁신적인 플랫폼으로 성장할 것임.</p>
                 </div>
             </section>
-
             <div class="bottom-cta-container">
                 <a href="https://wejump3.tistory.com/entry/%EC%BD%94%EC%8A%A4%ED%94%BC%EB%82%98%EC%8A%A4%EB%8B%A5-%EC%B1%84%EB%84%90-%EA%B8%B0%EB%B0%98-%EB%B3%80%EB%8F%99%EC%84%B1-%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1-%EC%A0%84%EB%9E%B5-%EC%84%B1%EA%B3%BC-%EB%B6%84%EC%84%9D" target="_blank" class="cta-button secondary">전략 성과분석 보고서</a>
                 <a href="https://www.youtube.com/@wejump3" target="_blank" class="cta-button">유튜브 채널</a>
-		<a href="mailto:crowmag2@gmail.com" target="_blank" class="cta-button secondary">투자 문의</a>
+		        <a href="mailto:crowmag2@gmail.com" target="_blank" class="cta-button secondary">투자 문의</a>
                 <a href="https://crowmag2.github.io/wejump/%5B%EC%9A%94%EC%95%BD%5D%20CBVR%20%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%20%EC%9A%94%EC%95%BD.pdf" target="_blank" class="cta-button">문서 자료</a>
             </div>
-			
-			<footer>
+            <footer>
                 <p>GEM(Generative Enterprise Modeler)에 의해 생성된 인터랙티브 대시보드</p>
             </footer>
         </main>
@@ -602,6 +606,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- 기존 스크롤 감지 기능 ---
             const navLinks = document.querySelectorAll('.sidebar-nav a');
             const sections = document.querySelectorAll('main section');
 
@@ -628,6 +633,26 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
+
+            // --- 사이드바 토글 기능 ---
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+
+            if (sidebar && sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                });
+
+                // 메뉴 링크 클릭 시 사이드바 닫기 (모바일에서)
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        // 외부 링크가 아니고, 화면이 모바일일 때만 닫기
+                        if (link.getAttribute('href').startsWith('#') && window.innerWidth <= 1024) {
+                            sidebar.classList.remove('active');
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
