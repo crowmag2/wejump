@@ -35,7 +35,6 @@
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
-    <!-- Header -->
     <header class="gradient-bg text-white shadow-lg">
         <div class="container mx-auto px-6 py-8">
             <div class="flex items-center justify-between">
@@ -61,25 +60,37 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="container mx-auto px-6 py-12">
-        <!-- Stats Section -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 items-start">
+            <div class="bg-teal-50 rounded-xl shadow-lg card-hover">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-robot text-teal-600 text-2xl mr-3"></i>
+                        <h3 class="font-semibold text-lg text-gray-800">AI에게 물어보기</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">궁금한 점을 질문하세요.</p>
+                    
+					<center><a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%95-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200">
+                        <i class="fas fa-play mr-2"></i>AI와 대화하기
+                    </a></center>
+
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
                 <div class="category-icon text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-file-pdf text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-semibold text-gray-800">11개</h3>
                 <p class="text-gray-600">연구 문서</p>
             </div>
-            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
                 <div class="category-icon text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-chart-line text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-semibold text-gray-800">2개</h3>
-                <p class="text-gray-600">대화형 대시보드</p>
+                <p class="text-gray-600">대화형 자료</p>
             </div>
-            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
                 <div class="category-icon text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-brain text-2xl"></i>
                 </div>
@@ -88,57 +99,8 @@
             </div>
         </div>
 
-        <!-- Document Categories -->
         <div class="space-y-12">
-            <!-- Investment Proposals -->
-            <section>
-                <div class="flex items-center mb-6">
-                    <div class="category-icon text-white rounded-lg w-12 h-12 flex items-center justify-center mr-4">
-                        <i class="fas fa-chart-bar text-xl"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-800">투자제안 및 요약 문서</h2>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-xl shadow-lg card-hover overflow-hidden">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <i class="fas fa-presentation text-blue-600 text-2xl mr-3"></i>
-                                <h3 class="font-semibold text-lg text-gray-800">CBVR 투자제안서</h3>
-                            </div>
-                            <p class="text-gray-600 mb-4">핵심 투자 전략 프레젠테이션 자료</p>
-                            <a href="https://crowmag2.github.io/wejump/PPT_CBVR%20%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                                <i class="fas fa-download mr-2"></i>다운로드
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-lg card-hover overflow-hidden">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <i class="fas fa-file-alt text-green-600 text-2xl mr-3"></i>
-                                <h3 class="font-semibold text-lg text-gray-800">투자제안서 요약</h3>
-                            </div>
-                            <p class="text-gray-600 mb-4">CBVR 전략의 핵심 내용 요약본</p>
-                            <a href="https://crowmag2.github.io/wejump/%5B%EC%9A%94%EC%95%BD%5D%20CBVR%20%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%20%EC%9A%94%EC%95%BD.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                                <i class="fas fa-download mr-2"></i>다운로드
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-lg card-hover overflow-hidden">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <i class="fas fa-lightbulb text-purple-600 text-2xl mr-3"></i>
-                                <h3 class="font-semibold text-lg text-gray-800">재귀적 확장성과 철학</h3>
-                            </div>
-                            <p class="text-gray-600 mb-4">CBVR의 철학적 배경과 확장성 분석</p>
-                            <a href="https://crowmag2.github.io/wejump/%5B%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%5D%20CBVR%20%EC%9E%AC%EA%B7%80%EC%A0%81%20%ED%99%95%EC%9E%A5%EC%84%B1%EA%B3%BC%20%ED%88%AC%EB%AA%85%ED%95%9C%20%EC%B2%A0%ED%95%99.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                                <i class="fas fa-download mr-2"></i>다운로드
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- Strategic Research -->
             <section>
                 <div class="flex items-center mb-6">
                     <div class="category-icon text-white rounded-lg w-12 h-12 flex items-center justify-center mr-4">
@@ -148,6 +110,16 @@
                 </div>
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden">
                     <div class="divide-y divide-gray-200">
+                        <a href="https://crowmag2.github.io/wejump/CBVRinfo.html" target="_blank" class="doc-link block p-6 bg-indigo-100 hover:bg-gray-50 transition duration-200">
+                            <div class="flex items-center">
+                                <i class="fas fa-info-circle text-cyan-600 text-xl mr-4"></i>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800">CBVR 전략 대화형 인포그래픽</h3>
+                                    <p class="text-gray-600 text-sm">시각적 데이터와 AI와 대화를 통한 전략 이해</p>
+                                </div>
+                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                            </div>
+                        </a>
                         <a href="https://crowmag2.github.io/wejump/PPT_CBVR.pdf" target="_blank" class="doc-link block p-6 hover:bg-gray-50 transition duration-200">
                             <div class="flex items-center">
                                 <i class="fas fa-file-powerpoint text-orange-600 text-xl mr-4"></i>
@@ -212,45 +184,68 @@
                 </div>
             </section>
 
-            <!-- Interactive Dashboards -->
             <section>
                 <div class="flex items-center mb-6">
                     <div class="category-icon text-white rounded-lg w-12 h-12 flex items-center justify-center mr-4">
-                        <i class="fas fa-tachometer-alt text-xl"></i>
+                        <i class="fas fa-chart-bar text-xl"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800">대시보드 및 대화형 자료</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">투자제안 및 요약 문서</h2>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-xl shadow-lg card-hover overflow-hidden">
-                        <div class="p-8 text-center">
-                            <div class="category-icon text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-chart-pie text-3xl"></i>
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <div class="bg-indigo-50 rounded-xl shadow-lg card-hover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-chart-pie text-purple-600 text-2xl mr-3"></i>
+                                <h3 class="font-semibold text-lg text-gray-800">CBVR 투자 유치 전략 대시보드</h3>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">CBVR 투자 유치 전략 대시보드</h3>
-                            <p class="text-gray-600 mb-6">실시간 데이터와 상호작용이 가능한 전략 대시보드</p>
-                            <a href="https://crowmag2.github.io/wejump/CBVRrun.html" target="_blank" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200 inline-flex items-center">
+                            <p class="text-gray-600 mb-4">인포그래픽과 음성안내 및 AI 챗봇.</p>
+                            <a href="https://crowmag2.github.io/wejump/CBVRrun.html" target="_blank" class="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200">
                                 <i class="fas fa-play mr-2"></i>대시보드 실행
                             </a>
                         </div>
                     </div>
-                    <div class="bg-white rounded-xl shadow-lg card-hover overflow-hidden">
-                        <div class="p-8 text-center">
-                            <div class="category-icon text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                                <i class="fas fa-info-circle text-3xl"></i>
+                    <div class="bg-white rounded-xl shadow-lg card-hover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-presentation text-blue-600 text-2xl mr-3"></i>
+                                <h3 class="font-semibold text-lg text-gray-800">CBVR 투자제안서</h3>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">CBVR 전략 대화형 인포그래픽</h3>
-                            <p class="text-gray-600 mb-6">시각적 데이터와 상호작용을 통한 전략 이해</p>
-                            <a href="https://crowmag2.github.io/wejump/CBVRinfo.html" target="_blank" class="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-700 transition duration-200 inline-flex items-center">
-                                <i class="fas fa-eye mr-2"></i>인포그래픽 보기
+                            <p class="text-gray-600 mb-4">핵심 투자 전략 프레젠테이션 자료</p>
+                            <a href="https://crowmag2.github.io/wejump/PPT_CBVR%20%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i>다운로드
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg card-hover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-file-alt text-green-600 text-2xl mr-3"></i>
+                                <h3 class="font-semibold text-lg text-gray-800">투자제안서 요약</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">CBVR 전략의 핵심 내용 요약본</p>
+                            <a href="https://crowmag2.github.io/wejump/%5B%EC%9A%94%EC%95%BD%5D%20CBVR%20%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%20%EC%9A%94%EC%95%BD.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i>다운로드
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg card-hover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-lightbulb text-purple-600 text-2xl mr-3"></i>
+                                <h3 class="font-semibold text-lg text-gray-800">재귀적 확장성과 철학</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">CBVR의 철학적 배경과 확장성 분석</p>
+                            <a href="https://crowmag2.github.io/wejump/%5B%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%5D%20CBVR%20%EC%9E%AC%EA%B7%80%EC%A0%81%20%ED%99%95%EC%9E%A5%EC%84%B1%EA%B3%BC%20%ED%88%AC%EB%AA%85%ED%95%9C%20%EC%B2%A0%ED%95%99.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-download mr-2"></i>다운로드
                             </a>
                         </div>
                     </div>
                 </div>
             </section>
+            
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12 mt-16">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -294,7 +289,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; WeJump 투자전략 연구소. 모든 권리 보유.</p>
+                <p>© WeJump 투자전략 연구소. 모든 권리 보유.</p>
             </div>
         </div>
     </footer>
@@ -317,7 +312,10 @@
                 if (icon) {
                     icon.className = 'fas fa-spinner fa-spin';
                     setTimeout(() => {
-                        icon.className = icon.className.replace('fa-spinner fa-spin', 'fa-external-link-alt');
+                        // This might need adjustment based on the original icon class
+                        // For now, let's assume all external links have 'fa-external-link-alt'
+                        const originalClasses = this.dataset.originalIcon || 'fas fa-external-link-alt';
+                        icon.className = originalClasses;
                     }, 2000);
                 }
             });
