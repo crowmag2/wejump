@@ -1,25 +1,22 @@
-# [WeJump 투자전략 연구소 문서 저장소](https://crowmag2.github.io/wejump/ "WeJump 투자전략 연구소 저장소")
-## [WeJump 투자전략 연구소 블로그](https://wejump3.tistory.com "WeJump 투자전략 연구소 블로그")
-## [WeJump 투자전략 연구소 유튜브 채널](https://www.youtube.com/@wejump3 "WeJump 투자전략 연구소 유튜브 채널")
+# **WeJump 투자 연구소: 데이터 기반 투자 시스템 프레임워크**
 
-[PPT_CBVR.pdf](https://crowmag2.github.io/wejump/PPT_CBVR.pdf "PPT_CBVR.pdf")
+이곳은 'WeJump 투자 연구소'가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다.
 
-[PPT_채널기준변율리밸런싱.pdf](https://crowmag2.github.io/wejump/PPT_%EC%B1%84%EB%84%90%EA%B8%B0%EC%A4%80%EB%B3%80%EC%9C%A8%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1.pdf "PPT_채널기준변율리밸런싱.pdf")
+저희는 시장에 대한 막연한 '의견'이 아닌, 데이터로 검증된 '시스템'을 구축하고 이야기합니다.
 
-[[요약] CBVR 투자제안서 요약.pdf](https://crowmag2.github.io/wejump/%5B%EC%9A%94%EC%95%BD%5D%20CBVR%20%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%20%EC%9A%94%EC%95%BD.pdf "[요약] CBVR 투자제안서 요약.pdf")
+### **핵심 원칙 (Core Principles)**
 
-[PPT_CBVR 투자제안서.pdf](https://crowmag2.github.io/wejump/PPT_CBVR%20%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C.pdf "PPT_CBVR 투자제안서.pdf")
+1.  **분석을 넘어 시스템으로 (Beyond Analysis, Towards Systems):**
+    저희는 단편적인 시장 현상 분석에 그치지 않습니다. 아이디어 단계에서부터 백테스팅과 실 운용까지 고려한, 실제 **작동하는 '완성된 시스템'**을 설계하고 구현하는 것을 목표로 합니다.
 
-[CBVR 전략 논문 작성.pdf](https://crowmag2.github.io/wejump/CBVR%20%EC%A0%84%EB%9E%B5%20%EB%85%BC%EB%AC%B8%20%EC%9E%91%EC%84%B1.pdf "CBVR 전략 논문 작성.pdf")
+2.  **데이터 기반의 투명성 (Data-Driven Transparency):**
+    모든 전략과 주장은 데이터로 증명합니다. 이곳 GitHub 저장소는 그 아이디어와 고민, 검증의 과정을 가감 없이 공개하여 **결과에 대한 신뢰성**을 확보하는 공간입니다.
 
-[PPT_벡터 기반 추세선 분석을 활용한 주식 및 ETF 매매 전략 강화.pdf](https://crowmag2.github.io/wejump/PPT_%EB%B2%A1%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%EC%B6%94%EC%84%B8%EC%84%A0%20%EB%B6%84%EC%84%9D%EC%9D%84%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EC%A3%BC%EC%8B%9D%20%EB%B0%8F%20ETF%20%EB%A7%A4%EB%A7%A4%20%EC%A0%84%EB%9E%B5%20%EA%B0%95%ED%99%94.pdf "PPT_벡터 기반 추세선 분석을 활용한 주식 및 ETF 매매 전략 강화.pdf")
+3.  **진화하는 프레임워크 (Evolving Frameworks):**
+    궁극적으로 저희가 추구하는 것은 고정된 전략이 아닌, 스스로의 약점을 보완하고 시장에 적응하며 **끊임없이 진화하는 '투자 프레임워크'**입니다.
 
-[[투자제안서] CBVR 재귀적 확장성과 투명한 철학.pdf](https://crowmag2.github.io/wejump/%5B%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%5D%20CBVR%20%EC%9E%AC%EA%B7%80%EC%A0%81%20%ED%99%95%EC%9E%A5%EC%84%B1%EA%B3%BC%20%ED%88%AC%EB%AA%85%ED%95%9C%20%EC%B2%A0%ED%95%99.pdf "[투자제안서] CBVR 재귀적 확장성과 투명한 철학.pdf")
+이 저장소의 문서와 데이터를 통해, 저희의 연구 여정을 확인하고 새로운 아이디어를 얻어 가시길 바랍니다. 더 깊이 있는 해설과 분석은 아래 채널에서 확인하실 수 있습니다.
 
-[[요약]채널기준변율리밸런싱.pdf](https://crowmag2.github.io/wejump/%5B%EC%9A%94%EC%95%BD%5D%EC%B1%84%EB%84%90%EA%B8%B0%EC%A4%80%EB%B3%80%EC%9C%A8%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1.pdf "[요약]채널기준변율리밸런싱.pdf")
-
-[채널기준변율리밸런싱.pdf](https://crowmag2.github.io/wejump/%EC%B1%84%EB%84%90%EA%B8%B0%EC%A4%80%EB%B3%80%EC%9C%A8%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1.pdf "채널기준변율리밸런싱.pdf")
-
-[CBVR 투자 유치 전략 대시보드](https://crowmag2.github.io/wejump/CBVRrun.html "CBVR 투자 유치 전략 대시보드")
-
-[CBVR 전략 대화형 인포그래픽](https://crowmag2.github.io/wejump/CBVRinfo.html "CBVR 전략 대화형 인포그래픽")
+* **블로그:** [WeJump 투자 연구소 Tistory](https://wejump3.tistory.com/)
+* **유튜브:** [WeJump 유튜브 채널](https://www.youtube.com/@wejump3)
+* **문서저장소** [WeJump 문서 저장소](https://crowmag2.github.io/wejump/)
