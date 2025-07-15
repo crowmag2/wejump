@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,6 +31,41 @@
         .doc-link:hover {
             background-color: #f8fafc;
             border-left: 4px solid #667eea;
+        }
+        /* --- 팝업 모달 스타일 추가 --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none; /* 기본은 숨김 */
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+			overflow: auto;
+			max-height: 93vh;
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .modal-close-btn:hover {
+            color: #1f2937;
         }
     </style>
 </head>
@@ -79,7 +113,7 @@
                         <h3 class="font-semibold text-lg text-gray-800">영상자료로 보기</h3>
                     </div>
                     <p class="text-gray-600 mb-4">유튜브로 간편하게 보기</p>
-					<center><a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-700 transition duration-200 inline-flex items-center">
+					<center><a href="https://www.youtube.com/@wejump3" target="_blank" class="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-700 transition duration-200 inline-flex items-center">
                         <i class="fas fa-play mr-2"></i>유튜브 채널
                     </a></center>
                 </div>
@@ -91,17 +125,16 @@
                 <h3 class="text-xl font-semibold text-gray-800">11개</h3>
                 <p class="text-gray-600">연구 문서</p>
             </div>
-            <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
+            <div id="open-repo-info-button" class="bg-white rounded-xl shadow-lg p-6 text-center card-hover cursor-pointer">
                 <div class="category-icon text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-chart-line text-2xl"></i>
+                    <i class="fas fa-info-circle text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800">2개</h3>
-                <p class="text-gray-600">대화형 자료</p>
+                <h3 class="text-xl font-semibold text-gray-800">저장소 소개</h3>
+                <p class="text-gray-600">연구소의 원칙과 비전</p>
             </div>
         </div>
 
         <div class="space-y-12">
-
             <section>
                 <div class="flex items-center mb-6">
                     <div class="category-icon text-white rounded-lg w-12 h-12 flex items-center justify-center mr-4">
@@ -141,7 +174,7 @@
                                 <i class="fas fa-external-link-alt text-gray-400"></i>
                             </div>
                         </a>
-                        <a href="https://crowmag2.github.io/wejump/PPT_%EC%B1%84%EB%84%90%EA%B8%B0%EC%A4%80%EB%B3%80%EC%9C%A8%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1.pdf" target="_blank" class="doc-link block p-6 hover:bg-gray-50 transition duration-200">
+                         <a href="https://crowmag2.github.io/wejump/PPT_%EC%B1%84%EB%84%90%EA%B8%B0%EC%A4%80%EB%B3%80%EC%9C%A8%EB%A6%AC%EB%B0%B8%EB%9F%B0%EC%8B%B1.pdf" target="_blank" class="doc-link block p-6 hover:bg-gray-50 transition duration-200">
                             <div class="flex items-center">
                                 <i class="fas fa-chart-area text-green-600 text-xl mr-4"></i>
                                 <div class="flex-1">
@@ -243,7 +276,6 @@
                     </div>
                 </div>
             </section>
-            
         </div>
     </main>
 
@@ -295,32 +327,107 @@
         </div>
     </footer>
 
-    <script>
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <div id="repo-info-modal" class="modal-overlay">
+        <div class="modal-content">
+            <i id="close-repo-info-button" class="fas fa-times modal-close-btn text-2xl"></i>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">WeJump 투자 연구소: 데이터 기반 투자 시스템 프레임워크</h2>
+            <p class="text-gray-600 font-semibold mb-6">이곳은 'WeJump 투자 연구소'가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다. 저희는 시장에 대한 막연한 '의견'이 아닌, 데이터로 검증된 '시스템'을 구축하고 이야기합니다.</p>
+            
+            <div class="border-t pt-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">핵심 원칙 (Core Principles)</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <i class="fas fa-cogs text-indigo-500 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-semibold">분석을 넘어 시스템으로</h4>
+                            <p class="text-sm font-medium">저희는 단편적인 시장 현상 분석에 그치지 않습니다. 아이디어 단계에서부터 백테스팅과 실 운용까지 고려한, 실제 작동하는 '완성된 시스템'을 설계하고 구현하는 것을 목표로 합니다.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-database text-green-500 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-semibold">데이터 기반의 투명성</h4>
+                            <p class="text-sm font-medium">모든 전략과 주장은 데이터로 증명합니다. 이곳 GitHub 저장소는 그 아이디어와 고민, 검증의 과정을 가감 없이 공개하여 결과에 대한 신뢰성을 확보하는 공간입니다.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-infinity text-purple-500 mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-semibold">진화하는 프레임워크</h4>
+                            <p class="text-sm font-medium">궁극적으로 저희가 추구하는 것은 고정된 전략이 아닌, 스스로의 약점을 보완하고 시장에 적응하며 끊임없이 진화하는 '투자 프레임워크'입니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+			<hr class="w-48 h-1 mx-auto my-4 bg-blue-500 border-0 rounded-sm md:my-10">
+			<p class="text-black-600 font-medium mb-6">이 저장소의 문서와 데이터를 통해, 저희의 연구 여정을 확인하고 새로운 아이디어를 얻어 가시길 바랍니다. 더 깊이 있는 해설과 분석은 아래 채널에서 확인하실 수 있습니다.<br>
+			<br>
+			블로그: <a href="https://wejump3.tistory.com/" target=_blank><b class="text-blue-700">WeJump 투자 연구소 Tistory</b></a><br>
+			유튜브: <a href="https://www.youtube.com/@wejump3" target=_blank><b class="text-blue-700">WeJump 유튜브 채널</b></a></p>
+        </div>
+    </div>
 
-        // Add loading animation for external links
-        document.querySelectorAll('a[href^="http"]').forEach(link => {
-            link.addEventListener('click', function() {
-                const icon = this.querySelector('i');
-                if (icon) {
-                    icon.className = 'fas fa-spinner fa-spin';
-                    setTimeout(() => {
-                        // This might need adjustment based on the original icon class
-                        // For now, let's assume all external links have 'fa-external-link-alt'
-                        const originalClasses = this.dataset.originalIcon || 'fas fa-external-link-alt';
-                        icon.className = originalClasses;
-                    }, 2000);
+
+    <script>
+        // --- 쿠키 및 팝업 모달 제어 스크립트 ---
+
+        // 쿠키 설정 함수
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        // 쿠키 가져오는 함수
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i=0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        // DOM이 로드된 후 스크립트 실행
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const modal = document.getElementById('repo-info-modal');
+            const openBtn = document.getElementById('open-repo-info-button');
+            const closeBtn = document.getElementById('close-repo-info-button');
+
+            // 팝업 보여주는 함수
+            const showModal = () => {
+                modal.style.display = 'flex';
+            };
+
+            // 팝업 숨기는 함수
+            const hideModal = () => {
+                modal.style.display = 'none';
+            };
+
+            // 페이지 로드 시 쿠키 확인 후 자동 팝업 처리
+            if (!getCookie('hasVisitedRepo')) {
+                showModal();
+                setCookie('hasVisitedRepo', 'true', 30); // 30일간 유효한 쿠키 설정
+            }
+
+            // 이벤트 리스너 설정
+            openBtn.addEventListener('click', showModal);
+            closeBtn.addEventListener('click', hideModal);
+            
+            // 모달 바깥 영역 클릭 시 닫기
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
                 }
             });
         });
+
     </script>
 </body>
 </html>
