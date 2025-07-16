@@ -32,41 +32,13 @@
             background-color: #f8fafc;
             border-left: 4px solid #667eea;
         }
-        /* --- 팝업 모달 스타일 추가 --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: none; /* 기본은 숨김 */
-            align-items: center;
-            justify-content: center;
-            z-index: 50;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 2.5rem;
-            border-radius: 0.75rem;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-			overflow: auto;
-			max-height: 93vh;
-        }
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: #9ca3af;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-        .modal-close-btn:hover {
-            color: #1f2937;
-        }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -81,11 +53,8 @@
                     </div>
                 </div>
                 <div class="hidden md:flex space-x-4">
-                    <a href="mailto:crowmag2@gmail.com" class="bg-gradient-to-r from-blue-500 to-purple-600 bg-white bg-opacity-20 px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200">
-                        <i class="fas fa-envelope mr-2"></i>이메일
-                    </a>
                     <a href="https://wejump3.tistory.com/" target="_blank" class="bg-gradient-to-r from-green-500 to-blue-600 bg-opacity-20 px-4 py-2 rounded-lg hover:from-green-600 hover:to-blue-700 transition duration-200">
-                        <i class="fab fa-blogger mr-2"></i>블로그
+                        <i class="fab fa-blogger mr-2"></i>블로그 바로가기
                     </a>
                 </div>
             </div>
@@ -101,7 +70,7 @@
                         <h3 class="font-semibold text-lg text-gray-800">AI에게 물어보기</h3>
                     </div>
                     <p class="text-gray-600 mb-4">궁금한 점을 질문하세요.</p>
-					<center><a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200">
+					<center><a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200 font-medium">
                         <i class="fas fa-play mr-2"></i>AI와 대화하기
                     </a></center>
                 </div>
@@ -113,17 +82,22 @@
                         <h3 class="font-semibold text-lg text-gray-800">영상자료로 보기</h3>
                     </div>
                     <p class="text-gray-600 mb-4">유튜브로 간편하게 보기</p>
-					<center><a href="https://www.youtube.com/@wejump3" target="_blank" class="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-700 transition duration-200 inline-flex items-center">
+					<center><a href="https://www.youtube.com/@wejump3" target="_blank" class="bg-gradient-to-r from-red-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-red-500 transition duration-200 inline-flex items-center font-medium">
                         <i class="fas fa-play mr-2"></i>유튜브 채널
                     </a></center>
                 </div>
             </div>
-            <div class="bg-white rounded-xl shadow-lg p-6 text-center card-hover">
-                <div class="category-icon text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-file-pdf text-2xl"></i>
+            <div class="bg-teal-50 rounded-xl shadow-lg card-hover">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-envelope text-blue-600 text-2xl mr-3"></i>
+                        <h3 class="font-semibold text-lg text-gray-800">Contact Us</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">각종 문의 및 요청사항</p>
+                    <center><a href="https://linktr.ee/wejump3" target=_blank class="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-700 transition duration-200 inline-flex items-center font-medium">
+                        이메일 및 텔레그램
+                    </a></center>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800">11개</h3>
-                <p class="text-gray-600">연구 문서</p>
             </div>
             <div id="open-repo-info-button" class="bg-white rounded-xl shadow-lg p-6 text-center card-hover cursor-pointer">
                 <div class="category-icon text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
@@ -233,7 +207,7 @@
                                 <h3 class="font-semibold text-lg text-gray-800">CBVR 투자 유치 전략 대시보드</h3>
                             </div>
                             <p class="text-gray-600 mb-4">인포그래픽과 음성안내 및 AI 챗봇.</p>
-                            <a href="https://crowmag2.github.io/wejump/CBVRrun.html" target="_blank" class="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200">
+                            <a href="https://crowmag2.github.io/wejump/CBVRrun.html" target="_blank" class="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200 font-medium">
                                 <i class="fas fa-play mr-2"></i>대시보드 실행
                             </a>
                         </div>
@@ -282,25 +256,18 @@
     <footer class="bg-gray-800 text-white py-12 mt-16">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ftistory1.daumcdn.net%2Ftistory%2F7986187%2Fattach%2F96d50c3a00ae4444b8b4440ac930b360" alt="WeJump Logo" class="h-8 w-8 rounded bg-white p-1">
-                        <h3 class="text-lg font-semibold">WeJump 투자전략 연구소</h3>
-                    </div>
-                    <p class="text-gray-400">전문적인 투자 전략 연구와 혁신적인 금융 솔루션을 제공합니다.</p>
-                </div>
-                <div>
+				<div>
                     <h4 class="text-lg font-semibold mb-4">바로가기</h4>
                     <div class="space-y-2">
-						<a href="mailto:crowmag2@gmail.com" class="block text-gray-400 hover:text-white transition duration-200">
-                            <i class="fas fa-envelope mr-2"></i>이메일 문의
+						<a href="https://wejump3.tistory.com/" target="_blank" class="block text-gray-200 hover:text-white transition duration-200">
+                            <i class="fab fa-blogger mr-2"></i>공식 블로그
                         </a>
-						<a href="https://wejump3.tistory.com/" target="_blank" class="block text-gray-400 hover:text-white transition duration-200">
-                            <i class="fab fa-blogger mr-2"></i>WeJump 블로그
-                        </a>
-                        <a href="https://www.youtube.com/@wejump3" target="_blank" class="block text-gray-400 hover:text-white transition duration-200">
+                        <a href="https://www.youtube.com/@wejump3" target="_blank" class="block text-gray-200 hover:text-white transition duration-200">
                             <i class="fab fa-youtube mr-2"></i>유튜브 채널
                         </a>
+						<a href="mailto:crowmag2@gmail.com" class="block text-gray-200 hover:text-white transition duration-200">
+							<i class="fas fa-envelope mr-2"></i>이메일 문의
+						</a>
                     </div>
                 </div>
                 <div>
@@ -320,6 +287,13 @@
                         </div>
                     </div>
                 </div>
+				<div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ftistory1.daumcdn.net%2Ftistory%2F7986187%2Fattach%2F96d50c3a00ae4444b8b4440ac930b360" alt="WeJump Logo" class="h-8 w-8 rounded bg-white p-1">
+                        <h3 class="text-lg font-semibold">WeJump 투자전략 연구소</h3>
+                    </div>
+                    <p class="text-gray-400">전문적인 투자 전략 연구와 혁신적인 금융 솔루션을 제공합니다.</p>
+                </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                 <p>© WeJump 투자전략 연구소. 모든 권리 보유.</p>
@@ -327,46 +301,71 @@
         </div>
     </footer>
 
-    <div id="repo-info-modal" class="modal-overlay">
-        <div class="modal-content">
-            <i id="close-repo-info-button" class="fas fa-times modal-close-btn text-2xl"></i>
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">WeJump 투자 연구소: 데이터 기반 투자 시스템 프레임워크</h2>
-            <p class="text-gray-600 font-semibold mb-6">이곳은 'WeJump 투자 연구소'가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다. 저희는 시장에 대한 막연한 '의견'이 아닌, 데이터로 검증된 '시스템'을 구축하고 이야기합니다.</p>
-            
-            <div class="border-t pt-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3">핵심 원칙 (Core Principles)</h3>
-                <ul class="space-y-3 text-gray-700">
-                    <li class="flex items-start">
-                        <i class="fas fa-cogs text-indigo-500 mt-1 mr-3"></i>
-                        <div>
-                            <h4 class="font-semibold">분석을 넘어 시스템으로</h4>
-                            <p class="text-sm font-medium">저희는 단편적인 시장 현상 분석에 그치지 않습니다. 아이디어 단계에서부터 백테스팅과 실 운용까지 고려한, 실제 작동하는 '완성된 시스템'을 설계하고 구현하는 것을 목표로 합니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-database text-green-500 mt-1 mr-3"></i>
-                        <div>
-                            <h4 class="font-semibold">데이터 기반의 투명성</h4>
-                            <p class="text-sm font-medium">모든 전략과 주장은 데이터로 증명합니다. 이곳 GitHub 저장소는 그 아이디어와 고민, 검증의 과정을 가감 없이 공개하여 결과에 대한 신뢰성을 확보하는 공간입니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-infinity text-purple-500 mt-1 mr-3"></i>
-                        <div>
-                            <h4 class="font-semibold">진화하는 프레임워크</h4>
-                            <p class="text-sm font-medium">궁극적으로 저희가 추구하는 것은 고정된 전략이 아닌, 스스로의 약점을 보완하고 시장에 적응하며 끊임없이 진화하는 '투자 프레임워크'입니다.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-			<hr class="w-48 h-1 mx-auto my-4 bg-blue-500 border-0 rounded-sm md:my-10">
-			<p class="text-black-600 font-medium mb-6">이 저장소의 문서와 데이터를 통해, 저희의 연구 여정을 확인하고 새로운 아이디어를 얻어 가시길 바랍니다. 더 깊이 있는 해설과 분석은 아래 채널에서 확인하실 수 있습니다.<br>
-			<br>
-			블로그: <a href="https://wejump3.tistory.com/" target=_blank><b class="text-blue-700">WeJump 투자 연구소 Tistory</b></a><br>
-			유튜브: <a href="https://www.youtube.com/@wejump3" target=_blank><b class="text-blue-700">WeJump 유튜브 채널</b></a></p>
+<!-- Tailwind 기반 팝업 모달 -->
+<div id="repo-info-modal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-60 flex items-center justify-center">
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl mx-4 p-6 sm:p-8 overflow-y-auto max-h-[90vh] animate-fadeIn">
+
+    <!-- 닫기 버튼 -->
+    <button id="close-repo-info-button" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl transition">
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- 제목 -->
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4 border-b border-gray-200 pb-2">
+      WeJump 투자 전략 시스템
+    </h2>
+
+    <!-- 본문 설명 -->
+    <p class="text-gray-700 text-sm sm:text-base font-medium mb-6 leading-relaxed">
+      이곳은 <strong class="text-indigo-600">WeJump 투자 연구소</strong>가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다. 저희는 시장에 대한 막연한 '의견'이 아닌, <strong class="text-blue-700">데이터로 검증된 시스템</strong>을 구축하고 이야기합니다.
+    </p>
+
+    <!-- 핵심 원칙 -->
+    <div class="border-t border-gray-200 pt-6 space-y-6">
+      <div class="flex items-start space-x-4">
+        <i class="fas fa-cogs text-indigo-500 text-xl mt-1"></i>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800">분석을 넘어 시스템으로</h4>
+          <p class="text-gray-600 text-sm">단편적인 분석을 넘어서 실제 작동하는 투자 시스템을 구축합니다.</p>
         </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <i class="fas fa-database text-green-500 text-xl mt-1"></i>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800">데이터 기반의 투명성</h4>
+          <p class="text-gray-600 text-sm">모든 전략과 과정은 데이터로 증명하며 GitHub에 투명하게 공개합니다.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <i class="fas fa-infinity text-purple-500 text-xl mt-1"></i>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800">진화하는 프레임워크</h4>
+          <p class="text-gray-600 text-sm">시장에 적응하며 스스로 진화하는 투자 전략을 추구합니다.</p>
+        </div>
+      </div>
     </div>
 
+    <!-- 구분선 -->
+    <hr class="my-8 border-blue-200">
+
+    <!-- 링크 안내 -->
+    <p class="text-gray-800 text-sm mb-6 leading-relaxed">
+      이 저장소의 문서와 데이터를 통해 저희의 연구 여정을 확인하고, 새로운 아이디어를 얻어가시길 바랍니다.<br><br>
+      🔗 블로그: <a href="https://wejump3.tistory.com/" target="_blank" class="text-blue-600 font-semibold hover:underline">WeJump 투자 연구소 Tistory</a><br>
+      📺 유튜브: <a href="https://www.youtube.com/@wejump3" target="_blank" class="text-red-600 font-semibold hover:underline">WeJump 유튜브 채널</a>
+    </p>
+
+    <!-- CTA 버튼들 -->
+    <div class="flex flex-col sm:flex-row justify-end sm:space-x-4 mt-6 space-y-3 sm:space-y-0">
+      <a href="https://wejump3.tistory.com/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition inline-flex items-center">
+        <i class="fab fa-blogger mr-2"></i> 블로그 방문
+      </a>
+      <a href="https://www.youtube.com/@wejump3" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition inline-flex items-center">
+        <i class="fab fa-youtube mr-2"></i> 유튜브 구독
+      </a>
+    </div>
+  </div>
+</div>
 
     <script>
         // --- 쿠키 및 팝업 모달 제어 스크립트 ---
