@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -158,40 +159,6 @@
             font-size: 1rem;
             color: #42526e;
         }
-        .simulation-chart-container {
-            position: relative;
-            width: 100%;
-            height: 350px;
-            background: #f9fafb;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-        }
-        .simulation-chart-container h4 {
-            font-size: 1rem;
-            color: #5e6c84;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        .simulation-chart-container svg {
-            width: 100%;
-            height: calc(100% - 30px);
-        }
-        .chart-grid-line {
-            stroke: #e0e6ed;
-            stroke-width: 1;
-            stroke-dasharray: 2, 2;
-        }
-        .chart-axis-line {
-            stroke: #a1aab8;
-            stroke-width: 1;
-        }
-        .chart-performance-line {
-            fill: none;
-            stroke: var(--primary-color);
-            stroke-width: 2.5;
-            stroke-linejoin: round;
-        }
         .reference-link {
             font-size: 0.9rem;
             text-align: right;
@@ -332,51 +299,31 @@
             </button>
             
             <section id="simulation">
-                <h2>전략 성과 분석 (2010 ~ 2025) 👄 <a href="https://m.site.naver.com/1LbHh" target=_blank>음성안내</a> 🤖 <a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target=_blank>AI에 직접 질문</a></h2>
+                <h2>전략 성과 분석 (2010 ~ 2025)</h2>
                 <div class="card">
                      <h3 class="card-header">장기 성과 요약</h3>
                      <div class="grid-container" style="grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center;">
                         <div class="stat-block">
-                            <div class="value" style="color: var(--secondary-color);">7096%</div>
+                            <div class="value" style="color: var(--secondary-color);">9705%</div>
                             <div class="label">총 수익률</div>
                         </div>
                         <div class="stat-block">
-                            <div class="value">32.29%</div>
+                            <div class="value">34.64%</div>
                             <div class="label">연복리수익률 (CAGR)</div>
                         </div>
                         <div class="stat-block">
-                            <div class="value">-19.98%</div>
+                            <div class="value">-20.00%</div>
                             <div class="label">최대 낙폭 (MDD)</div>
                         </div>
                          <div class="stat-block">
-                            <div class="value">1.69</div>
+                            <div class="value">1.80</div>
                             <div class="label">샤프 지수 (Sharpe)</div>
                         </div>
                      </div>
-                     <div class="grid-container" style="grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                         <div class="simulation-chart-container">
-                             <h4>누적수익률 (선형 척도)</h4>
-                             <svg preserveAspectRatio="none" viewBox="0 0 500 300">
-                                <line class="chart-grid-line" x1="0" y1="75" x2="500" y2="75"></line>
-                                <line class="chart-grid-line" x1="0" y1="150" x2="500" y2="150"></line>
-                                <line class="chart-grid-line" x1="0" y1="225" x2="500" y2="225"></line>
-                                <line class="chart-axis-line" x1="0" y1="298" x2="500" y2="298"></line>
-                                <path class="chart-performance-line" d="M 0 298 L 50 298 L 100 297 L 150 296 L 200 295 L 250 293 L 300 280 C 350 250, 400 150, 450 80 C 475 40, 490 25, 500 10"></path>
-                             </svg>
-                         </div>
-                         <div class="simulation-chart-container">
-                             <h4>누적수익률 (로그 척도)</h4>
-                              <svg preserveAspectRatio="none" viewBox="0 0 500 300">
-                                <line class="chart-grid-line" x1="0" y1="60" x2="500" y2="60"></line>
-                                <line class="chart-grid-line" x1="0" y1="120" x2="500" y2="120"></line>
-                                <line class="chart-grid-line" x1="0" y1="180" x2="500" y2="180"></line>
-                                <line class="chart-grid-line" x1="0" y1="240" x2="500" y2="240"></line>
-                                <line class="chart-axis-line" x1="0" y1="298" x2="500" y2="298"></line>
-                                <path class="chart-performance-line" d="M 0 290 L 50 270 L 80 280 L 120 250 L 180 220 L 220 230 L 280 180 L 320 150 L 380 100 L 420 110 L 480 40 L 500 20"></path>
-                             </svg>
-                         </div>
-                     </div>
-                     <p class="reference-link">수익률 분석 출처: <a href="https://crowmag2.github.io/wejump/CBVRinfo.html" target="_blank">CBVR 장기 성과 분석 리포트</a></p>
+                     <p class="reference-link">
+					 수익률 분석 출처: <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5%EC%84%B1%EA%B3%BC" target="_blank">WeJump 투자전략연구소 블로그</a>
+					 <span class="bottom-cta-container"><a href="https://m.site.naver.com/1LbHh" target=_blank  class="cta-button" style="color:white">👄 음성안내</a> <a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target=_blank class="cta-button" style="color:white">🤖 AI에 직접 질문</a></span>
+					 </p>
                 </div>
             </section>
             <section id="intro">
