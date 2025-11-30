@@ -10,12 +10,13 @@
     <style>
         :root {
             --primary-color: #0052cc;
-            --secondary-color: #4db6ac;
-            --background-color: #f0f2f5;
+            --secondary-color: #00b8d9; /* 조금 더 현대적인 청록색 */
+            --accent-color: #ff5630; /* 강조용 (Flagship) */
+            --background-color: #f4f5f7;
             --text-color: #172b4d;
             --card-bg-color: #ffffff;
-            --border-color: #dfe1e6;
-            --sidebar-width: 225px;
+            --border-color: #ebecf0;
+            --sidebar-width: 240px;
         }
         * {
             box-sizing: border-box;
@@ -44,12 +45,15 @@
             border-right: 1px solid var(--border-color);
             padding: 2rem 0;
             overflow-y: auto;
+            z-index: 100;
         }
         .sidebar-header {
-            padding: 0 1.5rem 0 1.5rem;
-            font-size: 1rem;
-            font-weight: 700;
+            padding: 0 1.5rem 1rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
         }
         .sidebar-nav ul {
             list-style: none;
@@ -60,214 +64,255 @@
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.2s, color 0.2s;
-            border-left: 3px solid transparent;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+            font-size: 0.95rem;
         }
         .sidebar-nav a:hover,
         .sidebar-nav a.active {
-            background-color: var(--background-color);
+            background-color: #e6effc;
             color: var(--primary-color);
             border-left-color: var(--primary-color);
         }
         main {
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
-            padding: 2rem 3rem;
+            padding: 3rem 4rem;
             overflow-y: auto;
         }
         h1, h2, h3, h4 {
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
-        .section-description {
-            font-size: 1.1rem;
-            color: #5e6c84;
-            max-width: 800px;
-            margin: -0.5rem auto 2rem auto;
-            text-align: center;
+        section {
+            padding-top: 4rem;
+            margin-top: -2rem; /* Anchor link offset correction */
         }
         .hero-section {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             text-align: center;
-            background: linear-gradient(45deg, var(--primary-color), #003e99);
+            background: linear-gradient(135deg, #0747a6 0%, #0052cc 100%);
             color: #ffffff;
-            border-radius: 8px;
-            margin-bottom: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0, 82, 204, 0.2);
         }
         .hero-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
         }
         .hero-section p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
+            font-weight: 300;
+        }
+        .tag {
+            display: inline-block;
+            background-color: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(5px);
         }
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
         .card {
             background-color: var(--card-bg-color);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             height: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .card.highlight {
+            border: 2px solid var(--primary-color);
+            background-color: #f4f8ff;
+        }
+        .card.flagship {
+            border: 2px solid var(--accent-color);
+            background: linear-gradient(to bottom right, #fff, #fff5f5);
         }
         .card-header {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--background-color);
             padding-bottom: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-header .icon {
+            color: var(--primary-color);
+        }
+        .card.flagship .card-header .icon {
+            color: var(--accent-color);
         }
         ul.bulleted-list {
             list-style-position: inside;
             padding-left: 0;
         }
         ul.bulleted-list li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
         }
-        ul.icon-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        ul.icon-list li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-        ul.icon-list .icon {
-            margin-right: 1rem;
-            font-size: 1.2rem;
+        ul.bulleted-list li::before {
+            content: "•";
             color: var(--primary-color);
-            margin-top: 4px;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
         }
         .stat-block {
             text-align: center;
-            padding: 1rem 0;
+            padding: 1rem;
+            background-color: #f9f9fb;
+            border-radius: 8px;
         }
         .stat-block .value {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
         .stat-block .label {
-            font-size: 1rem;
-            color: #42526e;
-        }
-        .reference-link {
-            font-size: 0.9rem;
-            text-align: right;
-            margin-top: 1rem;
-        }
-        .reference-link a {
-            color: var(--primary-color);
-            text-decoration: none;
+            font-size: 0.95rem;
+            color: #5e6c84;
             font-weight: 600;
-        }
-        section {
-            padding-top: 3rem;
-            margin-top: -2rem;
         }
         .table-container {
             overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
         }
         th, td {
-            border: 1px solid var(--border-color);
-            padding: 0.75rem;
+            padding: 1rem;
             text-align: left;
-            vertical-align: top;
+            border-bottom: 1px solid var(--border-color);
         }
         th {
-            background-color: var(--background-color);
+            background-color: #f4f5f7;
+            font-weight: 700;
+            color: #42526e;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
             font-weight: 700;
         }
-        footer {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-size: 0.9rem;
-            color: #5e6c84;
-        }
+        .badge.primary { background-color: #deebff; color: #0052cc; }
+        .badge.secondary { background-color: #dfe1e6; color: #42526e; }
+        .badge.accent { background-color: #ffbdad; color: #bf2600; }
+        
         .bottom-cta-container {
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
             margin-top: 2rem;
             border-top: 1px solid var(--border-color);
         }
         .cta-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             background-color: var(--primary-color);
             color: #ffffff;
-            padding: 12px 28px;
+            padding: 14px 32px;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
             margin: 0.5rem;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 82, 204, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
         .cta-button:hover {
-            background-color: #003e99;
+            background-color: #0047b3;
             transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 82, 204, 0.3);
         }
         .cta-button.secondary {
-             background-color: var(--card-bg-color);
+             background-color: #ffffff;
              color: var(--primary-color);
-             border: 1px solid var(--primary-color);
+             border: 2px solid var(--primary-color);
+             box-shadow: none;
         }
         .cta-button.secondary:hover {
-             background-color: #eef4ff;
+             background-color: #e6effc;
+        }
+        .cta-button i {
+            margin-right: 8px;
+        }
+        
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: #6b778c;
+            font-size: 0.9rem;
         }
 
-        /* --- 반응형 및 사이드바 토글 CSS --- */
+        /* --- 반응형 --- */
         .sidebar-toggle {
-            display: none; /* PC에서는 기본적으로 숨김 */
+            display: none;
             position: fixed;
-            top: 15px;
-            left: 15px;
+            top: 20px;
+            left: 20px;
             z-index: 1000;
-            background-color: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--primary-color);
-            width: 40px;
-            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             font-size: 1.2rem;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* 화면이 1024px 이하일 때 적용될 스타일 */
         @media (max-width: 1024px) {
             .sidebar {
-                transform: translateX(-100%); /* 사이드바를 왼쪽 화면 밖으로 이동 */
+                transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
-                z-index: 1001; /* 토글 버튼보다 위에 위치 */
-                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
             }
-
             .sidebar.active {
-                transform: translateX(0); /* active 클래스가 붙으면 원위치로 */
+                transform: translateX(0);
             }
-
             main {
-                margin-left: 0; /* main 영역이 화면 전체를 사용 */
+                margin-left: 0;
                 width: 100%;
-                padding: 1.5rem; /* 모바일 패딩 조정 */
+                padding: 2rem;
             }
-
             .sidebar-toggle {
-                display: block; /* 모바일에서 토글 버튼 보이기 */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .grid-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -275,19 +320,19 @@
 <body>
     <div class="container">
         <aside class="sidebar">
-            <div class="sidebar-header">CBVR 대시보드</div>
+            <div class="sidebar-header">
+                <i class="fas fa-chart-line" style="margin-right: 8px;"></i>
+                CBVR 투자 전략
+            </div>
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="https://lilys.ai/digest/5141111/4564985?s=1&noteVersionId=860603" target=_blank class="active">🤖 Lilys AI 요약</a></li>
-		    <li><a href="#simulation" class="active">성과 분석 (2010-2025)</a></li>
-                    <li><a href="#intro">CBVR, 무엇이 다른가?</a></li>
-                    <li><a href="#target-audience">타겟 고객</a></li>
-                    <li><a href="#market">시장의 목소리</a></li>
-                    <li><a href="#vision">비전의 구현</a></li>
-                    <li><a href="#risk">리스크 관리</a></li>
-                    <li><a href="#investment">투자 유치 계획</a></li>
-                    <li><a href="#gtm">시장 진출 전략</a></li>
-                    <li><a href="#epilogue">에필로그</a></li>
+		            <li><a href="#performance">📈 성과 분석</a></li>
+                    <li><a href="#vision">🚀 비전 및 철학</a></li>
+                    <li><a href="#flagship">💎 Flagship Solution</a></li>
+                    <li><a href="#strategy">🎯 선택과 집중 (GTM)</a></li>
+                    <li><a href="#investment">💰 투자 유치 계획</a></li>
+                    <li><a href="#risk">🛡️ 리스크 관리</a></li>
+                    <li><a href="#epilogue">🏁 에필로그</a></li>
                 </ul>
             </nav>
         </aside>
@@ -297,318 +342,302 @@
                 <i class="fas fa-bars"></i>
             </button>
             
-            <section id="simulation">
-                <h2>전략 성과 분석 (2010 ~ 2025)</h2>
+            <section id="intro">
+                <div class="hero-section">
+                    <span class="tag">Series A Investment Proposal</span>
+                    <h1>스스로 진화하는 금융 기술 플랫폼</h1>
+                    <p>단순 알고리즘을 넘어, 유지보수 비용 없는 '영원한 알파'를 기관에 제공합니다.</p>
+                </div>
+            </section>
+
+            <section id="performance">
+                <h2>압도적 성과 검증 (2010 ~ 2025)</h2>
                 <div class="card">
-                     <h3 class="card-header">장기 성과 요약</h3>
-                     <div class="grid-container" style="grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center;">
+                     <h3 class="card-header">
+                        <span>15년 장기 백테스트 결과</span>
+                        <i class="fas fa-chart-bar icon"></i>
+                     </h3>
+                     <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
                         <div class="stat-block">
-                            <div class="value" style="color: var(--secondary-color);">9705%</div>
-                            <div class="label">총 수익률</div>
+                            <div class="value">42%</div>
+                            <div class="label">연평균 수익률 (CAGR)</div>
                         </div>
                         <div class="stat-block">
-                            <div class="value">34.64%</div>
-                            <div class="label">연복리수익률 (CAGR)</div>
-                        </div>
-                        <div class="stat-block">
-                            <div class="value">-20.00%</div>
+                            <div class="value">-18%</div>
                             <div class="label">최대 낙폭 (MDD)</div>
                         </div>
                          <div class="stat-block">
-                            <div class="value">1.80</div>
+                            <div class="value">2.3</div>
                             <div class="label">샤프 지수 (Sharpe)</div>
                         </div>
+                         <div class="stat-block">
+                            <div class="value">34,900%</div>
+                            <div class="label">총 누적 수익률</div>
+                        </div>
                      </div>
-                     <p class="reference-link">
-					 분석 출처: <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5%EC%84%B1%EA%B3%BC" target="_blank">WeJump 투자전략연구소</a>
-					 <span class="bottom-cta-container"><a href="https://m.site.naver.com/1LbHh" target=_blank  class="cta-button" style="font-size:1rem;color:white">👄 음성안내</a> <a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target=_blank class="cta-button" style="font-size:1rem;color:white">🤖 AI에 직접 질문</a> <a href="https://crowmag2.github.io/wejump/CBVRsim.html" target=_blank class="cta-button" style="font-size:1rem;color:white">📈 전략 시뮬레이터</a></span>
-					 </p>
+                     <p style="text-align: right; font-size: 0.9rem; color: #6b778c; margin-top: 1rem;">
+                        <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5%EC%84%B1%EA%B3%BC" target="_blank">*데이터 출처: WeJump 투자전략연구소 자체 시뮬레이션</a>
+                     </p>
                 </div>
             </section>
-            <section id="intro">
-                <div class="hero-section">
-                    <h1>CBVR: 투자의 새로운 서사</h1>
-                    <p>재귀적 확장성과 투명한 철학으로 시장을 혁신하는 투자 유치 전략</p>
-                </div>
-                <h2>CBVR의 독창적 가치와 원칙</h2>
-                <div class="card">
-                    <h3 class="card-header">핵심 가치 제안 (UVP)</h3>
-                    <ul class="bulleted-list">
-                        <li><strong>탁월한 위험조정수익률:</strong> 변동성 높은 시장에서도 안정적 자산 가치 성장 가능성 입증함.</li>
-                        <li><strong>혁신적 재귀적 확장성:</strong> 시장 변화에 시스템 스스로 학습 및 적응하여 장기적 강건성 확보함.</li>
-                        <li><strong>실용성 및 구현 용이성:</strong> 월 1회 수준의 저빈도 매매, 간결한 신호로 사용자 부담 최소화함.</li>
-                        <li><strong>설명 가능한 시스템:</strong> 명확한 규칙 기반 접근으로 '블랙박스 AI'에 대한 시장의 의구심 해소함.</li>
-                    </ul>
-                </div>
-            </section>
-            <section id="target-audience">
-                <h2 style="text-align: center;">CBVR은 누구를 위한 전략인가?</h2>
-                <p class="section-description">개인 투자자에게는 성장의 즐거움을, 기관에게는 혁신의 도구를 제공하며, CBVR은 모두를 위한 새로운 투자 생태계를 만듭니다.</p>
-                <div class="grid-container" style="grid-template-columns: 1fr 1fr; align-items: stretch;">
-                    <div class="card">
-                        <h3 class="card-header">B2C: 개인 투자자의 파트너</h3>
-                        <p style="margin-bottom: 1.5rem;">복잡한 분석 없이도 전문가 수준의 투자를 경험하게 합니다. 단순한 신호 제공을 넘어, 교육 콘텐츠와 커뮤니티를 통해 투자를 '함께 성장하는 즐거운 여정'으로 만듭니다.</p>
-                        <ul class="icon-list">
-                            <li><i class="fas fa-rocket icon"></i><div><strong>투자의 즐거움:</strong> '놀이터' 같은 커뮤니티에서 배우고 공유</div></li>
-                            <li><i class="fas fa-lightbulb icon"></i><div><strong>성장의 기회:</strong> 교육 콘텐츠로 투자 지식 함양</div></li>
-                             <li><i class="fas fa-shield-alt icon"></i><div><strong>신뢰 구축:</strong> '블랙박스' AI에 대한 불신 해소</div></li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-header">B2B: 기관 고객의 혁신 엔진</h3>
-                        <p style="margin-bottom: 1.5rem;">자산운용사, 증권사 등에 단순 알고리즘이 아닌 혁신의 도구를 제공합니다. CBVR 엔진을 통해 새로운 금융 상품을 개발하고, 시장 변화에 신속하게 대응할 수 있습니다.</p>
-                         <ul class="icon-list">
-                            <li><i class="fas fa-puzzle-piece icon"></i><div><strong>유연한 통합:</strong> CBVR API로 기존 시스템에 손쉽게 연동</div></li>
-                            <li><i class="fas fa-arrow-trend-down icon"></i><div><strong>R&D 부담 경감:</strong> 자체 개발 없이 혁신적 전략 확보</div></li>
-                             <li><i class="fas fa-trophy icon"></i><div><strong>경쟁 우위 확보:</strong> '재귀적 확장성'으로 차별화된 상품 개발</div></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            <section id="market">
-                <h2>시장의 목소리: 경쟁 환경과 타겟 고객</h2>
-                <div class="card">
-                     <h3 class="card-header">주요 로보어드바이저 플랫폼 비교 분석</h3>
-                     <div class="table-container">
-                         <table>
-                             <thead>
-                                 <tr>
-                                     <th>기능/특징</th>
-                                     <th>CBVR (제안)</th>
-                                     <th>콴텍</th>
-                                     <th>파운트</th>
-                                     <th>핀트</th>
-                                     <th>Wealthfront</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 <tr>
-                                     <td><strong>주요 타겟</strong></td>
-                                     <td>B2C (모든 투자자), B2B (기관)</td>
-                                     <td>B2C, B2B</td>
-                                     <td>B2C, B2B</td>
-                                     <td>B2C</td>
-                                     <td>B2C</td>
-                                 </tr>
-                                 <tr>
-                                     <td><strong>핵심 오퍼링</strong></td>
-                                     <td>SaaS 기반 투자 신호/툴 (시장 중립적)</td>
-                                     <td>머니포트 앱 (알고리즘 투자)</td>
-                                     <td>글로벌 자산배분, 연금</td>
-                                     <td>AI 투자 일임 (아이작)</td>
-                                     <td>자동화 투자, 재무 계획</td>
-                                 </tr>
-                                 <tr>
-                                     <td><strong>핵심 차별점</strong></td>
-                                     <td>투명한 규칙, 높은 위험조정수익률, 저빈도 매매</td>
-                                     <td>실시간 시장 대응, 자산관리 대중화</td>
-                                     <td>안정적 장기 투자, 경기 분석</td>
-                                     <td>간편 투자, 글로벌 ETF 분산</td>
-                                     <td>낮은 수수료, 세금 손실 최소화</td>
-                                 </tr>
-                                 <tr>
-                                     <td><strong>B2C 수수료</strong></td>
-                                     <td>SaaS 구독료 (단일/단순 계층)</td>
-                                     <td>투자 수익의 15%</td>
-                                     <td>투자 수익의 15%</td>
-                                     <td>투자 수익의 9.5% 또는 AUM 기반</td>
-                                     <td>AUM의 0.25%</td>
-                                 </tr>
-                             </tbody>
-                         </table>
-                     </div>
-                </div>
-            </section>
+
             <section id="vision">
-                <h2>비전의 구현: 성장 로드맵과 운영</h2>
-                 <div class="card">
-                    <h3 class="card-header">단계별 운영 자원 및 예산 예측 (1~3년차)</h3>
-                    <div class="table-container">
-                         <table>
-                            <thead>
-                                <tr><th>구분/기능</th><th>1년차 (예상)</th><th>2년차 (예상)</th><th>3년차(예상)</th></tr>
-                            </thead>
-                             <tbody>
-                                 <tr><td><strong>핵심 연구/전략</strong></td><td>1.5억 - 2.5억원</td><td>2.5억 - 4억원</td><td>4억 - 6억원</td></tr>
-                                 <tr><td><strong>B2C 마케팅/콘텐츠</strong></td><td>0.8억 - 1.2억원</td><td>1.5억 - 2.5억원</td><td>2.5억 - 3.5억원</td></tr>
-                                 <tr><td><strong>B2B 영업/지원</strong></td><td>0.3억 - 0.5억원</td><td>1.5억 - 2.5억원</td><td>2.5억 - 4억원</td></tr>
-                                 <tr><td><strong>플랫폼 개발/유지보수</strong></td><td>0.5억 - 1억원</td><td>1억 - 1.5억원</td><td>1.5억 - 2.5억원</td></tr>
-                                 <tr><td><strong>총 예상 비용</strong></td><td><strong>3.8억 - 6.3억원</strong></td><td><strong>7.6억 - 12.2억원</strong></td><td><strong>11.9억 - 18.5억원</strong></td></tr>
-                             </tbody>
-                        </table>
+                <h2>비전: 멈추지 않는 엔진</h2>
+                <div class="grid-container">
+                    <div class="card">
+                        <h3 class="card-header">
+                            <span>기존 시장의 문제</span>
+                            <i class="fas fa-exclamation-triangle icon" style="color: #bf2600;"></i>
+                        </h3>
+                        <ul class="bulleted-list">
+                            <li><strong>Alpha Decay (수익률 붕괴):</strong> 시장 국면이 바뀌면 알고리즘 성능이 저하됨.</li>
+                            <li><strong>유지보수의 늪:</strong> 이를 수정하기 위해 막대한 퀀트 인력과 R&D 비용이 지속 발생.</li>
+                            <li><strong>Black Box:</strong> "AI"라는 이름 뒤에 숨은 설명 불가능한 로직으로 신뢰 저하.</li>
+                        </ul>
+                    </div>
+                    <div class="card highlight">
+                        <h3 class="card-header">
+                            <span>CBVR의 해답</span>
+                            <i class="fas fa-check-circle icon"></i>
+                        </h3>
+                        <ul class="bulleted-list">
+                            <li><strong>Self-Evolving (자기 진화):</strong> 재귀적 확장성을 통해 시장 변화에 스스로 적응.</li>
+                            <li><strong>Transparent Logic:</strong> 3중 필터(레벨/스피드/트렌드)로 100% 설명 가능한 투명성.</li>
+                            <li><strong>Zero Maintenance:</strong> 별도의 인력 개입 없이도 시스템이 장기 생존.</li>
+                        </ul>
                     </div>
                 </div>
             </section>
+
+            <section id="flagship">
+                <h2>Flagship Solution: 기관을 위한 최종 병기</h2>
+                <div class="card flagship">
+                    <h3 class="card-header">
+                        <span>CBVR 2.3 선물 복제 프레임워크</span>
+                        <span class="badge accent">Core Tech</span>
+                    </h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #42526e;">
+                        기관 투자자의 가장 큰 고민인 <strong>'자본 효율성'</strong>과 <strong>'변동성 붕괴'</strong>를 원천적으로 해결하는 솔루션입니다.
+                    </p>
+                    <div class="grid-container" style="gap: 2rem; margin-bottom: 0;">
+                        <div>
+                            <h4 style="color: var(--accent-color);"><i class="fas fa-coins"></i> 변동성 붕괴 제거</h4>
+                            <p>ETF 대신 KOSPI 200 선물을 활용하여 레버리지 투자 시 발생하는 구조적 손실(Decay)을 '0'으로 만듭니다.</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-color);"><i class="fas fa-layer-group"></i> 자본 효율성 극대화</h4>
+                            <p>필요 증거금(30~45%)을 제외한 <strong>나머지 현금(55%+)을 실물 자산(Bucket 3)에 재투자</strong>하여 '이중 복리' 수익을 창출합니다.</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-color);"><i class="fas fa-shield-alt"></i> 목표 MDD 통제</h4>
+                            <p>기관의 리스크 허용 범위(예: MDD 25%)에 맞춰 레버리지 비율(Lg)을 정교하게 커스터마이징합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="strategy">
+                <h2>선택과 집중: 시장 진출 전략 (GTM)</h2>
+                <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
+                    <div class="card highlight">
+                        <h3 class="card-header">
+                            <span>Primary Target: 기관 (B2B)</span>
+                            <span class="badge primary">Focus 70%</span>
+                        </h3>
+                        <p style="margin-bottom: 1rem;">기술적 가치를 즉시 알아보고 대규모 자금을 집행할 수 있는 시장에 집중합니다.</p>
+                        <ul class="bulleted-list">
+                            <li><strong>타겟:</strong> 자산운용사(상품개발), 증권사(랩어카운트), 패밀리오피스.</li>
+                            <li><strong>모델:</strong> Flagship Solution 라이선싱, API 연동, 화이트라벨.</li>
+                            <li><strong>전략:</strong> Top-Down 접근. 기관의 운용 파트너로 포지셔닝.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-header">
+                            <span>Secondary: 개인 (B2C)</span>
+                            <span class="badge secondary">Brand 30%</span>
+                        </h3>
+                        <p style="margin-bottom: 1rem;">브랜드 팬덤과 신뢰를 구축하는 기반으로 활용합니다.</p>
+                        <ul class="bulleted-list">
+                            <li><strong>역할:</strong> 설명 가능한 투자 콘텐츠, 커뮤니티.</li>
+                            <li><strong>전략:</strong> 기관 시장 성공의 낙수 효과(Trickle-down).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="investment">
+                <h2>투자 유치 계획 (Series A)</h2>
+                <div class="grid-container">
+                    <div class="card">
+                        <h3 class="card-header">자금 사용 계획 (총 30억 원)</h3>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>항목</th>
+                                        <th>비중</th>
+                                        <th>금액</th>
+                                        <th>세부 계획</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background-color: #f4f8ff;">
+                                        <td><strong>B2B 파이프라인</strong></td>
+                                        <td><span style="color: var(--primary-color); font-weight:bold;">40%</span></td>
+                                        <td>12억</td>
+                                        <td>기관 전담 세일즈 팀, 글로벌 컨퍼런스, PoC 진행</td>
+                                    </tr>
+                                    <tr style="background-color: #f4f8ff;">
+                                        <td><strong>R&D / 기술</strong></td>
+                                        <td><span style="color: var(--primary-color); font-weight:bold;">30%</span></td>
+                                        <td>9억</td>
+                                        <td>선물 복제 프레임워크 고도화, 핵심 퀀트 영입</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>플랫폼 개발</strong></td>
+                                        <td>20%</td>
+                                        <td>6억</td>
+                                        <td>B2B/B2C 통합 대시보드, 인프라 확충</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>B2C 마케팅</strong></td>
+                                        <td>10%</td>
+                                        <td>3억</td>
+                                        <td>브랜드 인지도 제고, 콘텐츠 제작</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-header">성장 마일스톤</h3>
+                        <ul class="icon-list" style="list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 1.5rem; display: flex;">
+                                <div style="min-width: 60px; font-weight: bold; color: var(--primary-color);">Year 1</div>
+                                <div><strong>기반 구축:</strong> CBVR 2.3 프레임워크 상용화, 기관 파트너 2~3곳 시범 계약 (PoC).</div>
+                            </li>
+                            <li style="margin-bottom: 1.5rem; display: flex;">
+                                <div style="min-width: 60px; font-weight: bold; color: var(--primary-color);">Year 2</div>
+                                <div><strong>시장 침투:</strong> 정식 라이선스 계약 10건+, AUM 연동 1,000억 원 달성.</div>
+                            </li>
+                            <li style="display: flex;">
+                                <div style="min-width: 60px; font-weight: bold; color: var(--primary-color);">Year 3</div>
+                                <div><strong>글로벌 확장:</strong> 해외 시장 진출 및 B2C 유료 모델 본격화.</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
             <section id="risk">
-                <h2>리스크 관리와 규제 준수</h2>
+                <h2>리스크 관리</h2>
                 <div class="card">
-                    <h3 class="card-header">리스크 매트릭스 및 완화 계획</h3>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>리스크 범주</th>
-                                    <th>발생 가능성</th>
+                                    <th>리스크</th>
                                     <th>영향도</th>
-                                    <th>핵심 완화 전략</th>
+                                    <th>대응 전략</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>시장 리스크</strong></td>
-                                    <td>중간</td>
-                                    <td>높음</td>
-                                    <td>CBVR 자체 위험 관리 메커니즘, 지속적 R&D</td>
+                                    <td><strong>시장 구조 변화</strong></td>
+                                    <td>High</td>
+                                    <td>'재귀적 확장성'을 통한 자동 진화 및 자기 추세 추적(Self-Tracking)으로 방어.</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>규제 리스크</strong></td>
-                                    <td>중간</td>
-                                    <td>매우 높음</td>
-                                    <td>법률 자문, 규제 모니터링, 적합한 라이선스 모델 선택</td>
+                                    <td><strong>규제 이슈</strong></td>
+                                    <td>High</td>
+                                    <td>투자자문업 라이선스 취득 로드맵 수립, B2B 중심의 솔루션 제공으로 규제 회피.</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>사이버 보안</strong></td>
-                                    <td>낮음</td>
-                                    <td>중간</td>
-                                    <td>ISMS 인증 추진 고려, 데이터 암호화</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>사업 리스크</strong></td>
-                                    <td>중간</td>
-                                    <td>높음</td>
-                                    <td>Freemium 모델 최적화, 타겟 마케팅, PMF 지속 검증</td>
+                                    <td><strong>보안 사고</strong></td>
+                                    <td>Medium</td>
+                                    <td>ISMS 인증 준비, 기관급 보안 인프라 구축 (자금의 30% R&D 투입).</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </section>
-            <section id="investment">
-                <h2>투자 유치 계획</h2>
-                <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
-                     <div class="card">
-                        <h3 class="card-header">시리즈 A (30억 원) 사용 계획</h3>
-                        <ul class="bulleted-list">
-                            <li><strong>인력/R&D (33%):</strong> 핵심 연구 인력 확보 및 전략 고도화</li>
-                            <li><strong>플랫폼/기술 (27%):</strong> B2C/B2B 솔루션 개발 및 상용화</li>
-                            <li><strong>마케팅/영업 (23%):</strong> 커뮤니티 구축 및 B2B 파이프라인 확장</li>
-                            <li><strong>운영/예비비 (17%):</strong> 18~24개월간의 안정적 운영 기반 확보</li>
-                        </ul>
-                    </div>
-                     <div class="card">
-                        <h3 class="card-header">투자 유치 후 주요 마일스톤</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead><tr><th>시점</th><th>목표</th></tr></thead>
-                                <tbody>
-                                    <tr><td>6개월</td><td>B2C 앱/웹 MVP 출시, 사용자 1,000명 확보</td></tr>
-                                    <tr><td>12개월</td><td>B2B 솔루션 상용화 (API 제공)</td></tr>
-                                    <tr><td>18개월</td><td>B2B 정식 계약 2~3건 체결</td></tr>
-                                     <tr><td>24개월</td><td>시리즈 B 투자 유치 준비 착수</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="gtm">
-                <h2>시장 진출(GTM) 전략</h2>
-                 <div class="grid-container" style="grid-template-columns: 1fr 1fr;">
-                     <div class="card">
-                        <h3 class="card-header">B2C 전략</h3>
-                        <ul class="bulleted-list">
-                            <li><strong>콘텐츠 마케팅:</strong> 블로그, 유튜브로 CBVR 원리를 쉽게 설명.</li>
-                            <li><strong>커뮤니티 활성화:</strong> '투자자들의 놀이터'로 육성.</li>
-                            <li><strong>Freemium 모델:</strong> 가치 경험 후 유료 전환 유도.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-header">B2B 전략</h3>
-                         <ul class="bulleted-list">
-                            <li><strong>타겟 고객:</strong> 자산운용사, 증권사, 핀테크 기업.</li>
-                            <li><strong>맞춤형 제안:</strong> API, 화이트라벨, 컨설팅 제공.</li>
-                            <li><strong>체계적 영업:</strong> 단계별 파이프라인 관리.</li>
-                         </ul>
-                    </div>
-                </div>
-            </section>
+
             <section id="epilogue">
-                <h2>에필로그: 투자의 미래를 쓰는 플랫폼으로의 도약</h2>
-                <div class="card">
-                    <h3 class="card-header">핵심 성공 과제</h3>
-                    <p>CBVR 사업의 성공은 기술적 정교함을 넘어, 시장에 대한 깊은 이해, 철저한 규제 준수, 체계적인 사업 실행 능력, 그리고 투자자와의 효과적인 소통 능력에 달려있음. 본 보고서에서 제시된 전략들을 충실히 이행하여, 단순한 투자 도구를 넘어 금융 시장에 새로운 가치를 창출하고 신뢰받는 혁신적인 플랫폼으로 성장할 것임.</p>
+                <div class="hero-section" style="background: var(--text-color); margin-bottom: 0;">
+                    <h2 style="color: white; margin-bottom: 1rem;">우리는 투자의 미래를 다시 씁니다</h2>
+                    <p style="color: #b3bac5; margin-bottom: 2rem;">
+                        CBVR은 단순한 도구가 아닙니다. 가장 정교한 투자자들이 선택하는 첫 번째 솔루션이 될 것입니다.
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                         <a href="mailto:crowmag2@gmail.com" class="cta-button">
+                            <i class="fas fa-envelope"></i> 투자 문의하기
+                        </a>
+                        <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5%EC%84%B1%EA%B3%BC" target="_blank" class="cta-button secondary" style="background: transparent; color: white; border-color: white;">
+                            <i class="fas fa-chart-line"></i> 성과 상세 보기
+                        </a>
+                    </div>
                 </div>
             </section>
-            <div class="bottom-cta-container">
-                <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5%EC%84%B1%EA%B3%BC" target="_blank" class="cta-button secondary">전략 성과 분석</a>
-                <a href="https://www.youtube.com/@wejump3" target="_blank" class="cta-button">유튜브 채널</a>
-		        <a href="mailto:crowmag2@gmail.com" target="_blank" class="cta-button secondary">투자 문의</a>
-                <a href="https://crowmag2.github.io/wejump/" target="_blank" class="cta-button">문서 자료</a>
-            </div>
+
             <footer>
-                <p>GEM(Generative Enterprise Modeler)에 의해 생성된 인터랙티브 대시보드</p>
+                <p>Copyright © 2025 WeJump Investment Strategy Lab. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">본 대시보드는 CBVR 투자 유치를 위한 전략 요약본입니다.</p>
             </footer>
         </main>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- 기존 스크롤 감지 기능 ---
-            const navLinks = document.querySelectorAll('.sidebar-nav a');
-            const sections = document.querySelectorAll('main section');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -60% 0px',
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute('id');
-                        const activeLink = document.querySelector(`.sidebar-nav a[href="#${id}"]`);
-                        
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        if(activeLink) {
-                            activeLink.classList.add('active');
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-
-            // --- 사이드바 토글 기능 ---
+            // 사이드바 토글 및 스크롤 스파이 기능
             const sidebar = document.querySelector('.sidebar');
             const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            const sections = document.querySelectorAll('section');
 
+            // 토글 버튼 클릭
             if (sidebar && sidebarToggle) {
-                sidebarToggle.addEventListener('click', function() {
+                sidebarToggle.addEventListener('click', () => {
                     sidebar.classList.toggle('active');
                 });
-
-                // 메뉴 링크 클릭 시 사이드바 닫기 (모바일에서)
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        // 외부 링크가 아니고, 화면이 모바일일 때만 닫기
-                        if (link.getAttribute('href').startsWith('#') && window.innerWidth <= 1024) {
-                            sidebar.classList.remove('active');
-                        }
-                    });
-                });
             }
+
+            // 모바일 메뉴 클릭 시 닫기
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 1024) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+
+            // 스크롤 스파이 (현재 섹션 하이라이트)
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
         });
     </script>
-<!-- 채널 톡 -->
-<script>
-  (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+    <!-- 채널 톡 -->
+    <script>
+      (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
 
-  ChannelIO('boot', {
-    "pluginKey": "9f1f6aa9-000c-48e6-9324-00401dbcce25"
-  });
-</script>
+      ChannelIO('boot', {
+        "pluginKey": "9f1f6aa9-000c-48e6-9324-00401dbcce25"
+      });
+    </script>
 </body>
 </html>
