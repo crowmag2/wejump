@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -83,16 +84,16 @@
         }
         
         .loader-text {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-top: 20px;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid #60a5fa;
-            animation: typing 2s steps(30, end), blink-caret .75s step-end infinite;
-        }
+			color: white;
+			font-size: 1.5rem;
+			font-weight: 300;
+			letter-spacing: 2px;
+			margin-top: 20px;
+			white-space: nowrap;
+			border-right: 2px solid #60a5fa; /* 커서 색상 */
+			padding-right: 5px; /* 커서와 글자 사이 간격 */
+			animation: blink-caret .75s step-end infinite;
+}
 
         .loader-bar-bg {
             width: 200px;
@@ -110,10 +111,6 @@
             transition: width 2.2s ease-in-out;
         }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
         @keyframes blink-caret {
             from, to { border-color: transparent }
             50% { border-color: #60a5fa; }
@@ -647,82 +644,45 @@
     </div>
 
     <script>
-        // --- 인트로 애니메이션 제어 ---
-        window.addEventListener('load', () => {
-            const overlay = document.getElementById('intro-overlay');
-            const bar = document.getElementById('loader-bar');
-            
-            // 로딩 바 애니메이션 시작
-            setTimeout(() => {
-                bar.style.width = '100%';
-            }, 100);
+// --- 인트로 애니메이션 제어 ---
+window.addEventListener('load', () => {
+    const overlay = document.getElementById('intro-overlay');
+    const bar = document.getElementById('loader-bar');
+    const textElement = document.getElementById('typewriter-text');
+    
+    // 타이핑할 텍스트 내용
+    const textToType = "Initializing Strategy Engine...";
+    textElement.textContent = ""; // 초기화
 
-            // 2.2초 후 오버레이 페이드아웃
-            setTimeout(() => {
-                overlay.style.opacity = '0';
-                overlay.style.transform = 'translateY(-20px)';
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                }, 800);
-            }, 2200);
-        });
-
-        // --- 모달 및 쿠키 제어 ---
-        function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                const date = new Date();
-                date.setTime(date.getTime() + (days*24*60*60*1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    // 1. 타이핑 효과 함수
+    let i = 0;
+    function typeWriter() {
+        if (i < textToType.length) {
+            textElement.textContent += textToType.charAt(i);
+            i++;
+            // 글자당 50ms ~ 100ms 사이 랜덤 속도로 타이핑 (더 자연스러움)
+            const randomSpeed = Math.floor(Math.random() * 50) + 50;
+            setTimeout(typeWriter, randomSpeed);
         }
+    }
 
-        function getCookie(name) {
-            const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
-            for(let i=0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-            }
-            return null;
-        }
+    // 2. 실행 순서 제어
+    // 로딩 바 시작
+    setTimeout(() => {
+        bar.style.width = '100%';
+        // 로딩바가 찰 때 타이핑도 같이 시작
+        typeWriter(); 
+    }, 100);
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const modal = document.getElementById('repo-info-modal');
-            const openBtn = document.getElementById('open-repo-info-button');
-            const closeBtn = document.getElementById('close-repo-info-button');
-
-            const showModal = () => {
-                modal.style.display = 'flex';
-                setTimeout(() => {
-                    modal.classList.add('active');
-                }, 10);
-            };
-
-            const hideModal = () => {
-                modal.classList.remove('active');
-                setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 300);
-            };
-
-            // 인트로 시간 고려하여 3초 후 팝업
-            if (!getCookie('hasVisitedRepo')) {
-                setTimeout(showModal, 3000);
-                setCookie('hasVisitedRepo', 'true', 30);
-            }
-
-            openBtn.addEventListener('click', showModal);
-            closeBtn.addEventListener('click', hideModal);
-            
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    hideModal();
-                }
-            });
-        });
+    // 3. 오버레이 종료 (타이핑 시간 고려하여 딜레이 조정 필요 시 수정)
+    setTimeout(() => {
+        overlay.style.opacity = '0';
+        overlay.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 800);
+    }, 2500); // 2200 -> 2500으로 약간 여유를 둠
+});
     </script>
     
     <script>
