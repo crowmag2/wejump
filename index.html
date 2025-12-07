@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta http-equiv="Cache-Control" content="no-store">
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeJump 투자전략 연구소 - 문서 저장소</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -13,240 +12,437 @@
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+            background-color: #f3f4f6;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        .category-icon {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .doc-link {
-            transition: all 0.2s ease;
-        }
-        .doc-link:hover {
-            background-color: #f8fafc;
-            border-left: 4px solid #667eea;
-        }
-        /* --- 팝업 모달 스타일 추가 --- */
-        .modal-overlay {
+
+        /* --- 배경 애니메이션 (Moving Gradient Blobs) --- */
+        .bg-animate {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: none; /* 기본은 숨김 */
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: #f3f4f6;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #a78bfa; animation-delay: 0s; }
+        .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #60a5fa; animation-delay: -5s; }
+        .blob-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #34d399; opacity: 0.4; animation-delay: -2s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        /* --- Glassmorphism 스타일 --- */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        /* --- 인트로 애니메이션 --- */
+        #intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #111827;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 50;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .loader-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #60a5fa;
+            animation: typing 2s steps(30, end), blink-caret .75s step-end infinite;
+        }
+
+        .loader-bar-bg {
+            width: 200px;
+            height: 4px;
+            background: #374151;
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .loader-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            width: 0%;
+            transition: width 2.2s ease-in-out;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #60a5fa; }
+        }
+
+        /* 깜빡임 효과 */
+        @keyframes blink-effect {
+            50% { opacity: 0; }
+        }
+        .blink { animation: blink-effect 1s step-end infinite; }
+
+        /* 모달 스타일 */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center; justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
         }
         .modal-content {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
             padding: 2.5rem;
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             max-width: 830px;
             width: 90%;
             position: relative;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-			overflow: auto;
-			max-height: 93vh;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: auto;
+            max-height: 93vh;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
         }
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: #9ca3af;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-        .modal-close-btn:hover {
-            color: #1f2937;
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <header class="gradient-bg text-white shadow-lg">
-        <div class="container mx-auto px-6 py-8">
+<body class="text-gray-800">
+
+    <div id="intro-overlay">
+        <div class="flex items-center space-x-4 mb-4">
+            <i class="fas fa-chart-line text-4xl text-blue-400"></i>
+            <h1 class="text-3xl font-bold text-white tracking-wider">WeJump Lab</h1>
+        </div>
+        <div class="loader-text" id="typewriter-text">Initializing Strategy Engine...</div>
+        <div class="loader-bar-bg">
+            <div class="loader-bar" id="loader-bar"></div>
+        </div>
+    </div>
+
+    <div class="bg-animate">
+        <div class="blob blob-1 rounded-full"></div>
+        <div class="blob blob-2 rounded-full"></div>
+        <div class="blob blob-3 rounded-full"></div>
+    </div>
+
+    <header class="glass-header sticky top-0 z-40">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ftistory1.daumcdn.net%2Ftistory%2F7986187%2Fattach%2F96d50c3a00ae4444b8b4440ac930b360" alt="WeJump Logo" class="h-12 w-12 rounded-lg bg-white p-1">
+                    <img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ftistory1.daumcdn.net%2Ftistory%2F7986187%2Fattach%2F96d50c3a00ae4444b8b4440ac930b360" alt="WeJump Logo" class="h-10 w-10 rounded-lg shadow-md">
                     <div>
-                        <h1 class="text-3xl font-bold">WeJump 투자전략 연구소</h1>
-                        <p class="text-blue-100 mt-1">전문 투자 전략 및 연구 문서 저장소</p>
+                        <h1 class="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-purple-700">WeJump 투자전략 연구소</h1>
+                        <p class="text-xs text-gray-500 font-medium tracking-wide">QUANTITATIVE STRATEGY ARCHIVE</p>
                     </div>
                 </div>
                 <div class="hidden md:flex space-x-4">
-                    <a href="https://wejump3.tistory.com/" target="_blank" class="bg-gradient-to-r from-green-500 to-blue-600 bg-opacity-20 px-4 py-2 rounded-lg hover:from-green-600 hover:to-blue-700 transition duration-200">
-                        <i class="fab fa-blogger mr-2"></i>블로그 바로가기
+                    <a href="https://wejump3.tistory.com/" target="_blank" class="text-gray-600 hover:text-blue-600 font-medium transition duration-200 flex items-center px-3 py-2 rounded-lg hover:bg-blue-50">
+                        <i class="fab fa-blogger mr-2"></i>블로그
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 items-start">
-            <div class="bg-teal-50 rounded-xl shadow-lg card-hover">
-                <div class="p-6">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-robot text-blue-600 text-2xl mr-3"></i>
-                        <h3 class="font-semibold text-lg text-gray-800">AI에게 물어보기</h3>
+    <main class="container mx-auto px-6 py-12 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 items-start">
+            <div class="glass rounded-2xl p-6 card-hover group cursor-pointer">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-blue-100 p-3 rounded-full text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-robot text-xl"></i>
                     </div>
-                    <p class="text-gray-600 mb-4">궁금한 점을 질문하세요.</p>
-					<center><a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200 font-medium">
-                        <i class="fas fa-play mr-2"></i>AI와 대화하기
-                    </a></center>
+                    <span class="text-xs font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded-full">AI Support</span>
                 </div>
+                <h3 class="font-bold text-lg text-gray-800 mb-2">AI에게 물어보기</h3>
+                <p class="text-gray-500 text-sm mb-6">전략에 대한 궁금한 점을 AI와 대화하며 해결하세요.</p>
+                <a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="block w-full text-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 rounded-xl hover:shadow-lg transition duration-200 font-medium text-sm">
+                    대화 시작하기 <i class="fas fa-arrow-right ml-1"></i>
+                </a>
             </div>
-			<div class="bg-teal-50 rounded-xl shadow-lg card-hover">
-                <div class="p-6">
-                    <div class="flex items-center mb-4">
-                        <i class="fab fa-youtube text-red-600 text-2xl mr-3"></i>
-                        <h3 class="font-semibold text-lg text-gray-800">영상자료로 보기</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">유튜브로 간편하게 보기</p>
-					<center><a href="https://www.youtube.com/live/L45lDYLwcTo?si=h3LHmJrHAFcaMvVk" target="_blank" class="blink bg-gradient-to-r from-red-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-red-500 transition duration-200 inline-flex items-center font-medium">
-                        <i class="fas fa-play mr-2"></i>유튜브 생방송 중
-                    </a></center>
-<style>
-@keyframes blink-effect {
-  50% {
-    opacity: 0;
-  }
-}
 
-.blink {
-  animation: blink-effect 1s step-end infinite;
-}
-</style>
-                </div>
-            </div>
-            <div class="bg-teal-50 rounded-xl shadow-lg card-hover">
-                <div class="p-6">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-envelope text-blue-600 text-2xl mr-3"></i>
-                        <h3 class="font-semibold text-lg text-gray-800">Contact Us</h3>
+            <div class="glass rounded-2xl p-6 card-hover group cursor-pointer">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-red-100 p-3 rounded-full text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fab fa-youtube text-xl"></i>
                     </div>
-                    <p class="text-gray-600 mb-4">각종 문의 및 요청사항</p>
-                    <center><a href="https://linktr.ee/wejump3" target=_blank class="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-blue-700 transition duration-200 inline-flex items-center font-medium">
-                        이메일 및 텔레그램
-                    </a></center>
+                    <span class="text-xs font-bold text-red-500 bg-red-50 px-2 py-1 rounded-full blink">LIVE</span>
                 </div>
+                <h3 class="font-bold text-lg text-gray-800 mb-2">영상 자료실</h3>
+                <p class="text-gray-500 text-sm mb-6">유튜브 채널에서 실시간 방송과 분석 영상을 확인하세요.</p>
+                <a href="https://www.youtube.com/live/L45lDYLwcTo?si=h3LHmJrHAFcaMvVk" target="_blank" class="block w-full text-center bg-white border border-red-500 text-red-600 py-3 rounded-xl hover:bg-red-50 transition duration-200 font-medium text-sm">
+                    <i class="fas fa-play mr-1"></i> 시청하기
+                </a>
             </div>
-            <div id="open-repo-info-button" class="bg-white rounded-xl shadow-lg p-6 text-center card-hover cursor-pointer">
-                <div class="category-icon text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-info-circle text-2xl"></i>
+
+            <div class="glass rounded-2xl p-6 card-hover group cursor-pointer">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-green-100 p-3 rounded-full text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </div>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800">저장소 소개</h3>
-                <p class="text-gray-600">연구소의 원칙과 비전</p>
+                <h3 class="font-bold text-lg text-gray-800 mb-2">Contact Us</h3>
+                <p class="text-gray-500 text-sm mb-6">협업 제안, 전략 문의 등 다양한 소통 창구입니다.</p>
+                <a href="https://linktr.ee/wejump3" target="_blank" class="block w-full text-center bg-white border border-gray-300 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition duration-200 font-medium text-sm">
+                    문의하기
+                </a>
+            </div>
+
+            <div id="open-repo-info-button" class="glass rounded-2xl p-6 card-hover group cursor-pointer bg-gradient-to-br from-white to-blue-50">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="bg-indigo-100 p-4 rounded-full text-indigo-600 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                        <i class="fas fa-info text-2xl"></i>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-bold text-lg text-gray-800 mb-1">저장소 소개</h3>
+                    <p class="text-gray-500 text-sm">연구소의 철학과 비전</p>
+                </div>
             </div>
         </div>
 
+        <section class="mb-16">
+            <div class="flex items-center mb-6 pl-2 border-l-4 border-blue-500">
+                <h2 class="text-2xl font-bold text-gray-800">System Architecture (전략 설계도)</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass rounded-2xl p-6 card-hover group relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-blue-100 rounded-lg text-blue-600">
+                                <i class="fas fa-sitemap text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-gray-800">CBVR Fundamental Map</h3>
+                        </div>
+                        <span class="text-xs font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">Ver 1.0</span>
+                    </div>
+                    
+                    <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-xl overflow-hidden relative shadow-inner mb-4">
+                        <img src="https://crowmag2.github.io/wejump/CBVR Mind Map.png" alt="CBVR Fundamental Architecture" class="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-700">
+                        
+                        <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <a href="https://crowmag2.github.io/wejump/CBVR Mind Map.png" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">
+                                <i class="fas fa-search-plus mr-2"></i>크게 보기
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-500 text-sm">
+                        CBVR 전략의 철학적 배경, 핵심 알고리즘, 자본 관리 원칙을 포괄하는 전체 구조도입니다.
+                    </p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 card-hover group relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-red-100 rounded-lg text-red-600">
+                                <i class="fas fa-project-diagram text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-lg text-gray-800">CBVR 2.3 Target Beta</h3>
+                        </div>
+                        <span class="text-xs font-bold text-white bg-red-500 px-2 py-1 rounded">Ver 2.3</span>
+                    </div>
+
+                    <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-xl overflow-hidden relative shadow-inner mb-4">
+                        <img src="https://crowmag2.github.io/wejump/CBVR2.3 Mind Map.png" alt="CBVR 2.3 Institutional Framework" class="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-700">
+                        
+                        <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <a href="https://crowmag2.github.io/wejump/CBVR2.3 Mind Map.png" target="_blank" class="bg-white text-gray-900 px-4 py-2 rounded-full font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition duration-300">
+                                <i class="fas fa-search-plus mr-2"></i>크게 보기
+                            </a>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-500 text-sm">
+                        기관용 확장 모델(Target Beta), 선물 복제 및 3-Bucket 자본 효율화 시스템의 상세 구조도입니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <div class="space-y-12">
             <section>
-                <div class="flex items-center mb-6">
-                    <div class="category-icon text-white rounded-lg w-12 h-12 flex items-center justify-center mr-4">
-                        <i class="fas fa-search text-xl"></i>
-                    </div>
+                <div class="flex items-center mb-6 pl-2 border-l-4 border-indigo-500">
                     <h2 class="text-2xl font-bold text-gray-800">전략 리서치 및 기술 문서</h2>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="divide-y divide-gray-200">
-                        <a href="https://crowmag2.github.io/wejump/CBVRinfo.html" target="_blank" class="doc-link block p-6 bg-indigo-100 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-chart-pie text-purple-600 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">CBVR 전략 대화형 인포그래픽</h3>
-                                    <p class="text-gray-600 text-sm">시각적 데이터와 AI와 대화를 통한 전략 이해</p>
+                <div class="glass rounded-2xl overflow-hidden shadow-sm">
+                    <div class="divide-y divide-gray-100">
+                        
+                        <a href="https://crowmag2.github.io/wejump/CBVRinfo.html" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-purple-600 bg-purple-100 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-pie"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2">
+                                        <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">CBVR 전략 대화형 인포그래픽</h3>
+                                        <span class="text-xs font-bold text-white bg-purple-500 px-2 py-0.5 rounded-full">Start Here</span>
+                                    </div>
+                                    <p class="text-gray-500 text-sm mt-1">시각적 데이터와 AI 대화를 통해 전략을 가장 쉽게 이해하는 첫 단계</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
-						<a href="https://crowmag2.github.io/wejump/PPT_CBVR.pdf" target="_blank" class="doc-link block p-6 bg-indigo-100 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-powerpoint text-red-800 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">PPT_CBVR.pdf</h3>
-                                    <p class="text-gray-600 text-sm">CBVR 전략 상세 프레젠테이션</p>
+
+                        <a href="https://crowmag2.github.io/wejump/CBVRsim.html" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-yellow-600 bg-yellow-100 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-gamepad"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">CBVR 전략 인터랙티브 시뮬레이터</h3>
+                                    <p class="text-gray-500 text-sm mt-1">과거 데이터를 기반으로 의사결정 과정을 직접 체험해보는 시뮬레이션</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
-						<a href="https://crowmag2.github.io/wejump/CBVRsim.html" target="_blank" class="doc-link block p-6 bg-indigo-100 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-lightbulb text-yellow-300 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">CBVR 전략 인터랙티브 시뮬레이터</h3>
-                                    <p class="text-gray-600 text-sm">의사결정 과정을 시각적으로 확인할 수 있는 동적 웹 시뮬레이터</p>
+
+                        <a href="https://crowmag2.github.io/wejump/PPT_CBVR.pdf" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-red-600 bg-red-100 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-file-powerpoint"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">CBVR 전략 프레젠테이션 (PPT)</h3>
+                                    <p class="text-gray-500 text-sm mt-1">전략의 핵심 로직과 성과 분석을 요약한 발표 자료</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
-						<a href="https://crowmag2.github.io/wejump/CBVR%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC_%EB%B6%84%EC%84%9D%EA%B3%BC_%EC%9D%B4%EB%A1%A0%EC%A0%81_%ED%86%A0%EB%8C%80.pdf" target="_blank" class="doc-link block p-6 bg-indigo-100 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt text-blue-800 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">CBVR 프레임워크 분석 및 이론적 토대</h3>
-                                    <p class="text-gray-600 text-sm">기관 등급의 동적 적응형 퀀트 프레임워크의 이론적 토대</p>
+
+                        <a href="https://crowmag2.github.io/wejump/CBVR%EC%A0%84%EB%9E%B5%EB%A1%9C%EC%A7%81%EC%84%A4%EB%AA%85%EC%84%9C.pdf" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group border-t-4 border-gray-100">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-blue-600 bg-blue-100 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-cogs"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2">
+                                        <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">CBVR 전략 로직 설명서</h3>
+                                        <span class="text-xs font-bold text-gray-500 bg-gray-200 px-2 py-0.5 rounded-full">Core</span>
+                                    </div>
+                                    <p class="text-gray-500 text-sm mt-1">실제 운용을 위한 알고리즘 및 매매 규칙 상세 가이드</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
-						<a href="https://crowmag2.github.io/wejump/CBVR%EC%BD%94%EC%96%B4%EC%97%94%EC%A7%84%ED%99%95%EC%9E%A5(%EA%B8%B0%EA%B4%80%EC%9A%A9TargetBeta).pdf" target="_blank" class="doc-link block p-6 bg-indigo-100 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-vector-square text-red-800 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">CBVR 2.3 코어 엔진 확장 (선물 복제)</h3>
-                                    <p class="text-gray-600 text-sm">Target Beta 전략. PFIX 편입.</p>
+
+                        <a href="https://crowmag2.github.io/wejump/CBVR%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC_%EB%B6%84%EC%84%9D%EA%B3%BC_%EC%9D%B4%EB%A1%A0%EC%A0%81_%ED%86%A0%EB%8C%80.pdf" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-indigo-600 bg-indigo-100 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-book"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">CBVR 프레임워크 분석 및 이론적 토대</h3>
+                                    <p class="text-gray-500 text-sm mt-1">기관 등급의 동적 적응형 퀀트 프레임워크 이론 및 배경</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
-						<a href="https://crowmag2.github.io/wejump/CBVR%EC%A0%84%EB%9E%B5%EB%A1%9C%EC%A7%81%EC%84%A4%EB%AA%85%EC%84%9C.pdf" target="_blank" class="doc-link block p-6 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-graduation-cap text-black-600 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">CBVR전략로직설명서.pdf</h3>
-                                    <p class="text-gray-600 text-sm">CBVR 전략 로직 상세 설명서</p>
+
+                        <a href="https://crowmag2.github.io/wejump/CBVR%20%EC%A0%84%EB%9E%B5%20%EB%85%BC%EB%AC%B8%20%EC%9E%91%EC%84%B1.pdf" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-gray-700 bg-gray-200 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-graduation-cap"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">CBVR 전략 논문</h3>
+                                    <p class="text-gray-500 text-sm mt-1">학술적 접근을 통한 전략 심층 분석 및 검증</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
-						<a href="https://crowmag2.github.io/wejump/CBVR%EA%B3%BC%ED%83%80%EC%A0%84%EB%9E%B5%EB%B9%84%EA%B5%90%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8.pdf" target="_blank" class="doc-link block p-6 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-file-alt text-red-800 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">CBVR과 타전략 비교</h3>
-                                    <p class="text-gray-600 text-sm">CBVR과 비교 분석 시 인사이트를 얻을 수 있는 전략 4가지</p>
+
+                        <a href="https://crowmag2.github.io/wejump/CBVR%EC%BD%94%EC%96%B4%EC%97%94%EC%A7%84%ED%99%95%EC%9E%A5(%EA%B8%B0%EA%B4%80%EC%9A%A9TargetBeta).pdf" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group border-t-4 border-gray-100">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-red-800 bg-red-100 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-layer-group"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2">
+                                        <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">CBVR 2.3 코어 엔진 확장 (기관용 Target Beta)</h3>
+                                        <span class="text-xs font-bold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">Advanced</span>
+                                    </div>
+                                    <p class="text-gray-500 text-sm mt-1">선물 복제, PFIX 편입 등 기관 투자자를 위한 확장 모델</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
-                        <a href="https://crowmag2.github.io/wejump/CBVR%20%EC%A0%84%EB%9E%B5%20%EB%85%BC%EB%AC%B8%20%EC%9E%91%EC%84%B1.pdf" target="_blank" class="doc-link block p-6 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-graduation-cap text-blue-600 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">CBVR 전략 논문</h3>
-                                    <p class="text-gray-600 text-sm">학술적 접근을 통한 전략 분석</p>
+
+                        <a href="https://crowmag2.github.io/wejump/PPT_%EB%B2%A1%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%EC%B6%94%EC%84%B8%EC%84%A0%20%EB%B6%84%EC%84%9D%EC%9D%84%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EC%A3%BC%EC%8B%9D%20%EB%B0%8F%20ETF%20%EB%A7%A4%EB%A7%A4%20%EC%A0%84%EB%9E%B5%20%EA%B0%95%ED%99%94.pdf" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-green-600 bg-green-100 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-bezier-curve"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">벡터 기반 추세선 분석 전략</h3>
+                                    <p class="text-gray-500 text-sm mt-1">매매 타이밍 정밀화를 위한 기술적 분석 요소</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
-                        <a href="https://crowmag2.github.io/wejump/PPT_%EB%B2%A1%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%EC%B6%94%EC%84%B8%EC%84%A0%20%EB%B6%84%EC%84%9D%EC%9D%84%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EC%A3%BC%EC%8B%9D%20%EB%B0%8F%20ETF%20%EB%A7%A4%EB%A7%A4%20%EC%A0%84%EB%9E%B5%20%EA%B0%95%ED%99%94.pdf" target="_blank" class="doc-link block p-6 hover:bg-gray-50 transition duration-200">
-                            <div class="flex items-center">
-                                <i class="fas fa-vector-square text-red-600 text-xl mr-4"></i>
-                                <div class="flex-1">
-                                    <h3 class="font-semibold text-gray-800">벡터 기반 추세선 분석</h3>
-                                    <p class="text-gray-600 text-sm">주식 및 ETF 매매 전략 강화</p>
+
+                        <a href="https://crowmag2.github.io/wejump/CBVR%EA%B3%BC%ED%83%80%EC%A0%84%EB%9E%B5%EB%B9%84%EA%B5%90%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8.pdf" target="_blank" class="block p-6 hover:bg-blue-50 transition duration-200 group">
+                            <div class="flex items-start md:items-center">
+                                <div class="flex-shrink-0 mr-4 mt-1 md:mt-0 text-orange-600 bg-orange-100 w-10 h-10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-balance-scale"></i>
                                 </div>
-                                <i class="fas fa-external-link-alt text-gray-400"></i>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800 group-hover:text-blue-700 transition">CBVR vs 타 전략 비교 분석</h3>
+                                    <p class="text-gray-500 text-sm mt-1">주요 전략들과의 비교를 통해 CBVR의 차별점과 우위 검증</p>
+                                </div>
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"></i>
                             </div>
                         </a>
                     </div>
@@ -254,151 +450,155 @@
             </section>
 
             <section>
-                <div class="flex items-center mb-6">
-                    <div class="category-icon text-white rounded-lg w-12 h-12 flex items-center justify-center mr-4">
-                        <i class="fas fa-chart-bar text-xl"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-800">투자제안서</h2>
+                <div class="flex items-center mb-6 pl-2 border-l-4 border-purple-500">
+                    <h2 class="text-2xl font-bold text-gray-800">투자 제안서 & 대시보드</h2>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                    <div class="bg-indigo-50 rounded-xl shadow-lg card-hover">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <i class="fas fa-chart-pie text-purple-600 text-2xl mr-3"></i>
-                                <h3 class="font-semibold text-lg text-gray-800">CBVR 투자 유치 전략 대시보드</h3>
-                            </div>
-                            <p class="text-gray-600 mb-4">인포그래픽과 음성안내 및 AI 챗봇.</p>
-                            <a href="https://crowmag2.github.io/wejump/CBVRrun.html" target="_blank" class="inline-flex items-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition duration-200 font-medium">
-                                <i class="fas fa-play mr-2"></i>대시보드 실행
-                            </a>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="glass rounded-2xl p-8 card-hover relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                            <i class="fas fa-chart-line text-8xl text-purple-600"></i>
                         </div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">CBVR 투자 유치 전략 대시보드</h3>
+                        <p class="text-gray-600 mb-6 text-sm">인포그래픽과 AI 챗봇을 통한 입체적 전략 소개</p>
+                        <a href="https://crowmag2.github.io/wejump/CBVRrun.html" target="_blank" class="inline-flex items-center bg-purple-600 text-white px-5 py-2.5 rounded-lg hover:bg-purple-700 transition shadow-lg shadow-purple-200 text-sm font-medium">
+                            <i class="fas fa-rocket mr-2"></i>대시보드 실행
+                        </a>
                     </div>
-                    <div class="bg-white rounded-xl shadow-lg card-hover">
-                        <div class="p-6">
-                            <div class="flex items-center mb-4">
-                                <i class="fas fa-file-powerpoint text-red-700 text-2xl mr-3"></i>
-                                <h3 class="font-semibold text-lg text-gray-800">CBVR 투자제안서</h3>
-                            </div>
-                            <p class="text-gray-600 mb-4">스스로 진화하는 금융 기술 플랫폼</p>
-                            <a href="https://crowmag2.github.io/wejump/%5B%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%5D%20CBVR%20%EC%9E%AC%EA%B7%80%EC%A0%81%20%ED%99%95%EC%9E%A5%EC%84%B1%EA%B3%BC%20%ED%88%AC%EB%AA%85%ED%95%9C%20%EC%B2%A0%ED%95%99.pdf" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                                <i class="fas fa-download mr-2"></i>다운로드
-                            </a>
+
+                    <div class="glass rounded-2xl p-8 card-hover relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                             <i class="fas fa-file-contract text-8xl text-blue-600"></i>
                         </div>
+                        <h3 class="font-bold text-xl text-gray-800 mb-2">CBVR 공식 투자 제안서</h3>
+                        <p class="text-gray-600 mb-6 text-sm">스스로 진화하는 금융 기술 플랫폼의 비전</p>
+                        <a href="https://crowmag2.github.io/wejump/%5B%ED%88%AC%EC%9E%90%EC%A0%9C%EC%95%88%EC%84%9C%5D%20CBVR%20%EC%9E%AC%EA%B7%80%EC%A0%81%20%ED%99%95%EC%9E%A5%EC%84%B1%EA%B3%BC%20%ED%88%AC%EB%AA%85%ED%95%9C%20%EC%B2%A0%ED%95%99.pdf" target="_blank" class="inline-flex items-center bg-white border border-gray-200 text-gray-700 px-5 py-2.5 rounded-lg hover:bg-gray-50 transition shadow-sm text-sm font-medium">
+                            <i class="fas fa-download mr-2"></i>PDF 다운로드
+                        </a>
                     </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <footer class="bg-gray-800 text-white py-12 mt-16">
-        <div class="container mx-auto px-6">
+    <footer class="glass mt-20 border-t border-white/20 relative z-10">
+        <div class="container mx-auto px-6 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-				<div>
-                    <h4 class="text-lg font-semibold mb-4">바로가기</h4>
+                <div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-4">Quick Links</h4>
                     <div class="space-y-2">
-						<a href="https://wejump3.tistory.com/" target="_blank" class="block text-gray-200 hover:text-white transition duration-200">
+                        <a href="https://wejump3.tistory.com/" target="_blank" class="block text-gray-500 hover:text-blue-600 transition">
                             <i class="fab fa-blogger mr-2"></i>공식 블로그
                         </a>
-                        <a href="https://www.youtube.com/@wejump3" target="_blank" class="block text-gray-200 hover:text-white transition duration-200">
+                        <a href="https://www.youtube.com/@wejump3" target="_blank" class="block text-gray-500 hover:text-red-600 transition">
                             <i class="fab fa-youtube mr-2"></i>유튜브 채널
                         </a>
-						<a href="https://linktr.ee/wejump3" class="block text-gray-200 hover:text-white transition duration-200">
-							<i class="fas fa-envelope mr-2"></i>각종 문의
-						</a>
+                        <a href="https://linktr.ee/wejump3" class="block text-gray-500 hover:text-green-600 transition">
+                            <i class="fas fa-envelope mr-2"></i>문의하기
+                        </a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">핵심 전략</h4>
-                    <div class="space-y-2 text-gray-400">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4">Core Strategies</h4>
+                    <div class="space-y-2 text-gray-500">
                         <div class="flex items-center">
-                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <i class="fas fa-check text-blue-500 mr-2"></i>
                             <span>CBVR 투자 전략</span>
                         </div>
                         <div class="flex items-center">
-                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <i class="fas fa-check text-blue-500 mr-2"></i>
                             <span>채널기준변율리밸런싱</span>
                         </div>
                         <div class="flex items-center">
-                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            <i class="fas fa-check text-blue-500 mr-2"></i>
                             <span>벡터 기반 추세선 분석</span>
                         </div>
                     </div>
                 </div>
-				<div>
+                <div>
                     <div class="flex items-center space-x-3 mb-4">
-                        <img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ftistory1.daumcdn.net%2Ftistory%2F7986187%2Fattach%2F96d50c3a00ae4444b8b4440ac930b360" alt="WeJump Logo" class="h-8 w-8 rounded bg-white p-1">
-                        <h3 class="text-lg font-semibold">WeJump 투자전략 연구소</h3>
+                        <img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ftistory1.daumcdn.net%2Ftistory%2F7986187%2Fattach%2F96d50c3a00ae4444b8b4440ac930b360" alt="Logo" class="h-8 w-8 rounded shadow-sm">
+                        <h3 class="text-lg font-bold text-gray-800">WeJump Lab</h3>
                     </div>
-                    <p class="text-gray-400">전문적인 투자 전략 연구와 혁신적인 금융 솔루션을 제공합니다.</p>
+                    <p class="text-gray-500 text-sm">데이터에 기반한 전문적인 투자 전략 연구와<br>혁신적인 금융 솔루션을 제공합니다.</p>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>© WeJump 투자전략 연구소. 모든 권리 보유.</p>
+            <div class="border-t border-gray-200 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2025 WeJump 투자전략 연구소. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <div id="repo-info-modal" class="modal-overlay">
-        <div class="modal-content">
-            <i id="close-repo-info-button" class="fas fa-times modal-close-btn text-2xl"></i>
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">WeJump 투자전략 연구소: 데이터 기반 투자 시스템 프레임워크</h2>
-            <p class="text-gray-600 font-semibold mb-6">이곳은 <strong class="text-indigo-600">WeJump 투자전략 연구소</strong>가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다. 저희는 시장에 대한 막연한 '의견'이 아닌, <strong class="text-blue-700">데이터로 검증된 시스템</strong>을 구축하고 이야기합니다.</p>
+        <div class="modal-content glass">
+            <button id="close-repo-info-button" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
             
-            <div class="border-t pt-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3">핵심 원칙 (Core Principles)</h3>
-                <ul class="space-y-3 text-gray-700">
-                    <li class="flex items-start">
-                        <i class="fas fa-cogs text-indigo-500 mt-1 mr-3"></i>
-                        <div>
-                            <h4 class="font-semibold">분석을 넘어 시스템으로</h4>
-                            <p class="text-sm font-medium">저희는 단편적인 시장 현상 분석에 그치지 않습니다. 아이디어 단계에서부터 백테스팅과 실 운용까지 고려한, 실제 작동하는 '완성된 시스템'을 설계하고 구현하는 것을 목표로 합니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-database text-green-500 mt-1 mr-3"></i>
-                        <div>
-                            <h4 class="font-semibold">데이터 기반의 투명성</h4>
-                            <p class="text-sm font-medium">모든 전략과 주장은 데이터로 증명합니다. 이곳 GitHub 저장소는 그 아이디어와 고민, 검증의 과정을 가감 없이 공개하여 결과에 대한 신뢰성을 확보하는 공간입니다.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-infinity text-purple-500 mt-1 mr-3"></i>
-                        <div>
-                            <h4 class="font-semibold">진화하는 프레임워크</h4>
-                            <p class="text-sm font-medium">궁극적으로 저희가 추구하는 것은 고정된 전략이 아닌, 스스로의 약점을 보완하고 시장에 적응하며 끊임없이 진화하는 '투자 프레임워크'입니다.</p>
-                        </div>
-                    </li>
-                </ul>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">WeJump 투자전략 연구소</h2>
+            <p class="text-indigo-600 font-medium mb-6 text-sm">Data-Driven Investment Framework Repository</p>
+            
+            <p class="text-gray-600 leading-relaxed mb-8">
+                이곳은 <strong class="text-gray-900">데이터에 기반하여 독창적인 투자 시스템을 설계</strong>하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다. 
+                우리는 막연한 의견이 아닌, <strong class="text-blue-600 bg-blue-50 px-1 rounded">검증된 시스템</strong>을 구축합니다.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-3">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-1">Systematic</h4>
+                    <p class="text-xs text-gray-500">분석을 넘어, 실제 작동하는 완성된 시스템 구현</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mb-3">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-1">Transparent</h4>
+                    <p class="text-xs text-gray-500">모든 전략과 주장은 데이터로 투명하게 증명</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-3">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-1">Evolving</h4>
+                    <p class="text-xs text-gray-500">시장에 적응하며 끊임없이 진화하는 프레임워크</p>
+                </div>
             </div>
-			
-	<!-- 구분선 -->
-    <hr class="my-8 border-blue-200">
 
-    <!-- 링크 안내 -->
-    <p class="text-gray-800 text-sm mb-6 leading-relaxed">
-      이 저장소의 문서와 데이터를 통해 저희의 연구 여정을 확인하고, 새로운 아이디어를 얻어가시길 바랍니다.<br><br>
-      🔗 블로그: <a href="https://wejump3.tistory.com/" target="_blank" class="text-blue-600 font-semibold hover:underline">WeJump 투자전략 연구소 Tistory</a><br>
-      📺 유튜브: <a href="https://www.youtube.com/@wejump3" target="_blank" class="text-red-600 font-semibold hover:underline">WeJump 투자전략 연구소 유튜브채널</a>
-    </p>
-
-    <!-- CTA 버튼들 -->
-    <div class="flex flex-col sm:flex-row justify-end sm:space-x-4 mt-6 space-y-3 sm:space-y-0">
-      <a href="https://wejump3.tistory.com/" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition inline-flex items-center">
-        <i class="fab fa-blogger mr-2"></i> 블로그 방문
-      </a>
-      <a href="https://www.youtube.com/@wejump3/join" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-700 transition inline-flex items-center">
-        <i class="fab fa-youtube mr-2"></i> 유튜브 구독
-      </a>
-    </div>
-			
+            <div class="flex justify-end space-x-3">
+                <a href="https://wejump3.tistory.com/" target="_blank" class="px-5 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">
+                    블로그 방문
+                </a>
+                <a href="https://www.youtube.com/@wejump3/join" target="_blank" class="px-5 py-2.5 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition">
+                    유튜브 구독
+                </a>
+            </div>
         </div>
     </div>
 
-
     <script>
-        // --- 쿠키 및 팝업 모달 제어 스크립트 ---
+        // --- 인트로 애니메이션 제어 ---
+        window.addEventListener('load', () => {
+            const overlay = document.getElementById('intro-overlay');
+            const bar = document.getElementById('loader-bar');
+            
+            // 로딩 바 애니메이션 시작
+            setTimeout(() => {
+                bar.style.width = '100%';
+            }, 100);
 
-        // 쿠키 설정 함수
+            // 2.2초 후 오버레이 페이드아웃
+            setTimeout(() => {
+                overlay.style.opacity = '0';
+                overlay.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 800);
+            }, 2200);
+        });
+
+        // --- 모달 및 쿠키 제어 ---
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {
@@ -409,7 +609,6 @@
             document.cookie = name + "=" + (value || "")  + expires + "; path=/";
         }
 
-        // 쿠키 가져오는 함수
         function getCookie(name) {
             const nameEQ = name + "=";
             const ca = document.cookie.split(';');
@@ -421,61 +620,45 @@
             return null;
         }
 
-        // DOM이 로드된 후 스크립트 실행
         document.addEventListener('DOMContentLoaded', (event) => {
             const modal = document.getElementById('repo-info-modal');
             const openBtn = document.getElementById('open-repo-info-button');
             const closeBtn = document.getElementById('close-repo-info-button');
 
-            // 팝업 보여주는 함수
             const showModal = () => {
                 modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
             };
 
-            // 팝업 숨기는 함수
             const hideModal = () => {
-                modal.style.display = 'none';
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
             };
 
-            // 페이지 로드 시 쿠키 확인 후 자동 팝업 처리
+            // 인트로 시간 고려하여 3초 후 팝업
             if (!getCookie('hasVisitedRepo')) {
-                showModal();
-                setCookie('hasVisitedRepo', 'true', 30); // 30일간 유효한 쿠키 설정
+                setTimeout(showModal, 3000);
+                setCookie('hasVisitedRepo', 'true', 30);
             }
 
-            // 이벤트 리스너 설정
             openBtn.addEventListener('click', showModal);
             closeBtn.addEventListener('click', hideModal);
             
-            // 모달 바깥 영역 클릭 시 닫기
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     hideModal();
                 }
             });
         });
-
     </script>
-<!-- 채널 톡 -->
-<script>
-  (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
-
-  ChannelIO('boot', {
-    "pluginKey": "9f1f6aa9-000c-48e6-9324-00401dbcce25"
-  });
-</script>
+    
+    <script>
+    (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+    ChannelIO('boot', { "pluginKey": "9f1f6aa9-000c-48e6-9324-00401dbcce25" });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
