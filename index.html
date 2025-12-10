@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -218,7 +217,7 @@
                 </div>
                 <h3 class="font-bold text-lg text-gray-800 mb-2">영상 자료실</h3>
                 <p class="text-gray-500 text-sm mb-6">유튜브 채널에서 실시간 방송과 분석 영상을 확인하세요.</p>
-                <a href="https://www.youtube.com/live/L45lDYLwcTo?si=h3LHmJrHAFcaMvVk" target="_blank" class="block w-full text-center bg-white border border-red-500 text-red-600 py-3 rounded-xl hover:bg-red-50 transition duration-200 font-medium text-sm">
+                <a href="https://m.site.naver.com/1Xt9a" target="_blank" class="block w-full text-center bg-white border border-red-500 text-red-600 py-3 rounded-xl hover:bg-red-50 transition duration-200 font-medium text-sm">
                     <i class="fas fa-play mr-1"></i> 시청하기
                 </a>
             </div>
@@ -683,6 +682,63 @@ window.addEventListener('load', () => {
         }, 800);
     }, 2500); // 2200 -> 2500으로 약간 여유를 둠
 });
+
+// --- 모달 및 쿠키 제어 ---
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i=0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const modal = document.getElementById('repo-info-modal');
+            const openBtn = document.getElementById('open-repo-info-button');
+            const closeBtn = document.getElementById('close-repo-info-button');
+
+            const showModal = () => {
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+            };
+
+            const hideModal = () => {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            };
+
+            // 인트로 시간 고려하여 3초 후 팝업
+            if (!getCookie('hasVisitedRepo')) {
+                setTimeout(showModal, 3000);
+                setCookie('hasVisitedRepo', 'true', 30);
+            }
+
+            openBtn.addEventListener('click', showModal);
+            closeBtn.addEventListener('click', hideModal);
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+        });
     </script>
     
     <script>
