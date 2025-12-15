@@ -17,6 +17,6 @@
 
 이 저장소의 문서와 데이터를 통해, 저희의 연구 여정을 확인하고 새로운 아이디어를 얻어 가시길 바랍니다. 더 깊이 있는 해설과 분석은 아래 채널에서 확인하실 수 있습니다.
 
-* **블로그:** [WeJump 투자 연구소 Tistory](https://wejump3.tistory.com/)
-* **유튜브:** [WeJump 유튜브 채널](https://www.youtube.com/@wejump3)
+* **블로그:** [WeJump 투자 연구소 Tistory](https://wejump3.tistory.com/) 전략의 최신 성과는 블로그에 게시함.
+* **유튜브:** [WeJump 유튜브 채널](https://www.youtube.com/@wejump3) 실시간 포지션과 누적 수익은 유튜브에서 24시간 생방송 중.
 * **문서저장소** [WeJump 문서 저장소](https://crowmag2.github.io/wejump/)
