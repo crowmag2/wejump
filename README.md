@@ -19,4 +19,4 @@
 
 * **블로그:** [WeJump 투자 연구소 Tistory](https://wejump3.tistory.com/) 전략의 최신 성과는 블로그에 게시함.
 * **유튜브:** [WeJump 유튜브 채널](https://www.youtube.com/@wejump3) 실시간 포지션과 누적 수익은 유튜브에서 24시간 생방송 중.
-* **문서저장소** [WeJump 문서 저장소](https://crowmag2.github.io/wejump/)
+* **문서저장소** [WeJump 문서 저장소](https://crowmag2.github.io/wejump/) 전략에 대한 모든 문서가 저장되어 있는 저장소.
