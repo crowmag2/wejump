@@ -215,7 +215,7 @@ WeJump는 **한국장(코스피)·미국장(나스닥) CBVR 포지션과 누적 
 ---
 
 ## 4-2. 문서 저장소 + 인터랙티브 시뮬레이터 + AI Q&A: 설명→체험→운용 신호의 제품 흐름
-공식 페이지(문서저장소/공식 페이지 : https://crowmag2.github.io/wejump)에서 다음을 한 덩어리로 제공합니다.
+문서 저장소에서 다음을 한 덩어리로 제공합니다. URL : https://crowmag2.github.io/wejump
 
 - 프레임워크 분석 PDF  
 - 전략 논문(PDF)  
@@ -235,7 +235,7 @@ WeJump는 **한국장(코스피)·미국장(나스닥) CBVR 포지션과 누적 
 - **기간 변경/연장**: 장기 구간 표 vs 최신 모듈 반영 구간 표가 공존
 
 문서저장소 README에서 **“최신의 전략 성과는 블로그 또는 유튜브 생방송의 최신 업데이트를 따르라”**는 취지의 가이드가 명시되어 있음.
-https://crowmag2.github.io/wejump/README.md
+README : https://crowmag2.github.io/wejump/README.md
 
 ---
 
