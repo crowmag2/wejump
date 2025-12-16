@@ -1,6 +1,6 @@
-# **WeJump 투자 연구소: 데이터 기반 투자 시스템 프레임워크**
+# **WeJump 투자 연구소 Data-Driven Investment Framework Repository**
 
-이곳은 'WeJump 투자 연구소'가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다.
+이 곳([https://crowmag2.github.io/wejump/](https://crowmag2.github.io/wejump/)) 은 'WeJump 투자 연구소'가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다.
 
 저희는 시장에 대한 막연한 '의견'이 아닌, 데이터로 검증된 '시스템'을 구축하고 이야기합니다.
 
