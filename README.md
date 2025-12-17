@@ -1,6 +1,6 @@
 # **WeJump 투자 연구소 Data-Driven Investment Framework Repository**
 
-이 곳([https://crowmag2.github.io/wejump/](https://crowmag2.github.io/wejump/)) 은 'WeJump 투자 연구소'가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다.
+이 곳 문서 저장소([https://crowmag2.github.io/wejump/](https://crowmag2.github.io/wejump/))는 'WeJump 투자 연구소'가 데이터에 기반하여 독창적인 투자 시스템을 설계하고, 그 과정을 투명하게 기록하는 살아있는 문서 저장소입니다.
 
 저희는 시장에 대한 막연한 '의견'이 아닌, 데이터로 검증된 '시스템'을 구축하고 이야기합니다.
 
@@ -17,9 +17,9 @@
 
 이 저장소의 문서와 데이터를 통해, 저희의 연구 여정을 확인하고 새로운 아이디어를 얻어 가시길 바랍니다. 더 깊이 있는 해설과 분석은 아래 채널에서 확인하실 수 있습니다.
 
-* **블로그:** [WeJump 투자 연구소 Tistory](https://wejump3.tistory.com/) 전략의 최신 성과는 블로그에 게시함.
-* **유튜브:** [WeJump 유튜브 채널](https://www.youtube.com/@wejump3) 실시간 포지션과 누적 수익은 유튜브에서 24시간 생방송 중.
-* **문서저장소** [WeJump 문서 저장소](https://crowmag2.github.io/wejump/) 전략에 대한 모든 문서가 저장되어 있는 저장소.
+* **Tistory 블로그:** https://wejump3.tistory.com/ 전략의 최신 성과는 블로그에 게시함.
+* **유튜브 채널:** https://www.youtube.com/@wejump3 실시간 포지션과 누적 수익은 유튜브에서 24시간 생방송 중.
+* **문서 저장소:** https://crowmag2.github.io/wejump/ 전략에 대한 모든 문서가 저장되어 있는 저장소.
 
 ***
 ---
