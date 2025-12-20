@@ -3,646 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBVR 투자 유치 전략 대시보드</title>
+    <title>CBVR Institutional IR Master Dashboard | WeJump Investment Labs</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/subsets/Paperlogy-dynamic-subset.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="shortcut icon" href="https://wejump3.tistory.com/favicon.ico" />	
+    <link rel="shortcut icon" href="https://wejump3.tistory.com/favicon.ico" />
     <style>
         :root {
-            --primary-color: #0052cc;
-            --secondary-color: #00b8d9; /* 조금 더 현대적인 청록색 */
-            --accent-color: #ff5630; /* 강조용 (Flagship) */
-            --background-color: #f4f5f7;
-            --text-color: #172b4d;
-            --card-bg-color: #ffffff;
-            --border-color: #ebecf0;
-            --sidebar-width: 240px;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: "Paperlogy", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        .container {
-            display: flex;
-        }
-        .sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: var(--card-bg-color);
-            border-right: 1px solid var(--border-color);
-            padding: 2rem 0;
-            overflow-y: auto;
-            z-index: 100;
-        }
-        .sidebar-header {
-            padding: 0 1.5rem 1rem 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 1rem;
-        }
-        .sidebar-nav ul {
-            list-style: none;
-        }
-        .sidebar-nav a {
-            display: block;
-            padding: 0.75rem 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
-            border-left: 4px solid transparent;
-            font-size: 0.95rem;
-        }
-        .sidebar-nav a:hover,
-        .sidebar-nav a.active {
-            background-color: #e6effc;
-            color: var(--primary-color);
-            border-left-color: var(--primary-color);
-        }
-        main {
-            margin-left: var(--sidebar-width);
-            width: calc(100% - var(--sidebar-width));
-            padding: 3rem 4rem;
-            overflow-y: auto;
-        }
-        h1, h2, h3, h4 {
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-        section {
-            padding-top: 4rem;
-            margin-top: -2rem; /* Anchor link offset correction */
-        }
-        .hero-section {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, #0747a6 0%, #0052cc 100%);
-            color: #ffffff;
-            border-radius: 12px;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 15px rgba(0, 82, 204, 0.2);
-        }
-        .hero-section h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-        }
-        .hero-section p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        .tag {
-            display: inline-block;
-            background-color: rgba(255,255,255,0.2);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            backdrop-filter: blur(5px);
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .card {
-            background-color: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            height: 100%;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
-        .card.highlight {
-            border: 2px solid var(--primary-color);
-            background-color: #f4f8ff;
-        }
-        .card.flagship {
-            border: 2px solid var(--accent-color);
-            background: linear-gradient(to bottom right, #fff, #fff5f5);
-        }
-        .card-header {
-            font-size: 1.3rem;
-            font-weight: 700;
-            border-bottom: 2px solid var(--background-color);
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .card-header .icon {
-            color: var(--primary-color);
-        }
-        .card.flagship .card-header .icon {
-            color: var(--accent-color);
-        }
-        ul.bulleted-list {
-            list-style-position: inside;
-            padding-left: 0;
-        }
-        ul.bulleted-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        ul.bulleted-list li::before {
-            content: "•";
-            color: var(--primary-color);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        .stat-block {
-            text-align: center;
-            padding: 1rem;
-            background-color: #f9f9fb;
-            border-radius: 8px;
-        }
-        .stat-block .value {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        .stat-block .label {
-            font-size: 0.95rem;
-            color: #5e6c84;
-            font-weight: 600;
-        }
-        .table-container {
-            overflow-x: auto;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-        th {
-            background-color: #f4f5f7;
-            font-weight: 700;
-            color: #42526e;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-        .badge.primary { background-color: #deebff; color: #0052cc; }
-        .badge.secondary { background-color: #dfe1e6; color: #42526e; }
-        .badge.accent { background-color: #ffbdad; color: #bf2600; }
-        
-        .bottom-cta-container {
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--primary-color);
-            color: #ffffff;
-            padding: 14px 32px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            margin: 0.5rem;
-            transition: all 0.2s;
-            box-shadow: 0 4px 6px rgba(0, 82, 204, 0.2);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .cta-button:hover {
-            background-color: #0047b3;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 82, 204, 0.3);
-        }
-        .cta-button.secondary {
-             background-color: #ffffff;
-             color: var(--primary-color);
-             border: 2px solid var(--primary-color);
-             box-shadow: none;
-        }
-        .cta-button.secondary:hover {
-             background-color: #e6effc;
-        }
-        .cta-button i {
-            margin-right: 8px;
-        }
-        
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            color: #6b778c;
-            font-size: 0.9rem;
+            --primary-navy: #0A192F;      /* 기관용 딥 네이비 */
+            --accent-gold: #D4AF37;       /* 프리미엄 골드 */
+            --point-blue: #0052CC;        /* 신뢰의 블루 */
+            --success-green: #00B8D9;     /* 자본 효율성 상징 그린 */
+            --bg-light: #F8F9FA;
+            --text-dark: #172B4D;
+            --border-soft: #E1E4E8;
+            --sidebar-width: 280px;
         }
 
-        /* --- 반응형 --- */
-        .sidebar-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: "Paperlogy", sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.7; }
 
-        @media (max-width: 1024px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease-in-out;
-                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-            }
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            main {
-                margin-left: 0;
-                width: 100%;
-                padding: 2rem;
-            }
-            .sidebar-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* Sidebar & Navigation */
+        .sidebar { width: var(--sidebar-width); height: 100vh; position: fixed; background: var(--primary-navy); color: white; padding: 3rem 0; z-index: 1000; box-shadow: 4px 0 15px rgba(0,0,0,0.2); }
+        .sidebar-header { padding: 0 2rem 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 1.4rem; font-weight: 900; color: var(--accent-gold); letter-spacing: 1px; }
+        .sidebar-nav a { display: block; padding: 1.2rem 2rem; color: #8892B0; text-decoration: none; transition: 0.4s; font-size: 1rem; font-weight: 500; }
+        .sidebar-nav a:hover, .sidebar-nav a.active { color: white; background: rgba(255,255,255,0.05); border-left: 5px solid var(--accent-gold); padding-left: 2.5rem; }
+
+        main { margin-left: var(--sidebar-width); padding: 5rem 6rem; max-width: 1600px; }
+
+        /* Hero Section */
+        .hero { background: linear-gradient(135deg, var(--primary-navy) 0%, #112240 100%); color: white; padding: 6.5rem 5rem; border-radius: 30px; margin-bottom: 6rem; box-shadow: 0 25px 50px rgba(10,25,47,0.2); position: relative; }
+        .hero h1 { font-size: 4rem; margin-bottom: 1.5rem; line-height: 1.1; font-weight: 900; }
+        .hero p { font-size: 1.6rem; color: #8892B0; font-weight: 300; margin-bottom: 3rem; max-width: 900px; }
+        .badge-premium { background: var(--accent-gold); color: var(--primary-navy); padding: 0.7rem 1.8rem; border-radius: 50px; font-weight: 800; font-size: 0.9rem; display: inline-block; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
+
+        /* Section Layout */
+        section { margin-bottom: 10rem; scroll-margin-top: 6rem; }
+        h2 { font-size: 2.6rem; margin-bottom: 4rem; color: var(--primary-navy); display: flex; align-items: center; gap: 1.2rem; font-weight: 900; }
+        h2::before { content: ""; width: 10px; height: 45px; background: var(--point-blue); border-radius: 5px; display: inline-block; }
+
+        /* Cards & Comparison */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .card-problem { background: #FFF5F5; border: 1.5px solid #FFD1D1; padding: 3rem; border-radius: 24px; }
+        .card-solution { background: #F0F7FF; border: 1.5px solid #C0DFFF; padding: 3rem; border-radius: 24px; }
+
+        /* 3-Bucket Design */
+        .bucket-container { display: flex; align-items: stretch; gap: 1.5rem; background: white; padding: 3.5rem; border-radius: 30px; border: 2px solid var(--border-soft); }
+        .bucket-item { flex: 1; padding: 2.5rem; border-radius: 20px; background: var(--bg-light); text-align: center; border: 1px solid transparent; transition: 0.3s; }
+        .bucket-item.highlight { background: #E6FFFA; border: 2px solid var(--success-green); box-shadow: 0 10px 20px rgba(0,184,217,0.1); }
+        .bucket-item h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--primary-navy); }
+        .bucket-item .amount { font-size: 2.2rem; font-weight: 900; color: var(--point-blue); margin-bottom: 0.5rem; }
+
+        /* Strategic Q&A Accordion (Full Content) */
+        .qa-category { margin-bottom: 5rem; }
+        .qa-category-title { font-size: 1.8rem; font-weight: 900; margin-bottom: 2.5rem; color: var(--point-blue); border-bottom: 2px solid var(--border-soft); padding-bottom: 1rem; }
+        .qa-item { background: white; margin-bottom: 1.5rem; border-radius: 16px; border: 1px solid var(--border-soft); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .qa-trigger { padding: 2rem 3rem; cursor: pointer; font-weight: 800; display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; color: var(--primary-navy); }
+        .qa-content { padding: 0 3rem 2.5rem; display: none; color: #42526E; border-top: 1px solid var(--border-soft); padding-top: 2rem; font-size: 1.1rem; line-height: 1.8; }
+        .qa-content p { margin-bottom: 1.5rem; }
+        .qa-content ul { list-style: none; padding-left: 0; }
+        .qa-content li { margin-bottom: 1rem; position: relative; padding-left: 1.5rem; }
+        .qa-content li::before { content: "•"; color: var(--point-blue); font-weight: 900; position: absolute; left: 0; }
+
+        .btn-gold { background: var(--accent-gold); color: var(--primary-navy); padding: 1.3rem 3rem; border-radius: 12px; text-decoration: none; font-weight: 900; font-size: 1.1rem; display: inline-block; transition: 0.3s; box-shadow: 0 10px 20px rgba(212,175,55,0.3); }
+        .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(212,175,55,0.5); }
+
+        footer { border-top: 1px solid var(--border-soft); padding: 6rem 0; text-align: center; color: #8892B0; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <i class="fas fa-chart-line" style="margin-right: 8px;"></i>
-                CBVR 투자 전략
+    <aside class="sidebar">
+        <div class="sidebar-header">WEJUMP LAB</div>
+        <nav class="sidebar-nav">
+            <a href="#hero" class="active"><i class="fas fa-flag"></i> EXECUTIVE SUMMARY</a>
+            <a href="#problem"><i class="fas fa-exclamation-triangle"></i> WHY CBVR?</a>
+            <a href="#bucket"><i class="fas fa-vault"></i> CAPITAL EFFICIENCY</a>
+            <a href="#performance"><i class="fas fa-chart-bar"></i> AUDIT REPORT</a>
+            <a href="#qa"><i class="fas fa-comments"></i> STRATEGIC Q&A</a>
+            <a href="#contact"><i class="fas fa-handshake"></i> CONTACT IR</a>
+        </nav>
+    </aside>
+
+    <main>
+        <section id="hero">
+            <div class="hero">
+                <span class="badge-premium">INSTITUTIONAL QUANT SOLUTION V2.3</span>
+                <h1>예측의 시대를 넘어<br>구조적 알파의 시대로</h1>
+                <p>CBVR(Channel-Vector Based Volatility Rebalancing)은 '재귀적 확장성'을 통해 시장 국면에 스스로 적응하는 차세대 금융 공학 프레임워크입니다.</p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="https://crowmag2.github.io/wejump/" target="_blank" class="btn-gold">Technical Whitepaper</a>
+                    <a href="https://www.youtube.com/@wejump3" target="_blank" class="btn-gold" style="background: transparent; border: 2.5px solid white; color: white;">24h Live Trading</a>
+                </div>
             </div>
-            <nav class="sidebar-nav">
-                <ul>
-		            <li><a href="#performance">📈 성과 분석</a></li>
-                    <li><a href="#vision">🚀 비전 및 철학</a></li>
-                    <li><a href="#flagship">💎 Flagship Solution</a></li>
-                    <li><a href="#strategy">🎯 선택과 집중 (GTM)</a></li>
-                    <li><a href="#investment">💰 투자 유치 계획</a></li>
-                    <li><a href="#risk">🛡️ 리스크 관리</a></li>
-                    <li><a href="#epilogue">🏁 에필로그</a></li>
-                </ul>
-            </nav>
-        </aside>
+        </section>
 
-        <main>
-            <button class="sidebar-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <section id="intro">
-                <div class="hero-section">
-                    <span class="tag">Series A Investment Proposal</span>
-                    <h1>스스로 진화하는 금융 기술 플랫폼</h1>
-                    <p>단순 알고리즘을 넘어, 유지보수 비용 없는 '영원한 알파'를 기관에 제공합니다.</p>
+        <section id="problem">
+            <h2>기존 전략의 본질적 난제와 해법</h2>
+            <div class="grid-2">
+                <div class="card-problem">
+                    <h3 style="color:#BF2600; margin-bottom:2rem;"><i class="fas fa-times-circle"></i> 기존 퀀트 전략의 한계</h3>
+                    <ul>
+                        <li><strong>Alpha Decay:</strong> 특정 국면에 과적합되어 레짐 변화 시 수익률 급락 CBVR 재귀적 확장성과 투명한 철학.pdf]</li>
+                        <li><strong>Black Box:</strong> "AI"라는 명분 아래 작동 원리 설명 불가능</li>
+                        <li><strong>Vol Decay:</strong> 레버리지 ETF 운용 시 발생하는 경로 의존적 비용</li>
+                    </ul>
                 </div>
-            </section>
-
-            <section id="performance">
-                <h2>압도적 성과 검증 (2010 ~ 2025)</h2>
-                <div class="card">
-                     <h3 class="card-header">
-                        <span>15년 장기 백테스트 결과</span>
-                        <i class="fas fa-chart-bar icon"></i>
-                     </h3>
-                     <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                        <div class="stat-block">
-                            <div class="value">42%</div>
-                            <div class="label">연평균 수익률 (CAGR)</div>
-                        </div>
-                        <div class="stat-block">
-                            <div class="value">-18%</div>
-                            <div class="label">최대 낙폭 (MDD)</div>
-                        </div>
-                         <div class="stat-block">
-                            <div class="value">2.3</div>
-                            <div class="label">샤프 지수 (Sharpe)</div>
-                        </div>
-                         <div class="stat-block">
-                            <div class="value">34,900%</div>
-                            <div class="label">총 누적 수익률</div>
-                        </div>
-                     </div>
-                     <p style="text-align: right; font-size: 0.9rem; color: #6b778c; margin-top: 1rem;">
-                        <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5%EC%84%B1%EA%B3%BC" target="_blank">*데이터 출처: WeJump 투자전략연구소 자체 시뮬레이션</a>
-                     </p>
+                <div class="card-solution">
+                    <h3 style="color:var(--point-blue); margin-bottom:2rem;"><i class="fas fa-check-circle"></i> CBVR의 구조적 해법</h3>
+                    <ul>
+                        <li><strong>Recursive Scalability:</strong> 전략 스스로 성과를 감시하고 진화</li>
+                        <li><strong>Explainable Logic:</strong> 3중 필터 기반의 명확한 인과 관계 증명</li>
+                        <li><strong>Futures Replication:</strong> 선물 복제로 구조적 Decay 비용 원천 제거CBVR코어엔진확장(기관용TargetBeta).pdf]</li>
+                    </ul>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="vision">
-                <h2>비전: 멈추지 않는 엔진</h2>
-                <div class="grid-container">
-                    <div class="card">
-                        <h3 class="card-header">
-                            <span>기존 시장의 문제</span>
-                            <i class="fas fa-exclamation-triangle icon" style="color: #bf2600;"></i>
-                        </h3>
-                        <ul class="bulleted-list">
-                            <li><strong>Alpha Decay (수익률 붕괴):</strong> 시장 국면이 바뀌면 알고리즘 성능이 저하됨.</li>
-                            <li><strong>유지보수의 늪:</strong> 이를 수정하기 위해 막대한 퀀트 인력과 R&D 비용이 지속 발생.</li>
-                            <li><strong>Black Box:</strong> "AI"라는 이름 뒤에 숨은 설명 불가능한 로직으로 신뢰 저하.</li>
-                        </ul>
-                    </div>
-                    <div class="card highlight">
-                        <h3 class="card-header">
-                            <span>CBVR의 해답</span>
-                            <i class="fas fa-check-circle icon"></i>
-                        </h3>
-                        <ul class="bulleted-list">
-                            <li><strong>Self-Evolving (자기 진화):</strong> 재귀적 확장성을 통해 시장 변화에 스스로 적응.</li>
-                            <li><strong>Transparent Logic:</strong> 3중 필터(레벨/스피드/트렌드)로 100% 설명 가능한 투명성.</li>
-                            <li><strong>Zero Maintenance:</strong> 별도의 인력 개입 없이도 시스템이 장기 생존.</li>
+        <section id="bucket">
+            <h2>CBVR 2.3: 자본 효율성(3-Bucket) 아키텍처</h2>
+            <p style="margin-bottom:3rem; font-size:1.2rem; color:#42526E;">선물 복제를 통해 확보된 70%의 유휴 자본을 안전 자산에 재투자하여 <strong>'이중 복리'</strong>를 실현합니다.</p>
+            <div class="bucket-container">
+                <div class="bucket-item">
+                    <h3>Bucket 1</h3>
+                    <div class="amount">20%</div>
+                    <strong>Active Margin</strong>
+                    <p>포지션 유지를 위한 최소 증거금</p>
+                </div>
+                <div class="bucket-item">
+                    <h3>Bucket 2</h3>
+                    <div class="amount">10%</div>
+                    <strong>MDD Bumper</strong>
+                    <p>마진콜 방어를 위한 위험 완충 자산</p>
+                </div>
+                <div class="bucket-item highlight">
+                    <h3>Bucket 3</h3>
+                    <div class="amount">70%</div>
+                    <strong>Realized Compound</strong>
+                    <p>잉여 현금 기반 안전자산 추가 수익<br>(CAGR +7% Alpha 지향)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance">
+            <h2>압도적 성과 및 투명성 (Audit-Ready)</h2>
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+                <div class="bucket-item"><div class="amount">42%</div><p>CAGR (연평균 수익률)</p></div>
+                <div class="bucket-item"><div class="amount">-18%</div><p>MAX DRAWDOWN (MDD)</p></div>
+                <div class="bucket-item"><div class="amount">2.3</div><p>SHARPE RATIO</p></div>
+                <div class="bucket-item"><div class="amount">24h</div><p>LIVE VERIFICATION</p></div>
+            </div>
+        </section>
+
+        <section id="qa">
+            <h2>Strategic Q&A: 기관 기술 문답</h2>
+
+            <div class="qa-category">
+                <div class="qa-category-title"><i class="fas fa-brain"></i> 1. 전략 및 운용 논리 (Strategy Logic)</div>
+                <div class="qa-item">
+                    <div class="qa-trigger">기존 올웨더나 추세추종 전략과의 차별점은? <i class="fas fa-plus"></i></div>
+                    <div class="qa-content">
+                        <p><strong>A:</strong> 올웨더가 정적인 자산 배분이라면, CBVR은 가격 동학(Market Dynamics)에 기반한 <strong>'동적 국면 전환(Dynamic Regime Switching)'</strong> 전략입니다.</p>
+                        <ul>
+                            <li>시스템의 기본 상태는 <strong>평균 회귀(Mean-Reversion)</strong>이며, 강력한 추세가 발생하는 '예외 국면'에서만 선별적으로 추세에 순응합니다.</li>
+                            <li>특히 전략 자신의 누적 수익 곡선을 추적하여 위험을 회피하는 <strong>'메타 수준의 절대 모멘텀'</strong>을 구현한다는 점이 핵심적인 기술적 해자입니다.</li>
                         </ul>
                     </div>
                 </div>
-            </section>
-
-            <section id="flagship">
-                <h2>Flagship Solution: 기관을 위한 최종 병기</h2>
-                <div class="card flagship">
-                    <h3 class="card-header">
-                        <span>CBVR 2.3 선물 복제 프레임워크</span>
-                        <span class="badge accent">Core Tech</span>
-                    </h3>
-                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #42526e;">
-                        기관 투자자의 가장 큰 고민인 <strong>'자본 효율성'</strong>과 <strong>'변동성 붕괴'</strong>를 원천적으로 해결하는 솔루션입니다.
-                    </p>
-                    <div class="grid-container" style="gap: 2rem; margin-bottom: 0;">
-                        <div>
-                            <h4 style="color: var(--accent-color);"><i class="fas fa-coins"></i> 변동성 붕괴 제거</h4>
-                            <p>ETF 대신 KOSPI 200 선물을 활용하여 레버리지 투자 시 발생하는 구조적 손실(Decay)을 '0'으로 만듭니다.</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--accent-color);"><i class="fas fa-layer-group"></i> 자본 효율성 극대화</h4>
-                            <p>필요 증거금(30~45%)을 제외한 <strong>나머지 현금(55%+)을 실물 자산(Bucket 3)에 재투자</strong>하여 '이중 복리' 수익을 창출합니다.</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--accent-color);"><i class="fas fa-shield-alt"></i> 목표 MDD 통제</h4>
-                            <p>기관의 리스크 허용 범위(예: MDD 25%)에 맞춰 레버리지 비율(Lg)을 정교하게 커스터마이징합니다.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="strategy">
-                <h2>선택과 집중: 시장 진출 전략 (GTM)</h2>
-                <div class="grid-container" style="grid-template-columns: 2fr 1fr;">
-                    <div class="card highlight">
-                        <h3 class="card-header">
-                            <span>Primary Target: 기관 (B2B)</span>
-                            <span class="badge primary">Focus 70%</span>
-                        </h3>
-                        <p style="margin-bottom: 1rem;">기술적 가치를 즉시 알아보고 대규모 자금을 집행할 수 있는 시장에 집중합니다.</p>
-                        <ul class="bulleted-list">
-                            <li><strong>타겟:</strong> 자산운용사(상품개발), 증권사(랩어카운트), 패밀리오피스.</li>
-                            <li><strong>모델:</strong> Flagship Solution 라이선싱, API 연동, 화이트라벨.</li>
-                            <li><strong>전략:</strong> Top-Down 접근. 기관의 운용 파트너로 포지셔닝.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-header">
-                            <span>Secondary: 개인 (B2C)</span>
-                            <span class="badge secondary">Brand 30%</span>
-                        </h3>
-                        <p style="margin-bottom: 1rem;">브랜드 팬덤과 신뢰를 구축하는 기반으로 활용합니다.</p>
-                        <ul class="bulleted-list">
-                            <li><strong>역할:</strong> 설명 가능한 투자 콘텐츠, 커뮤니티.</li>
-                            <li><strong>전략:</strong> 기관 시장 성공의 낙수 효과(Trickle-down).</li>
+                <div class="qa-item">
+                    <div class="qa-trigger">시장 국면에 따른 알파 붕괴(Alpha Decay) 대응책은? <i class="fas fa-plus"></i></div>
+                    <div class="qa-content">
+                        <p><strong>A:</strong> CBVR은 <strong>'재귀적 확장성(Recursive Scalability)'</strong>을 통해 이 문제를 해결합니다.</p>
+                        <ul>
+                            <li>하위 자산의 성과가 무너지면 상위 포트폴리오가 이를 감지하여 비중을 축소합니다.</li>
+                            <li>별도의 인력 개입 없이도 시스템이 스스로 논리를 진화시키고 생존 모드로 전환하도록 설계되었습니다.</li>
                         </ul>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section id="investment">
-                <h2>투자 유치 계획 (Series A)</h2>
-                <div class="grid-container">
-                    <div class="card">
-                        <h3 class="card-header">자금 사용 계획 (총 30억 원)</h3>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>항목</th>
-                                        <th>비중</th>
-                                        <th>금액</th>
-                                        <th>세부 계획</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="background-color: #f4f8ff;">
-                                        <td><strong>B2B 파이프라인</strong></td>
-                                        <td><span style="color: var(--primary-color); font-weight:bold;">40%</span></td>
-                                        <td>12억</td>
-                                        <td>기관 전담 세일즈 팀, 글로벌 컨퍼런스, PoC 진행</td>
-                                    </tr>
-                                    <tr style="background-color: #f4f8ff;">
-                                        <td><strong>R&D / 기술</strong></td>
-                                        <td><span style="color: var(--primary-color); font-weight:bold;">30%</span></td>
-                                        <td>9억</td>
-                                        <td>선물 복제 프레임워크 고도화, 핵심 퀀트 영입</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>플랫폼 개발</strong></td>
-                                        <td>20%</td>
-                                        <td>6억</td>
-                                        <td>B2B/B2C 통합 대시보드, 인프라 확충</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>B2C 마케팅</strong></td>
-                                        <td>10%</td>
-                                        <td>3억</td>
-                                        <td>브랜드 인지도 제고, 콘텐츠 제작</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="card-header">성장 마일스톤</h3>
-                        <ul class="icon-list" style="list-style: none; padding-left: 0;">
-                            <li style="margin-bottom: 1.5rem; display: flex;">
-                                <div style="min-width: 60px; font-weight: bold; color: var(--primary-color);">Year 1</div>
-                                <div><strong>기반 구축:</strong> CBVR 2.3 프레임워크 상용화, 기관 파트너 2~3곳 시범 계약 (PoC).</div>
-                            </li>
-                            <li style="margin-bottom: 1.5rem; display: flex;">
-                                <div style="min-width: 60px; font-weight: bold; color: var(--primary-color);">Year 2</div>
-                                <div><strong>시장 침투:</strong> 정식 라이선스 계약 10건+, AUM 연동 1,000억 원 달성.</div>
-                            </li>
-                            <li style="display: flex;">
-                                <div style="min-width: 60px; font-weight: bold; color: var(--primary-color);">Year 3</div>
-                                <div><strong>글로벌 확장:</strong> 해외 시장 진출 및 B2C 유료 모델 본격화.</div>
-                            </li>
+            <div class="qa-category">
+                <div class="qa-category-title"><i class="fas fa-shield-alt"></i> 2. 리스크 관리 및 안정성 (Risk Management)</div>
+                <div class="qa-item">
+                    <div class="qa-trigger">선물 복제 시 마진콜 리스크를 어떻게 통제합니까? <i class="fas fa-plus"></i></div>
+                    <div class="qa-content">
+                        <p><strong>A:</strong> 기관 등급의 <strong>'3-Bucket 자본 배분 프레임워크'</strong>를 통해 리스크를 원천 통제합니다.CBVR코어엔진확장(기관용TargetBeta).pdf]</p>
+                        <ul>
+                            <li>활성 증거금(Bucket 1) 외에, 최대 증거금의 1.5배에 달하는 <strong>MDD 범퍼(Bucket 2)</strong>를 상시 유지하여 급락장에서도 청산 리스크를 방지합니다.</li>
+                            <li>코어 엔진에서 수익 발생 시 초과분을 실물 자산 계층(Bucket 3)으로 이관하여 리스크 버퍼를 재충전하는 동적 리밸런싱 시스템을 운용합니다.</li>
                         </ul>
                     </div>
                 </div>
-            </section>
-
-            <section id="risk">
-                <h2>리스크 관리</h2>
-                <div class="card">
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>리스크</th>
-                                    <th>영향도</th>
-                                    <th>대응 전략</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>시장 구조 변화</strong></td>
-                                    <td>High</td>
-                                    <td>'재귀적 확장성'을 통한 자동 진화 및 자기 추세 추적(Self-Tracking)으로 방어.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>규제 이슈</strong></td>
-                                    <td>High</td>
-                                    <td>투자자문업 라이선스 취득 로드맵 수립, B2B 중심의 솔루션 제공으로 규제 회피.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>보안 사고</strong></td>
-                                    <td>Medium</td>
-                                    <td>ISMS 인증 준비, 기관급 보안 인프라 구축 (자금의 30% R&D 투입).</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="qa-item">
+                    <div class="qa-trigger">극단적 테일 리스크(Tail Risk) 대응책은? <i class="fas fa-plus"></i></div>
+                    <div class="qa-content">
+                        <p><strong>A:</strong> 내부 추세 붕괴와 외부 변동성 폭발을 동시에 체크하는 <strong>'이중 확인(Double Confirmation)'</strong> 헤지 메커니즘을 사용합니다.</p>
+                        <ul>
+                            <li>특히 CBVR 2.3에서는 마크 스피츠나겔 룰(Spitznagel Rule)을 적용합니다.</li>
+                            <li>위기 신호 발생 시 PFIX(금리 변동성) 비중을 25%까지 확대하고 채권 손실을 방어하는 <strong>Convexity Layer</strong>를 가동합니다.</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <section id="epilogue">
-                <div class="hero-section" style="background: var(--text-color); margin-bottom: 0;">
-                    <h2 style="color: white; margin-bottom: 1rem;">우리는 투자의 미래를 다시 씁니다</h2>
-                    <p style="color: #b3bac5; margin-bottom: 2rem;">
-                        CBVR은 단순한 도구가 아닙니다. 가장 정교한 투자자들이 선택하는 첫 번째 솔루션이 될 것입니다.
-                    </p>
-                    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                         <a href="https://linktr.ee/wejump3" class="cta-button">
-                            <i class="fas fa-envelope"></i> 투자 문의하기
-                        </a>
-						<a href="https://crowmag2.github.io/wejump/" target=_blank class="cta-button">
-                            💎 문서 저장소
-                        </a>
-                        <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5%EC%84%B1%EA%B3%BC" target="_blank" class="cta-button secondary" style="background: transparent; color: white; border-color: white;">
-                            <i class="fas fa-chart-line"></i> 성과 상세 보기
-                        </a>
+            <div class="qa-category">
+                <div class="qa-category-title"><i class="fas fa-coins"></i> 3. 자본 효율성 (Capital Efficiency)</div>
+                <div class="qa-item">
+                    <div class="qa-trigger">선물 복제를 고수하는 특별한 이유가 있습니까? <i class="fas fa-plus"></i></div>
+                    <div class="qa-content">
+                        <p><strong>A:</strong> 레버리지 ETF의 치명적 약점인 <strong>'변동성 붕괴(Volatility Decay)'</strong>에 따른 구조적 손실을 제거하기 위함입니다.CBVR코어엔진확장(기관용TargetBeta).pdf]</p>
+                        <ul>
+                            <li>선물 복제는 지수 자체를 추종하므로 횡보장에서의 경로 의존적 소음이 제거됩니다.</li>
+                            <li>CBVR 코어 엔진의 평균 회귀 논리를 더 순수하게 손익(P&L)에 반영할 수 있습니다.</li>
+                        </ul>
                     </div>
                 </div>
-            </section>
+                <div class="qa-item">
+                    <div class="qa-trigger">Bucket 3(유휴 자본)의 전략과 기대 수익률은? <i class="fas fa-plus"></i></div>
+                    <div class="qa-content">
+                        <p><strong>A:</strong> Bucket 3는 SGOV, GLD 등 실물 자산 기반의 초저위험 구조로 설계됩니다.</p>
+                        <ul>
+                            <li>약 <strong>6.5% ~ 7.5%의 CAGR</strong>을 목표로 합니다.</li>
+                            <li>이는 코어 전략의 수익과 별개로 전체 포트폴리오에 <strong>'이중 복리'</strong> 효과를 제공합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-            <footer>
-                <p>Copyright © 2025 WeJump Investment Strategy Lab. All rights reserved.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.8rem;">본 대시보드는 CBVR 투자 유치를 위한 전략 요약본입니다.</p>
-            </footer>
-        </main>
-    </div>
+            <div class="qa-category">
+                <div class="qa-category-title"><i class="fas fa-user-check"></i> 4. 검증 및 신뢰성 (Verification & Trust)</div>
+                <div class="qa-item">
+                    <div class="qa-trigger">백테스트의 재현성 및 과적합(Overfitting) 가능성은? <i class="fas fa-plus"></i></div>
+                    <div class="qa-content">
+                        <p><strong>A:</strong> CBVR은 성능을 다소 희생하더라도 시스템의 생존을 우선하는 <strong>'언더피팅(Underfitting)'</strong> 철학에 기반합니다.</p>
+                        <ul>
+                            <li>논리적 근거가 부족한 임의적 규칙을 배제하고 '평균 회귀', '복리 보존' 등 본질적인 규칙에만 집중합니다.</li>
+                            <li>거래 비용을 보수적으로 과다 계상하여 실전에서의 안전마진을 확보했습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="qa-item">
+                    <div class="qa-trigger">24시간 라이브 방송을 통해 실시간 포지션을 공개하는 이유는? <i class="fas fa-plus"></i></div>
+                    <div class="qa-content">
+                        <p><strong>A:</strong> 백테스트와 실제 운용 성과 간의 괴리(Slippage)를 사용자가 직접 검증하게 함으로써 <strong>'설명 가능한 시스템'</strong>에 대한 강력한 확신을 주기 위함입니다.</p>
+                        <ul>
+                            <li>이는 국내 리테일 및 개인 연구자 중 독보적인 투명성 수준입니다.</li>
+                            <li>동료 검증(Peer Review)을 통해 전략의 강건성을 지속적으로 확인받는 과정입니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="hero" style="background: var(--point-blue); text-align: center; padding: 5rem;">
+                <h2 style="color: white; justify-content: center; border: none; font-size: 3rem; margin-bottom: 2rem;">Ready for Next Generation Investing?</h2>
+                <p style="color: white; margin: 0 auto 3.5rem; max-width: 800px;">Series A 투자 유치 및 연기금/자산운용사 대상 기술 PoC를 제안드립니다. 지금 바로 전략의 모든 것을 확인하십시오.</p>
+                <div style="display: flex; justify-content: center; gap: 1.5rem;">
+                    <a href="mailto:crowmag2@gmail.com" class="btn-gold">Request IR Proposal</a>
+                    <a href="https://linktr.ee/wejump3" target="_blank" class="btn-gold" style="background: white; color: var(--point-blue);">Contact US</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 WeJump Investment Strategy Lab. All rights reserved.</p>
+            <p style="margin-top: 1rem; opacity: 0.5;">본 자료는 WeJump 연구소의 독점적 자산이며, 무단 배포를 금합니다.</p>
+        </footer>
+    </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 사이드바 토글 및 스크롤 스파이 기능
-            const sidebar = document.querySelector('.sidebar');
-            const sidebarToggle = document.querySelector('.sidebar-toggle');
-            const navLinks = document.querySelectorAll('.sidebar-nav a');
-            const sections = document.querySelectorAll('section');
+        // Full Q&A Accordion Logic
+        document.querySelectorAll('.qa-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const content = trigger.nextElementSibling;
+                const icon = trigger.querySelector('i');
+                const isOpen = content.style.display === 'block';
+                
+                // Toggle display
+                content.style.display = isOpen ? 'none' : 'block';
+                // Toggle icon
+                icon.classList.toggle('fa-plus', isOpen);
+                icon.classList.toggle('fa-minus', !isOpen);
+                // Highlight active item
+                trigger.parentElement.style.borderColor = isOpen ? '#E1E4E8' : '#0052CC';
+            });
+        });
 
-            // 토글 버튼 클릭
-            if (sidebar && sidebarToggle) {
-                sidebarToggle.addEventListener('click', () => {
-                    sidebar.classList.toggle('active');
-                });
-            }
+        // Enhanced Scroll Spy
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        const sections = document.querySelectorAll('section');
 
-            // 모바일 메뉴 클릭 시 닫기
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth <= 1024) {
-                        sidebar.classList.remove('active');
-                    }
-                });
+        window.addEventListener('scroll', () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
             });
 
-            // 스크롤 스파이 (현재 섹션 하이라이트)
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (pageYOffset >= (sectionTop - 150)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
             });
         });
     </script>
-    <!-- 채널 톡 -->
-    <script>
-      (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
-
-      ChannelIO('boot', {
-        "pluginKey": "9f1f6aa9-000c-48e6-9324-00401dbcce25"
-      });
-    </script>
 </body>
 </html>
-
-
