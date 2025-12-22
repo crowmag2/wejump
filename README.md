@@ -23,6 +23,7 @@
 
 ***
 ---
+분석 자료 : [CBVR 2.3 심층 분석] 구조적 알파와 퀀트 아키텍처의 공학적 재구성https://crowmag2.github.io/wejump/%5BCBVR2.3%20%EC%8B%AC%EC%B8%B5%20%EB%B6%84%EC%84%9D%5D%20%EA%B5%AC%EC%A1%B0%EC%A0%81%20%EC%95%8C%ED%8C%8C%EC%99%80%20%EB%A6%AC%ED%85%8C%EC%9D%BC%20%ED%80%80%ED%8A%B8%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%9D%98%20%EA%B3%B5%ED%95%99%EC%A0%81%20%EC%9E%AC%EA%B5%AC%EC%84%B1.pdf
 
 # WeJump 투자전략 연구소 종합 역량 분석 보고서
 
