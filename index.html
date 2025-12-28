@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -49,20 +50,22 @@
         /* --- 1. Main Title Neon Effect --- */
         /* 그라디언트 텍스트용 필터 글로우 */
         .gradient-text-glow {
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* 텍스트 주변에 보라색 빛 번짐 효과 */
-            filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.6)) 
-                    drop-shadow(0 0 30px rgba(79, 70, 229, 0.4));
+            /* 텍스트 뒤에 검은 그림자를 먼저 깔고, 그 뒤에 보라색 빛 번짐을 줌 */
+            filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.8))
+                    drop-shadow(0 0 15px rgba(124, 58, 237, 1))
+					drop-shadow(0 0 30px rgba(6, 182, 212, 0.8));
         }
 
         /* 흰색 텍스트용 텍스트 섀도우 글로우 */
         .white-text-glow {
+            color: #22d3ee; /* 형광 하늘색 (Cyan)으로 변경하여 흰색 배경과 분리 */
             text-shadow: 
-                0 0 10px rgba(139, 92, 246, 0.5), /* 1차 발광 */
-                0 0 20px rgba(99, 102, 241, 0.4), /* 2차 확산 */
-                0 0 40px rgba(79, 70, 229, 0.3);  /* 3차 배경광 */
+                2px 2px 0px rgba(0,0,0,0.9),      /* 1차: 글자 선명도를 위한 검은 그림자 (핵심) */
+                0 0 10px rgba(34, 211, 238, 0.8), /* 2차: 형광색 자체 발광 */
+                0 0 30px rgba(6, 182, 212, 0.4);  /* 3차: 넓은 확산광 */
         }
 
         /* --- 2. Sub Title Neon Effect --- */
@@ -190,8 +193,10 @@
         </div>
 
         <div class="scroll-down text-gray-500" onclick="document.getElementById('main-content').scrollIntoView({behavior: 'smooth'})">
+			<center>
             <span class="text-xs mb-2 block">Scroll to Explore</span>
             <i class="fas fa-chevron-down"></i>
+			</center>
         </div>
     </div>
 
