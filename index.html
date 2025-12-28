@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -193,22 +194,44 @@
     </header>
 
     <main class="container mx-auto px-6 py-12 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 items-start">
-            <div class="glass rounded-2xl p-6 card-hover group cursor-pointer">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="bg-blue-100 p-3 rounded-full text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                        <i class="fas fa-robot text-xl"></i>
-                    </div>
-                    <span class="text-xs font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded-full">AI Support</span>
-                </div>
-                <h3 class="font-bold text-lg text-gray-800 mb-2">AI에게 물어보기</h3>
-                <p class="text-gray-500 text-sm mb-6">전략에 대한 궁금한 점을 AI와 대화하며 해결하세요.</p>
-                <a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="block w-full text-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 rounded-xl hover:shadow-lg transition duration-200 font-medium text-sm">
-                    대화 시작하기 <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-            </div>
+        
+        <section class="mb-16 text-center max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                복잡한 문서, <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">읽지 말고 물어보세요.</span>
+            </h2>
+            <p class="text-gray-600 mb-8 text-lg">
+                WeJump 투자전략연구소의 역량, CBVR 전략의 모든 것, 소스 코드 분석까지.<br class="hidden md:inline">
+                AI가 문서를 분석하여 즉시 답변해 드립니다.
+            </p>
 
-            <div class="glass rounded-2xl p-6 card-hover group cursor-pointer">
+            <a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="group relative block w-full">
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                
+                <div class="relative bg-white rounded-2xl p-4 md:p-6 flex items-center shadow-xl border border-gray-100 group-hover:-translate-y-1 transition-transform duration-300">
+                    <div class="mr-4 text-purple-600 text-2xl animate-pulse">
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <div class="text-gray-400 text-base md:text-lg font-medium flex items-center">
+                            <span>"CBVR 전략의 핵심 로직이 뭐야?"</span>
+                            <span class="w-0.5 h-5 bg-blue-500 ml-1 animate-blink"></span> </div>
+                    </div>
+                    <div class="bg-gray-100 p-2 md:p-3 rounded-xl text-gray-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas fa-arrow-up text-lg"></i>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://wejump3.tistory.com/entry/CBVR-%EC%A0%84%EB%9E%B5-AI-%EB%8C%80%ED%99%94%ED%95%B4%EB%B3%B4%EA%B8%B0" target="_blank" class="mt-6 flex flex-wrap justify-center gap-3">
+                <span class="px-4 py-2 bg-white/60 border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">💡 CBVR 수익률 분석해줘</span>
+                <span class="px-4 py-2 bg-white/60 border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">📜 파인스크립트 코드 설명해줘</span>
+                <span class="px-4 py-2 bg-white/60 border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">📊 3-Bucket 구조가 뭐야?</span>
+            </a>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 items-start">
+            
+            <div class="glass rounded-2xl p-6 card-hover group cursor-pointer h-full">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-red-100 p-3 rounded-full text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
                         <i class="fab fa-youtube text-xl"></i>
@@ -222,7 +245,7 @@
                 </a>
             </div>
 
-            <div class="glass rounded-2xl p-6 card-hover group cursor-pointer">
+            <div class="glass rounded-2xl p-6 card-hover group cursor-pointer h-full">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-green-100 p-3 rounded-full text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-envelope text-xl"></i>
@@ -235,15 +258,16 @@
                 </a>
             </div>
 
-            <div id="open-repo-info-button" class="glass rounded-2xl p-6 card-hover group cursor-pointer bg-gradient-to-br from-white to-blue-50">
+            <div id="open-repo-info-button" class="glass rounded-2xl p-6 card-hover group cursor-pointer bg-gradient-to-br from-white to-blue-50 h-full">
                 <div class="flex items-center justify-center mb-4">
                     <div class="bg-indigo-100 p-4 rounded-full text-indigo-600 group-hover:scale-110 transition-transform duration-300 shadow-sm">
                         <i class="fas fa-info text-2xl"></i>
                     </div>
                 </div>
-                <div class="text-center">
-                    <h3 class="font-bold text-lg text-gray-800 mb-1">저장소 소개</h3>
-                    <p class="text-gray-500 text-sm">연구소의 철학과 비전<br><a href="https://github.com/crowmag2/wejump/blob/main/README.md" target=_blank>README</a></p>
+                <div class="text-center mt-4">
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">저장소 소개</h3>
+                    <p class="text-gray-500 text-sm mb-4">연구소의 철학과 비전, 데이터 기반 접근법</p>
+                    <a href="https://github.com/crowmag2/wejump/blob/main/README.md" target=_blank class="text-blue-500 hover:text-blue-700 font-medium text-sm">README 확인하기 <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
             </div>
         </div>
@@ -328,7 +352,7 @@
                     </div>
 
                     <p class="text-gray-500 text-sm">
-                        초기 모델부터 현재의 기관용 2.3 버전에 이르기까지, 전략이 어떻게 진화해왔는지 보여주는 아키텍처 변천사입니다.
+                        초기 모델부터 현재의 기관용 2.3 버전까지, 전략이 어떻게 진화해왔는지 보여주는 아키텍처 변천사입니다.
                     </p>
                 </div>
 
