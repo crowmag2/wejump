@@ -11,61 +11,53 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* 스크롤바 제거 */
-            background-color: #000; /* 영상 로딩 전 검은색 */
+            overflow: hidden;
+            background-color: #000;
         }
 
-        /* 2. 비디오 래퍼 (화면 꽉 채우기용) */
-        .video-background {
-            position: fixed; /* absolute보다 강력한 고정 */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -99; /* 제일 뒤로 */
-            pointer-events: none; /* 클릭 불가 */
+        /* 2. 비디오 스타일 (화면 꽉 채우기) */
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            object-fit: cover; /* 비율 유지하며 꽉 채우기 */
+            opacity: 0.5; /* 글자 잘 보이게 약간 어둡게 */
         }
 
-        /* 3. Iframe (300% 확대 기법 - 레터박스 제거용) */
-        .video-background iframe {
+        /* 3. 콘텐츠 스타일 */
+        .content {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 300%; /* 너비를 3배로 키워서 검은 여백 강제 제거 */
-            height: 300%; /* 높이도 3배 */
             transform: translate(-50%, -50%);
-            border: none;
+            z-index: 1;
+            color: white;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            width: 100%;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* 4. 콘텐츠 (영상 위에 뜨는 글자) */
-        .content {
-            position: relative;
-            z-index: 10;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background: rgba(0,0,0,0.3); /* 글자 잘 보이게 약간 어둡게 */
-        }
+        h1 { font-size: 3rem; margin: 0; text-transform: uppercase; }
+        p { font-size: 1.2rem; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="video-background">
-        <iframe 
-            src="https://www.youtube.com/embed/qC0vDKVPCrw?autoplay=1&mute=1&controls=0&loop=1&playlist=qC0vDKVPCrw&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&enablejsapi=1&origin=https://crowmag2.github.io" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen>
-        </iframe>
-    </div>
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        이 브라우저는 비디오 태그를 지원하지 않습니다.
+    </video>
 
     <div class="content">
-        <h1>WeJump Strategy</h1>
-        <p>GitHub Pages Integration Test</p>
+        <h1>WeJump</h1>
+        <p>Video Background Test</p>
     </div>
 
 </body>
