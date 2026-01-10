@@ -40,23 +40,17 @@
             z-index: 0;
         }
         
-        /* [수정됨] Video Overlay - Scanline Effect */
+        /* [UPGRADE] Video Overlay - CRT RGB Scanline Effect */
         .video-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-            /* 배경색: 아주 옅은 검정 (기본 명암) */
-            background-color: rgba(0, 0, 0, 0.1);
-            /* 스캔라인 패턴: 투명(50%) + 검정(50%) 반복 */
-            background-image: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0) 50%,
-                rgba(0, 0, 0, 0.4) 50%
-            );
-            /* 패턴 크기: 4px 간격으로 촘촘하게 */
-            background-size: 100% 4px;
-            /* CRT 모니터 느낌을 위해 약간의 블러 추가 (선택사항, 현재는 제거하여 선명도 유지) */
-            pointer-events: none; /* 오버레이가 클릭을 방해하지 않도록 설정 */
+            /* 스캔라인 효과 (가로줄 + 세로 RGB 서브픽셀) */
+            background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%; 
+            pointer-events: none; 
+            z-index: 12; /* 영상 및 텍스트(z-10)보다 위에 배치하여 모니터 질감 표현 */
+            opacity: 0.7;
         }
 
         /* iframe Transition */
@@ -67,7 +61,7 @@
 
         .hero-content {
             position: relative;
-            z-index: 10;
+            z-index: 10; /* 오버레이(z-12) 아래에 위치하게 됨 -> 텍스트가 화면 안에 있는 느낌 */
             width: 100%;
             max-width: 1200px;
             padding: 2rem;
