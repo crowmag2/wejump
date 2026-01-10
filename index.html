@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,7 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/youtube-background/jquery.youtube-background.min.js"></script>
+
     <link rel="shortcut icon" href="https://wejump3.tistory.com/favicon.ico" />
     <style>
         body {
@@ -31,53 +33,62 @@
             color: white;
         }
 
-        #canvas-container {
+        /* YouTube Background Container */
+        #video-background {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0;
         }
+        
+        /* Video Overlay (가독성 확보용) */
+        .video-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* 영상 밝기에 따라 0.3 ~ 0.7 조절 */
+            z-index: 1;
+        }
+
+        /* iframe Transition (User Requested) */
+        iframe {
+            transition: opacity 500ms ease-in-out;
+            transition-delay: 250ms;
+        }
 
         .hero-content {
             position: relative;
-            z-index: 10;
+            z-index: 10; /* 영상(0)과 오버레이(1)보다 위에 배치 */
             width: 100%;
             max-width: 1200px;
             padding: 2rem;
-            /* 텍스트 뒤에 아주 은은한 어두운 원형 배경을 깔아 가독성 추가 확보 */
-            background: radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 70%);
         }
 
         /* --- 1. Main Title Neon Effect --- */
-        /* 그라디언트 텍스트용 필터 글로우 */
         .gradient-text-glow {
             background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* 텍스트 뒤에 검은 그림자를 먼저 깔고, 그 뒤에 보라색 빛 번짐을 줌 */
             filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.8))
                     drop-shadow(0 0 15px rgba(124, 58, 237, 1))
 					drop-shadow(0 0 30px rgba(6, 182, 212, 0.8));
         }
 
-        /* 흰색 텍스트용 텍스트 섀도우 글로우 */
         .white-text-glow {
-            color: #22d3ee; /* 형광 하늘색 (Cyan)으로 변경하여 흰색 배경과 분리 */
+            color: #22d3ee; 
             text-shadow: 
-                2px 2px 0px rgba(0,0,0,0.9),      /* 1차: 글자 선명도를 위한 검은 그림자 (핵심) */
-                0 0 10px rgba(34, 211, 238, 0.8), /* 2차: 형광색 자체 발광 */
-                0 0 30px rgba(6, 182, 212, 0.4);  /* 3차: 넓은 확산광 */
+                2px 2px 0px rgba(0,0,0,0.9),
+                0 0 10px rgba(34, 211, 238, 0.8),
+                0 0 30px rgba(6, 182, 212, 0.4);
         }
 
         /* --- 2. Sub Title Neon Effect --- */
         .subtitle-neon {
-            color: #ffffff; /* 흰색으로 고정 */
-            font-weight: 900; /* Bold보다 더 두껍게 */
+            color: #ffffff;
+            font-weight: 900;
             letter-spacing: -0.02em;
-            /* 청록색(Cyan) 계열의 광원 처리로 흰색 구체와 분리 */
             text-shadow: 
-                0 0 8px rgba(56, 189, 248, 0.8),  /* 선명한 외곽선 */
-                0 0 15px rgba(14, 165, 233, 0.6), /* 중간 광원 */
-                2px 2px 4px rgba(0,0,0,0.8);      /* 검은 그림자로 글자 선명도 확보 */
+                0 0 8px rgba(56, 189, 248, 0.8),
+                0 0 15px rgba(14, 165, 233, 0.6),
+                2px 2px 4px rgba(0,0,0,0.8);
         }
 
         /* Glass Cards */
@@ -91,7 +102,6 @@
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(99, 102, 241, 0.5);
-            /* 카드 호버 시에도 약한 글로우 */
             box-shadow: 0 0 15px rgba(99, 102, 241, 0.2); 
         }
 
@@ -142,7 +152,8 @@
 <body>
 
     <div id="hero-section">
-        <div id="canvas-container"></div>
+        <div id="video-background" data-vbg="https://www.youtube.com/watch?v=T-58DjYQlIQ"></div>
+        <div class="video-overlay"></div>
         
         <header class="absolute top-0 left-0 w-full z-20 px-6 py-6 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -555,60 +566,12 @@
     </div>
 
     <script>
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x050505, 0.001);
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        const geometry = new THREE.IcosahedronGeometry(12, 2); 
-        const wireframeMaterial = new THREE.MeshBasicMaterial({ color: 0x6366f1, wireframe: true, transparent: true, opacity: 0.35 });
-        const wireframeSphere = new THREE.Mesh(geometry, wireframeMaterial);
-        scene.add(wireframeSphere);
-
-        const pointsMaterial = new THREE.PointsMaterial({ color: 0x93c5fd, size: 0.7, transparent: true, opacity: 1.0 });
-        const pointsSphere = new THREE.Points(geometry, pointsMaterial);
-        scene.add(pointsSphere);
-
-        camera.position.z = 25;
-
-        let mouseX = 0, mouseY = 0;
-        let targetX = 0, targetY = 0;
-        const windowHalfX = window.innerWidth / 2;
-        const windowHalfY = window.innerHeight / 2;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX - windowHalfX);
-            mouseY = (event.clientY - windowHalfY);
+        // Init Youtube Background
+        jQuery(document).ready(function() {
+            jQuery('[data-vbg]').youtube_background();
         });
 
-        const clock = new THREE.Clock();
-        function animate() {
-            requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
-            targetX = mouseX * 0.001;
-            targetY = mouseY * 0.001;
-            wireframeSphere.rotation.y += 0.002;
-            wireframeSphere.rotation.x += 0.001;
-            pointsSphere.rotation.y += 0.002;
-            pointsSphere.rotation.x += 0.001;
-            wireframeSphere.rotation.y += 0.05 * (targetX - wireframeSphere.rotation.y);
-            wireframeSphere.rotation.x += 0.05 * (targetY - wireframeSphere.rotation.x);
-            const scale = 1 + Math.sin(elapsedTime * 0.5) * 0.02;
-            wireframeSphere.scale.set(scale, scale, scale);
-            pointsSphere.scale.set(scale, scale, scale);
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
+        // --- Common Utils (Modal, Cookie, ChannelIO) ---
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {
@@ -656,5 +619,4 @@
         ChannelIO('boot', { "pluginKey": "9f1f6aa9-000c-48e6-9324-00401dbcce25" });
     </script>
 </body>
-
 </html>
