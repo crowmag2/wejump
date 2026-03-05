@@ -26,6 +26,10 @@
             z-index: -2;
             overflow: hidden;
             pointer-events: none;
+            opacity: 0.45;
+            /* 컨테이너 자체에서 전체 밝기 조절 */
+            background: #000;
+            /* 영상 로딩 전 검정 배경 유지 */
         }
 
         #video-background iframe {
@@ -37,10 +41,11 @@
             min-height: 100vh;
             min-width: 177.77vh;
             transform: translate(-50%, -50%);
-            opacity: 0.3 !important;
-            /* 조금 더 어둡게 조정 */
-            transition: opacity 800ms ease-in-out;
-            transition-delay: 200ms;
+            opacity: 0;
+            /* 초기 로고 노출을 막기 위해 0으로 시작 */
+            transition: opacity 1.2s ease-in-out;
+            /* 고급스러운 페이드 인 */
+            transition-delay: 0.3s;
         }
 
         .video-overlay {
