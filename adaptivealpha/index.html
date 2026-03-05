@@ -9,6 +9,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- YouTube Background Plugin Support -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/youtube-background/jquery.youtube-background.min.js"></script>
+
     <style>
         /* Video Background Styling */
         #video-background {
@@ -35,6 +40,8 @@
             transform: translate(-50%, -50%);
             opacity: 0.4;
             /* 살짝 투명하게 조절 */
+            transition: opacity 500ms ease-in-out;
+            transition-delay: 250ms;
         }
 
         .video-overlay {
@@ -339,19 +346,19 @@
             document.querySelectorAll('section').forEach(section => {
                 observer.observe(section);
             });
+
+            // Initialize YouTube Background
+            jQuery(document).ready(function () {
+                jQuery('[data-vbg]').youtube_background();
+            });
         });
     </script>
 </head>
 
 <body>
 
-    <!-- 유튜브 배경 비디오 섹션 -->
-    <div id="video-background">
-        <iframe
-            src="https://www.youtube.com/embed/T-58DjYQlIQ?autoplay=1&mute=1&loop=1&playlist=T-58DjYQlIQ&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1"
-            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
-    </div>
+    <!-- 유튜브 배경 비디오 섹션 (플러그인 방식 적용) -->
+    <div id="video-background" data-vbg="https://www.youtube.com/watch?v=T-58DjYQlIQ"></div>
     <div class="video-overlay"></div>
 
     <header>
