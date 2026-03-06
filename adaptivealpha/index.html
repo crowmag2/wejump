@@ -54,11 +54,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* 명암비를 높이고 더 어둡게 조정 */
+            /* 오버레이 투명도를 낮춰 영상의 생동감을 살리고 글자를 돋보이게 함 */
             background: linear-gradient(180deg,
-                    rgba(8, 10, 15, 0.85) 0%,
-                    rgba(8, 10, 15, 0.6) 50%,
-                    rgba(8, 10, 15, 0.9) 100%);
+                    rgba(8, 10, 15, 0.75) 0%,
+                    rgba(8, 10, 15, 0.4) 50%,
+                    rgba(8, 10, 15, 0.8) 100%);
             z-index: -1;
             pointer-events: none;
         }
@@ -66,13 +66,20 @@
         :root {
             --bg-color: transparent;
             /* 배경을 비워 동영상 노출 */
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --accent-gold: #D4AF37;
-            --accent-blue: #00E5FF;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --glass-blur: 20px;
+            --card-bg: rgba(255, 255, 255, 0.07);
+            /* 더 밝은 카드 배경 */
+            --card-border: rgba(255, 255, 255, 0.15);
+            /* 더 뚜렷한 테두리 */
+            --accent-gold: #FFD700;
+            /* 더 선명한 골드 컬러 */
+            --accent-blue: #00F2FF;
+            /* 더 선명한 사이언 블루 */
+            --text-main: #ffffff;
+            /* 순백색 텍스트 */
+            --text-muted: #cbd5e1;
+            /* 차분한 텍스트도 한 단계 밝게 */
+            --glass-blur: 25px;
+            /* 블러 효과 강화 */
         }
 
         * {
@@ -193,7 +200,10 @@
             margin-bottom: 25px;
             font-weight: 300;
             font-size: 1.15rem;
-            color: #cbd5e1;
+            color: var(--text-main);
+            /* Paragraph color set to main text color for maximum visibility */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            /* 글자가 배경에 묻히지 않도록 미세한 그림자 추가 */
         }
 
         strong {
@@ -303,7 +313,7 @@
             margin-bottom: 20px;
             position: relative;
             padding-left: 35px;
-            color: #cbd5e1;
+            color: var(--text-main);
         }
 
         .expert-section li::before {
@@ -465,36 +475,39 @@
             <h3>누적 수익률의 궤적: Alpha vs Strategy-Based Benchmark</h3>
             <img src="./2026-01-30_Global_Trinity_Final_Chart_V8_8.png" alt="Cumulative Return Chart" class="chart-img">
             <p
-                style="font-size: 0.9em; color: #666; margin-top: 15px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                style="font-size: 0.9em; color: var(--text-muted); margin-top: 15px; max-width: 800px; margin-left: auto; margin-right: auto;">
                 <strong>※ 투명한 비교를 위한 주석:</strong> 본 그래프의 'Benchmark'는 단순히 특정 시장 지수 하나만을 의미하는 것이 아닙니다.
                 한국(KOSPI), 미국(S&P, Nasdaq)을 <strong>동일한 비중으로 결합한 '전략적 기준선'</strong>과 비교하여, 우리의 주도주 집중 전략(WTA)이 얼마큼의 초과
                 수익(Alpha)을 창출했는지를 보여줍니다.
             </p>
         </div>
 
-        <div class="chart-gallery" style="margin-top: 50px; border-top: 1px solid #eee; padding-top: 30px;">
+        <div class="chart-gallery"
+            style="margin-top: 50px; border-top: 1px solid var(--card-border); padding-top: 30px;">
             <h3>개별 시장 지수와의 비교 (Market-Specific Analysis)</h3>
-            <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">통합 전략이 각기 다른 성격의 개별 주가지수들을 어떻게 압도하며 우상향을
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">통합 전략이 각기 다른 성격의 개별 주가지수들을 어떻게
+                압도하며 우상향을
                 그리는지 확인하실 수 있습니다.</p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                 <div class="chart-item">
-                    <h4 style="text-align: center; color: #c0392b;">vs KOSPI Index</h4>
+                    <h4 style="text-align: center; color: #ff6b6b;">vs KOSPI Index</h4>
                     <img src="./2026-01-30_KOSPI_Chart.png" alt="KOSPI Comparison Chart" class="chart-img"
                         style="border: 1px solid #ddd;">
                 </div>
                 <div class="chart-item">
-                    <h4 style="text-align: center; color: #2980b9;">vs Nasdaq-100 Index</h4>
+                    <h4 style="text-align: center; color: #54a0ff;">vs Nasdaq-100 Index</h4>
                     <img src="./2026-01-30_Nasdaq_Chart.png" alt="Nasdaq Comparison Chart" class="chart-img"
                         style="border: 1px solid #ddd;">
                 </div>
                 <div class="chart-item">
-                    <h4 style="text-align: center; color: #27ae60;">vs S&P 500 Index</h4>
+                    <h4 style="text-align: center; color: #1dd1a1;">vs S&P 500 Index</h4>
                     <img src="./2026-01-30_SNP_Chart.png" alt="S&P 500 Comparison Chart" class="chart-img"
                         style="border: 1px solid #ddd;">
                 </div>
             </div>
-            <p style="font-size: 0.85em; color: #999; text-align: center; margin-top: 20px;">* 개별 지수와의 비교 시뮬레이션 결과입니다. 각
+            <p style="font-size: 0.85em; color: var(--text-muted); text-align: center; margin-top: 20px;">* 개별 지수와의 비교
+                시뮬레이션 결과입니다. 각
                 시점의 주가지수를 베이스라인으로 하여 전략의 성과를 교차 검증하였습니다.</p>
         </div>
     </section>
