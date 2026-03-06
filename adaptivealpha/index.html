@@ -108,6 +108,8 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 25px;
             letter-spacing: -0.03em;
+            /* 검은색 그림자로 글자를 선명하게 하고, 뒤쪽으로 은은한 골드 글로우 추가 */
+            filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 25px rgba(255, 215, 0, 0.3));
         }
 
         .link-button {
@@ -184,6 +186,9 @@
             align-items: center;
             gap: 20px;
             font-weight: 600;
+            /* 소제목에도 검은색 그림자와 네온 효과 추가 */
+            text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.9),
+                0 0 15px rgba(255, 215, 0, 0.4);
         }
 
         h2::after {
