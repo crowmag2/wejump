@@ -303,6 +303,28 @@
             transform: scale(1.02);
         }
 
+        /* --- YouTube Video Container --- */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--card-border);
+            margin-top: 30px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .expert-section {
             border-left: 3px solid var(--accent-gold);
         }
@@ -397,10 +419,21 @@
         <p>
             <strong>Adaptive Alpha ETF</strong>는 바로 그 절망의 지점에서 시작되었습니다. 우리는 묻고 답했습니다. "왜 하락장에서조차 내 소중한 자산을 시장에 맡겨두어야
             하는가?" 그리고 "왜 모든 자산이 아닌, 가장 강력한 승자에게만 집중하지 않는가?"
-            이 질문에 대한 대답이 바로 <strong>V8.8 동적 자산배분 시스템</strong>입니다.
+            이 질문에 대한 대답이 바로 <strong>V8.9 동적 자산배분 시스템</strong>입니다.
         </p>
     </section>
 
+
+    <section id="strategy-video">
+        <h2>WeJump Investment Labs: 전략 설명 영상</h2>
+        <p>
+            위점프 투자전략 연구소에서 제안하는 V8.9 동적 자산배분 시스템(Adaptive Alpha ETF)의 
+            설계 철학과 핵심 매커니즘을 영상으로 보다 쉽게 확인하세요.
+        </p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/egKy8Rr8mWc?rel=0&autoplay=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
 
     <section id="market-harmony">
         <h2>시대를 관통하는 한-미 시장의 하모니</h2>
@@ -517,7 +550,7 @@
 
     <section class="expert-section" id="expert-internal">
         <h2>에필로그: 정밀함의 미학 (Internal Spec)</h2>
-        <p>서사 뒤에는 수학적 정밀함이 숨어 있습니다. V8.8 엔진은 단순히 가격을 보는 것이 아니라 시장의 '질감'을 분석합니다.</p>
+        <p>서사 뒤에는 수학적 정밀함이 숨어 있습니다. V8.9 엔진은 단순히 가격을 보는 것이 아니라 시장의 '질감'을 분석합니다.</p>
         <ul>
             <li><strong>Tactical Logic:</strong> 변동성 가중 평균(WMA)과 단순 이평선(SMA)의 스프레드를 분석하여 시장의 탄력을 실시간으로 측정합니다.</li>
             <li><strong>Risk Logic:</strong> 10일 기준 하락 변동성 임계치를 추적하는 'Fast Panic' 로직은 데이터에 숨겨진 공포의 전조를 읽어냅니다.</li>
