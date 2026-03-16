@@ -1,0 +1,48 @@
+name: WeJump V9 Daily Auto Update
+
+on:
+  schedule:
+    # GitHub 서버 기준(UTC) 시간입니다. 
+    # 한국 시간(KST) 16:30은 UTC 기준 07:30 입니다. (월~금 작동)
+    - cron: '30 7 * * 1-5'
+  workflow_dispatch: # 수동 실행 버튼 (원할 때 언제든 클릭해서 실행 가능)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 봇이 결과를 덮어쓰기 위해 필요한 권한
+
+    steps:
+    - name: 1. 저장소 체크아웃 (코드 가져오기)
+      uses: actions/checkout@v4
+
+    - name: 2. 파이썬 환경 세팅
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: 3. 리눅스 환경 한글 폰트 설치 (차트 한글 깨짐 방지용)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y fonts-nanum
+        rm -rf ~/.cache/matplotlib
+        fc-cache -fv
+
+    - name: 4. 필수 라이브러리 설치
+      run: |
+        python -m pip install --upgrade pip
+        pip install yfinance FinanceDataReader pandas numpy matplotlib
+
+    - name: 5. V9 최적화 엔진 및 대시보드 렌더링 실행
+      env:
+        TZ: Asia/Seoul # 시스템 타임존을 한국 시간으로 고정
+      run: |
+        python Global_Trinity_optimize_v9.py
+        python dashboard_generator.py
+
+    - name: 6. 갱신된 결과물 자동 커밋 & 푸시
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "[Auto] WeJump V9 Dashboard Updated (KST 16:30)"
+        file_pattern: 'daily_portfolio_log_v9.csv index.html daily_plots_v9/* *data.csv'
