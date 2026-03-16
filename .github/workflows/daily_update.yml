@@ -45,4 +45,4 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: "[Auto] WeJump V9 Dashboard Updated (KST 16:30)"
-        file_pattern: 'daily_portfolio_log_v9.csv index.html daily_plots_v9/* *data.csv'
+        file_pattern: 'daily_portfolio_log_v9.csv aalpha_dashboard.html daily_plots_v9/* *data.csv'
