@@ -33,6 +33,30 @@
                 .header h1 { margin: 0; font-size: 2.2rem; color: var(--highlight); }
                 .header p { color: var(--text-sub); margin-top: 10px; font-size: 1.1rem; }
                 
+                .link-container {
+                    margin-top: 20px;
+                    display: flex;
+                    justify-content: center;
+                    gap: 15px;
+                }
+                .btn-link {
+                    display: inline-block;
+                    padding: 8px 20px;
+                    background-color: transparent;
+                    color: var(--highlight);
+                    border: 1px solid var(--highlight);
+                    border-radius: 20px;
+                    text-decoration: none;
+                    font-size: 0.95rem;
+                    font-weight: bold;
+                    transition: all 0.2s ease-in-out;
+                }
+                .btn-link:hover {
+                    background-color: var(--highlight);
+                    color: var(--bg-color);
+                    box-shadow: 0 0 12px rgba(187, 134, 252, 0.4);
+                }
+                
                 .grid-container {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -50,7 +74,6 @@
                 }
                 .card:hover { transform: translateY(-5px); }
                 
-                /* 상대 모멘텀 승자 하이라이트 */
                 .card.selected-winner {
                     border: 2px solid #ffeb3b;
                     box-shadow: 0 0 20px rgba(255, 235, 59, 0.2);
@@ -109,7 +132,11 @@
         <body>
             <div class="header">
                 <h1>WeJump Adaptive Alpha (V9)</h1>
-                <p>기준일자 (Data Date): 2026-03-16 | 최종 업데이트: 2026-03-17</p>
+                <p>기준일자 (Data Date): 2026-03-17 | 최종 업데이트: 2026-03-17</p>
+                <div class="link-container">
+                    <a href="https://wejump3.tistory.com/" class="btn-link" target="_blank">WeJump 블로그</a>
+                    <a href="https://m.site.naver.com/1Xt9a" class="btn-link" target="_blank">유튜브 라이브</a>
+                </div>
             </div>
             
             <div class="grid-container">
@@ -122,9 +149,9 @@
                         <div class="etf-text">1배수 ETF 50% / 2배수 ETF 50%</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">12.82%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">12.73%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-21.96%</span></div>
-                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">0.95</span></div>
+                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">0.94</span></div>
                     
                     <div class="risk-box" style="border-left-color: #4caf50">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
@@ -133,7 +160,7 @@
                         <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">-0.17 (약세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/2026-03-17_SNP_Chart_V9.png?v=1773698859" alt="SNP Chart">
+                    <img class="chart-img" src="daily_plots_v9/SNP_Chart_V9.png?v=1773728084" alt="SNP Chart">
                 </div>
             
                 <div class="card ">
@@ -144,9 +171,9 @@
                         <div class="etf-text">SHY (US Bond) 100%</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">20.33%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">20.24%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-22.14%</span></div>
-                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.16</span></div>
+                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.15</span></div>
                     
                     <div class="risk-box" style="border-left-color: #4caf50">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
@@ -155,7 +182,7 @@
                         <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">-0.04 (약세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/2026-03-17_Nasdaq_Chart_V9.png?v=1773698859" alt="Nasdaq Chart">
+                    <img class="chart-img" src="daily_plots_v9/Nasdaq_Chart_V9.png?v=1773728084" alt="Nasdaq Chart">
                 </div>
             
                 <div class="card selected-winner">
@@ -173,11 +200,11 @@
                     <div class="risk-box" style="border-left-color: #4caf50">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
                         <div class="metric-row"><span class="metric-label">장기 추세 (200일)</span><span class="metric-value" style="color:#4caf50">🟢 우상향 (추세 안정)</span></div>
-                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (98.1%)</span></div>
-                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">+0.56 (강세)</span></div>
+                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (99.9%)</span></div>
+                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">+0.62 (강세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/2026-03-17_KOSPI_Chart_V9.png?v=1773698859" alt="KOSPI Chart">
+                    <img class="chart-img" src="daily_plots_v9/KOSPI_Chart_V9.png?v=1773728084" alt="KOSPI Chart">
                 </div>
             
             </div>
@@ -191,14 +218,14 @@
                     
                     <div class="signal-box">
                         <div class="signal-text">Diversified (3 Asset)</div>
-                        <div class="etf-text">리밸런싱 연평균: 13.5회</div>
+                        <div class="etf-text">리밸런싱 연평균: 13.4회</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">17.67%</span></div>
-                    <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-17.76%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">17.62%</span></div>
+                    <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-17.74%</span></div>
                     <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.42</span></div>
                     
-                    <img class="chart-img" src="daily_plots_v9/2026-03-17_Global_Trinity_Final_Chart_V9.png?v=1773698859" alt="Global Trinity Chart">
+                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1773728084" alt="Global Trinity Chart">
                 </div>
             
                 <div class="card">
@@ -209,11 +236,11 @@
                         <div class="etf-text">리밸런싱 연평균: 8.6회</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">28.23%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">28.16%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-27.15%</span></div>
-                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.45</span></div>
+                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.44</span></div>
                     
-                    <img class="chart-img" src="daily_plots_v9/2026-03-17_Global_Trinity_Final_Chart_V9.png?v=1773698859" alt="Global Trinity Chart">
+                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1773728084" alt="Global Trinity Chart">
                 </div>
             
                 </div>
