@@ -15,6 +15,8 @@
                     --text-main: #ffffff;
                     --text-sub: #b3b3b3;
                     --highlight: #bb86fc;
+                    --risk-off: #2196f3;
+                    --neutral-long: #4caf50;
                     --border-color: #333;
                 }
                 body {
@@ -34,27 +36,33 @@
                 .header p { color: var(--text-sub); margin-top: 10px; font-size: 1.1rem; }
                 
                 .link-container {
-                    margin-top: 20px;
+                    margin-top: 25px;
                     display: flex;
                     justify-content: center;
-                    gap: 15px;
+                    gap: 20px;
                 }
                 .btn-link {
                     display: inline-block;
-                    padding: 8px 20px;
-                    background-color: transparent;
-                    color: var(--highlight);
-                    border: 1px solid var(--highlight);
-                    border-radius: 20px;
+                    padding: 10px 24px;
+                    border-radius: 25px;
                     text-decoration: none;
-                    font-size: 0.95rem;
-                    font-weight: bold;
-                    transition: all 0.2s ease-in-out;
+                    font-size: 1rem;
+                    font-weight: 800;
+                    color: #ffffff;
+                    transition: all 0.3s ease;
+                    border: none;
+                }
+                .btn-blog {
+                    background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+                    box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
+                }
+                .btn-youtube {
+                    background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+                    box-shadow: 0 4px 15px rgba(255, 8, 68, 0.4);
                 }
                 .btn-link:hover {
-                    background-color: var(--highlight);
-                    color: var(--bg-color);
-                    box-shadow: 0 0 12px rgba(187, 134, 252, 0.4);
+                    transform: translateY(-3px);
+                    filter: brightness(1.1);
                 }
                 
                 .grid-container {
@@ -99,13 +107,29 @@
                 
                 .signal-box {
                     background-color: #2c2c2c;
-                    padding: 15px;
+                    padding: 20px 15px;
                     border-radius: 8px;
                     margin: 20px 0;
                     text-align: center;
+                    border: 1px solid #333;
                 }
-                .signal-text { font-size: 1.2rem; font-weight: bold; color: var(--highlight); margin-bottom: 5px; }
-                .etf-text { font-size: 0.9rem; color: #ccc; }
+                .signal-text { 
+                    font-size: 1.15rem; /* 한 줄 고정용 폰트 크기 축소 */
+                    font-weight: 800; 
+                    margin-bottom: 10px; 
+                    letter-spacing: -0.5px; /* 공간 확보용 자간 축소 */
+                    white-space: nowrap; /* 텍스트 줄바꿈 강제 방지 */
+                }
+                .etf-text { 
+                    font-size: 1.15rem; 
+                    color: #ffffff; 
+                    font-weight: bold;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    display: inline-block;
+                    letter-spacing: 0.5px;
+                }
                 
                 .risk-box {
                     background-color: #1a1a1a;
@@ -132,10 +156,10 @@
         <body>
             <div class="header">
                 <h1>WeJump Adaptive Alpha (V9)</h1>
-                <p>기준일자 (Data Date): 2026-03-17 | 최종 업데이트: 2026-03-17</p>
+                <p>기준일자 (Data Date): 2026-03-18 | 최종 업데이트: 2026-03-18</p>
                 <div class="link-container">
-                    <a href="https://wejump3.tistory.com/" class="btn-link" target="_blank">WeJump 블로그</a>
-                    <a href="https://m.site.naver.com/1Xt9a" class="btn-link" target="_blank">유튜브 라이브</a>
+                    <a href="https://wejump3.tistory.com/" class="btn-link btn-blog" target="_blank">WeJump 블로그</a>
+                    <a href="https://m.site.naver.com/1Xt9a" class="btn-link btn-youtube" target="_blank">유튜브 라이브</a>
                 </div>
             </div>
             
@@ -145,66 +169,66 @@
                     <div class="market-title">SNP Strategy</div>
                     
                     <div class="signal-box">
-                        <div class="signal-text">Aggressive Long (1x 50% + 2x 50%)</div>
+                        <div class="signal-text" style="color: var(--highlight);">Aggressive Long (1x 50% + 2x 50%)</div>
                         <div class="etf-text">1배수 ETF 50% / 2배수 ETF 50%</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">12.73%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">12.76%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-21.96%</span></div>
                     <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">0.94</span></div>
                     
                     <div class="risk-box" style="border-left-color: #4caf50">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
                         <div class="metric-row"><span class="metric-label">장기 추세 (200일)</span><span class="metric-value" style="color:#4caf50">🟢 우상향 (추세 안정)</span></div>
-                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (98.5%)</span></div>
-                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">-0.17 (약세)</span></div>
+                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (98.6%)</span></div>
+                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">-0.13 (약세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/SNP_Chart_V9.png?v=1773734822" alt="SNP Chart">
+                    <img class="chart-img" src="daily_plots_v9/SNP_Chart_V9.png?v=1773821084" alt="SNP Chart">
                 </div>
             
                 <div class="card ">
                     <div class="market-title">Nasdaq Strategy</div>
                     
                     <div class="signal-box">
-                        <div class="signal-text">Risk Off (Safe 100%)</div>
-                        <div class="etf-text">SHY (US Bond) 100%</div>
+                        <div class="signal-text" style="color: var(--highlight);">Aggressive Long (1x 50% + 2x 50%)</div>
+                        <div class="etf-text">1배수 ETF 50% / 2배수 ETF 50%</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">20.24%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">20.14%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-22.14%</span></div>
                     <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.15</span></div>
                     
                     <div class="risk-box" style="border-left-color: #4caf50">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
                         <div class="metric-row"><span class="metric-label">장기 추세 (200일)</span><span class="metric-value" style="color:#4caf50">🟢 우상향 (추세 안정)</span></div>
-                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (99.2%)</span></div>
-                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">-0.04 (약세)</span></div>
+                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (99.7%)</span></div>
+                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">+0.01 (강세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/Nasdaq_Chart_V9.png?v=1773734822" alt="Nasdaq Chart">
+                    <img class="chart-img" src="daily_plots_v9/Nasdaq_Chart_V9.png?v=1773821084" alt="Nasdaq Chart">
                 </div>
             
                 <div class="card selected-winner">
                     <div class="market-title">KOSPI Strategy</div>
                     
                     <div class="signal-box">
-                        <div class="signal-text">Risk Off (Safe 100%)</div>
+                        <div class="signal-text" style="color: var(--risk-off);">Risk Off (Safe 100%)</div>
                         <div class="etf-text">KIWOOM 단기자금 100%</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">18.9%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">19.15%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-21.4%</span></div>
-                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.02</span></div>
+                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.03</span></div>
                     
                     <div class="risk-box" style="border-left-color: #4caf50">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
                         <div class="metric-row"><span class="metric-label">장기 추세 (200일)</span><span class="metric-value" style="color:#4caf50">🟢 우상향 (추세 안정)</span></div>
-                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (99.7%)</span></div>
-                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">+0.61 (강세)</span></div>
+                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (104.8%)</span></div>
+                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value">+0.72 (강세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/KOSPI_Chart_V9.png?v=1773734822" alt="KOSPI Chart">
+                    <img class="chart-img" src="daily_plots_v9/KOSPI_Chart_V9.png?v=1773821084" alt="KOSPI Chart">
                 </div>
             
             </div>
@@ -217,30 +241,30 @@
                     <div class="market-title">EqWeight</div>
                     
                     <div class="signal-box">
-                        <div class="signal-text">Diversified (3 Asset)</div>
-                        <div class="etf-text">리밸런싱 연평균: 13.4회</div>
+                        <div class="signal-text" style="color: var(--highlight);">Diversified (3 Asset)</div>
+                        <div class="etf-text" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.2);">리밸런싱 연평균: 13.4회</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">17.62%</span></div>
-                    <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-17.74%</span></div>
-                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.42</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">17.67%</span></div>
+                    <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-17.65%</span></div>
+                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.43</span></div>
                     
-                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1773734822" alt="Global Trinity Chart">
+                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1773821084" alt="Global Trinity Chart">
                 </div>
             
                 <div class="card">
                     <div class="market-title">RelMom</div>
                     
                     <div class="signal-box">
-                        <div class="signal-text">Selected: KOSPI</div>
-                        <div class="etf-text">리밸런싱 연평균: 8.6회</div>
+                        <div class="signal-text" style="color: var(--highlight);">Selected: KOSPI</div>
+                        <div class="etf-text" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.2);">리밸런싱 연평균: 8.5회</div>
                     </div>
                     
                     <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">28.16%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-27.15%</span></div>
                     <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.44</span></div>
                     
-                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1773734822" alt="Global Trinity Chart">
+                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1773821084" alt="Global Trinity Chart">
                 </div>
             
                 </div>
