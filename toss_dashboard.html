@@ -8,16 +8,20 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>WeJump Data Dashboard</title>
+            
+            <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+            <script type="text/javascript" src="https://unpkg.com/youtube-background/jquery.youtube-background.min.js"></script>
+            
             <style>
                 :root {
-                    --bg-color: #121212;
-                    --card-bg: #1e1e1e;
+                    --bg-color: transparent; /* 배경 영상 노출을 위해 투명 처리 */
+                    --card-bg: rgba(30, 30, 30, 0.85); /* 글래스모피즘용 반투명 배경 */
                     --text-main: #ffffff;
-                    --text-sub: #b3b3b3;
+                    --text-sub: #d1d5db;
                     --highlight: #bb86fc;
                     --risk-off: #2196f3;
                     --neutral-long: #4caf50;
-                    --border-color: #333;
+                    --border-color: rgba(255, 255, 255, 0.15);
                 }
                 body {
                     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
@@ -26,20 +30,65 @@
                     margin: 0;
                     padding: 20px;
                 }
+                
+                /* --- YouTube Background & CRT Scanline CSS --- */
+                #video-background-wrapper {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    z-index: -2;
+                    background-color: #050505;
+                    overflow: hidden;
+                }
+                #video-background {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+                }
+                .video-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+                    background-size: 100% 4px, 3px 100%;
+                    pointer-events: none;
+                    z-index: 2;
+                    opacity: 0.7;
+                }
+                iframe {
+                    transition: opacity 500ms ease-in-out;
+                    transition-delay: 250ms;
+                }
+                
+                /* 대시보드 콘텐츠를 묶어 영상 위에 올리기 위한 래퍼 */
+                .dashboard-content {
+                    position: relative;
+                    z-index: 10;
+                }
+                /* ------------------------------------------- */
+
                 .header {
                     text-align: center;
                     padding: 20px 0 40px 0;
                     border-bottom: 1px solid var(--border-color);
                     margin-bottom: 40px;
                 }
-                .header h1 { margin: 0; font-size: 2.2rem; color: var(--highlight); }
-                .header p { color: var(--text-sub); margin-top: 10px; font-size: 1.1rem; line-height: 1.5; }
+                .header h1 { margin: 0; font-size: 2.2rem; color: var(--highlight); text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+                .header p { color: var(--text-sub); margin-top: 10px; font-size: 1.1rem; line-height: 1.5; text-shadow: 0 1px 5px rgba(0,0,0,0.8); }
                 
-                /* 새로고침 버튼 스타일 */
                 .refresh-btn {
-                    background-color: #2c2c2c;
+                    background-color: rgba(44, 44, 44, 0.8);
+                    backdrop-filter: blur(5px);
                     color: #ffffff;
-                    border: 1px solid #444;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
                     padding: 8px 16px;
                     border-radius: 20px;
                     cursor: pointer;
@@ -52,12 +101,10 @@
                     gap: 5px;
                 }
                 .refresh-btn:hover {
-                    background-color: #3d3d3d;
+                    background-color: rgba(61, 61, 61, 0.9);
                     border-color: var(--highlight);
                 }
-                .refresh-btn:active {
-                    transform: scale(0.95);
-                }
+                .refresh-btn:active { transform: scale(0.95); }
 
                 .link-container { margin-top: 25px; display: flex; justify-content: center; gap: 20px; }
                 .btn-link { display: inline-block; padding: 10px 24px; border-radius: 25px; text-decoration: none; font-size: 1rem; font-weight: 800; color: #ffffff; transition: all 0.3s ease; border: none; }
@@ -66,40 +113,67 @@
                 .btn-link:hover { transform: translateY(-3px); filter: brightness(1.1); }
                 
                 .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
-                .card { background-color: var(--card-bg); border-radius: 12px; padding: 25px; box-shadow: 0 8px 16px rgba(0,0,0,0.4); border: 2px solid transparent; transition: transform 0.2s; }
-                .card:hover { transform: translateY(-5px); }
+                
+                /* 카드 디자인에 글래스모피즘(블러) 적용 */
+                .card { 
+                    background-color: var(--card-bg); 
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-radius: 12px; 
+                    padding: 25px; 
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
+                    border: 1px solid var(--border-color); 
+                    transition: transform 0.2s; 
+                }
+                .card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.4); }
                 .card.selected-winner { border: 2px solid #ffeb3b; box-shadow: 0 0 20px rgba(255, 235, 59, 0.2); position: relative; }
                 .card.selected-winner::after { content: '👑 RelMom Selected'; position: absolute; top: -15px; right: 20px; background: #ffeb3b; color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
                 
-                .market-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px; }
-                .metric-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 1rem; }
+                .market-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; text-shadow: 0 2px 6px rgba(0,0,0,0.8); }
+                .metric-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 1rem; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
                 .metric-label { color: var(--text-sub); }
                 .metric-value { font-weight: bold; }
                 
-                .signal-box { background-color: #2c2c2c; padding: 20px 15px; border-radius: 8px; margin: 20px 0; text-align: center; border: 1px solid #333; }
-                .signal-text { font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; white-space: nowrap; }
+                .signal-box { background-color: rgba(0,0,0,0.5); padding: 20px 15px; border-radius: 8px; margin: 20px 0; text-align: center; border: 1px solid rgba(255, 255, 255, 0.05); }
+                .signal-text { font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; white-space: nowrap; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
                 .etf-text { font-size: 1.15rem; color: #ffffff; font-weight: bold; background-color: rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 6px; display: inline-block; letter-spacing: 0.5px; }
                 
-                .risk-box { background-color: #1a1a1a; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--text-sub); }
-                .risk-title { font-size: 0.9rem; color: #888; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+                .risk-box { background-color: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--text-sub); }
+                .risk-title { font-size: 0.9rem; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
                 
-                .chart-img { width: 100%; border-radius: 8px; margin-top: 15px; background: #fff; }
+                .chart-img { width: 100%; border-radius: 8px; margin-top: 15px; background: #fff; opacity: 0.95; transition: opacity 0.3s; }
+                .chart-img:hover { opacity: 1; }
                 
                 .integration-section { max-width: 1400px; margin: 50px auto 0 auto; }
                 .video-monitor-section { max-width: 1400px; margin: 50px auto 100px auto; }
-                .video-monitor-card { background-color: var(--card-bg); border-radius: 12px; padding: 30px; box-shadow: 0 8px 16px rgba(0,0,0,0.4); border: 1px solid var(--border-color); }
+                .video-monitor-card { 
+                    background-color: var(--card-bg); 
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-radius: 12px; 
+                    padding: 30px; 
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.6); 
+                    border: 1px solid var(--border-color); 
+                }
                 .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid #333; }
                 .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
                 
-                .toss-disclaimer { background: rgba(255, 235, 59, 0.1); color: #ffeb3b; padding: 15px; font-size: 0.95rem; text-align: center; border-radius: 8px; margin: 20px auto; max-width: 800px; border: 1px solid rgba(255, 235, 59, 0.3); line-height: 1.5; }
+                .toss-disclaimer { background: rgba(255, 235, 59, 0.1); color: #ffeb3b; padding: 15px; font-size: 0.95rem; text-align: center; border-radius: 8px; margin: 20px auto; max-width: 800px; border: 1px solid rgba(255, 235, 59, 0.3); line-height: 1.5; backdrop-filter: blur(5px); }
             </style>
         </head>
         <body>
         
+        <div id="video-background-wrapper">
+            <div id="video-background" data-vbg="https://www.youtube.com/watch?v=T-58DjYQlIQ"></div>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <div class="dashboard-content">
+        
             <div class="header">
                 <h1>WeJump 시장 리스크 분석기</h1>
-                <p style="color: var(--highlight); font-weight: bold; margin-bottom: 5px;">(WeJump 투자전략연구소 제공)</p>
-                <p style="margin-top: 5px;">기준일자 (Data Date): 2026-03-24 | 최종 업데이트: 2026-03-24<br>매일(평일) 오후 4시 30분 ~ 5시 30분 사이 업데이트</p>
+                <p style="color: var(--highlight); font-weight: bold; margin-bottom: 5px; text-shadow: 0 2px 5px rgba(0,0,0,0.8);">(WeJump 투자전략연구소 제공)</p>
+                <p style="margin-top: 5px;">기준일자 (Data Date): 2026-03-25 | 최종 업데이트: 2026-03-25<br>매일(평일) 오후 4시 30분 ~ 5시 30분 사이 업데이트</p>
                 
                 <button class="refresh-btn" onclick="location.href=location.pathname+'?v='+new Date().getTime()">
                     🔄 최신 데이터 불러오기
@@ -115,22 +189,22 @@
                     <div class="market-title">SNP Strategy</div>
                     
                     <div class="signal-box">
-                        <div class="signal-text" style="color: var(--highlight);">Aggressive Long (1x 50% + 2x 50%)</div>
-                        <div class="etf-text">1배수 ETF 50% / 2배수 ETF 50%</div>
+                        <div class="signal-text" style="color: #f44336;">Risk Off (Safe 100%)</div>
+                        <div class="etf-text">SHY (US Bond) 100%</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">12.06%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">11.98%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-21.62%</span></div>
-                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">0.89</span></div>
+                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">0.88</span></div>
                     
                     <div class="risk-box" style="border-left-color: #f44336">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
                         <div class="metric-row"><span class="metric-label">장기 추세 (200일)</span><span class="metric-value" style="color:#f44336">🔴 하락 (추세 훼손)</span></div>
-                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (97.3%)</span></div>
-                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value" style="color:#f44336">-0.32 (약세)</span></div>
+                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (97.0%)</span></div>
+                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value" style="color:#f44336">-0.36 (약세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/SNP_Chart_V9.png?v=1774339713" alt="SNP Chart">
+                    <img class="chart-img" src="daily_plots_v9/SNP_Chart_V9.png?v=1774422765" alt="SNP Chart">
                 </div>
             
                 <div class="card ">
@@ -141,18 +215,18 @@
                         <div class="etf-text">SHY (US Bond) 100%</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">19.85%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">19.8%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-22.14%</span></div>
                     <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.13</span></div>
                     
                     <div class="risk-box" style="border-left-color: #f44336">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
                         <div class="metric-row"><span class="metric-label">장기 추세 (200일)</span><span class="metric-value" style="color:#f44336">🔴 하락 (추세 훼손)</span></div>
-                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (97.7%)</span></div>
-                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value" style="color:#f44336">-0.17 (약세)</span></div>
+                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (97.2%)</span></div>
+                        <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value" style="color:#f44336">-0.22 (약세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/Nasdaq_Chart_V9.png?v=1774339713" alt="Nasdaq Chart">
+                    <img class="chart-img" src="daily_plots_v9/Nasdaq_Chart_V9.png?v=1774422765" alt="Nasdaq Chart">
                 </div>
             
                 <div class="card selected-winner">
@@ -163,22 +237,22 @@
                         <div class="etf-text">KIWOOM 단기자금 100%</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">19.24%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value">19.02%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-21.4%</span></div>
-                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.04</span></div>
+                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.03</span></div>
                     
                     <div class="risk-box" style="border-left-color: #4caf50">
                         <div class="risk-title">💡 Risk Advisor Engine</div>
                         <div class="metric-row"><span class="metric-label">장기 추세 (200일)</span><span class="metric-value" style="color:#4caf50">🟢 우상향 (추세 안정)</span></div>
-                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (98.0%)</span></div>
+                        <div class="metric-row"><span class="metric-label">단기 이격 (20일)</span><span class="metric-value" style="color:#4caf50">🟢 정상 궤도 (99.5%)</span></div>
                         <div class="metric-row"><span class="metric-label">CBVR 벡터 에너지</span><span class="metric-value" style="color:#4caf50">+0.49 (강세)</span></div>
                     </div>
                     
-                    <img class="chart-img" src="daily_plots_v9/KOSPI_Chart_V9.png?v=1774339713" alt="KOSPI Chart">
+                    <img class="chart-img" src="daily_plots_v9/KOSPI_Chart_V9.png?v=1774422765" alt="KOSPI Chart">
                 </div>
             </div>
             <div class="integration-section">
-                <h2 style="border-bottom: 2px solid var(--highlight); padding-bottom:10px;">Global Trinity (Integration Strategy)</h2>
+                <h2 style="border-bottom: 2px solid var(--highlight); padding-bottom:10px; text-shadow: 0 2px 6px rgba(0,0,0,0.8);">Global Trinity (Integration Strategy)</h2>
                 <div class="grid-container" style="margin-top:20px;">
         
                 <div class="card">
@@ -189,11 +263,11 @@
                         <div class="etf-text" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.2);">리밸런싱 연평균: 12.6회</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">17.43%</span></div>
-                    <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-17.43%</span></div>
-                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.42</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">17.31%</span></div>
+                    <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-17.49%</span></div>
+                    <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.41</span></div>
                     
-                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1774339713" alt="Global Trinity Chart">
+                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1774422765" alt="Global Trinity Chart">
                 </div>
             
                 <div class="card">
@@ -204,10 +278,18 @@
                         <div class="etf-text" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.2);">리밸런싱 연평균: 8.3회</div>
                     </div>
                     
-                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">27.32%</span></div>
+                    <div class="metric-row"><span class="metric-label">CAGR</span><span class="metric-value" style="color:var(--highlight); font-size:1.2em">27.34%</span></div>
                     <div class="metric-row"><span class="metric-label">MDD</span><span class="metric-value" style="color:#f44336">-26.91%</span></div>
                     <div class="metric-row"><span class="metric-label">Sortino Ratio</span><span class="metric-value">1.4</span></div>
                     
-                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1774339713" alt="Global Trinity Chart">
+                    <img class="chart-img" src="daily_plots_v9/Global_Trinity_Final_Chart_V9.png?v=1774422765" alt="Global Trinity Chart">
                 </div>
-            </div></div></body></html>
+            </div></div>
+        </div> <script>
+            // Init Youtube Background
+            jQuery(document).ready(function () {
+                jQuery('[data-vbg]').youtube_background();
+            });
+        </script>
+        </body></html>
+        
