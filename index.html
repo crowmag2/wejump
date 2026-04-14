@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -21,6 +22,7 @@
             background-color: #f8fafc;
             /* 조금 더 밝고 세련된 배경색으로 변경 */
         }
+
         /* --- Hero Section --- */
         #hero-section {
             position: relative;
@@ -33,6 +35,7 @@
             justify-content: center;
             color: white;
         }
+
         /* YouTube Background Container */
         #video-background {
             position: absolute;
@@ -42,6 +45,7 @@
             height: 100%;
             z-index: 0;
         }
+
         /* [UPGRADE] Video Overlay - CRT RGB Scanline Effect */
         .video-overlay {
             position: absolute;
@@ -58,11 +62,13 @@
             /* 영상 위에 배치하여 모니터 질감 표현 */
             opacity: 0.7;
         }
+
         /* iframe Transition */
         iframe {
             transition: opacity 500ms ease-in-out;
             transition-delay: 250ms;
         }
+
         .hero-content {
             position: relative;
             z-index: 25;
@@ -73,6 +79,7 @@
             padding-bottom: 8rem;
             /* 하단 곡선 영역을 고려한 충분한 여백 확보 */
         }
+
         /* --- 1. Main Title Neon Effect --- */
         .gradient-text-glow {
             background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 100%);
@@ -80,6 +87,7 @@
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px rgba(124, 58, 237, 1)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.8));
         }
+
         .white-text-glow {
             color: #22d3ee;
             text-shadow:
@@ -87,6 +95,7 @@
                 0 0 10px rgba(34, 211, 238, 0.8),
                 0 0 30px rgba(6, 182, 212, 0.4);
         }
+
         /* --- 2. Sub Title Neon Effect --- */
         .subtitle-neon {
             color: rgba(255, 255, 255, 0.9);
@@ -94,6 +103,7 @@
             letter-spacing: -0.01em;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
+
         /* Glass Cards */
         .glass-dark {
             background: rgba(15, 23, 42, 0.35);
@@ -104,22 +114,26 @@
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
+
         .glass-dark:hover {
             background: rgba(15, 23, 42, 0.5);
             transform: translateY(-10px);
             border-color: rgba(255, 255, 255, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
+
         /* 카드 내부 텍스트 시인성 강화 */
         .glass-dark h3 {
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
             /* 강한 그림자 */
         }
+
         .glass-dark p {
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
             font-weight: 500;
             /* 글씨를 약간 굵게 */
         }
+
         /* Light Mode Styles */
         .glass {
             background: rgba(255, 255, 255, 0.7);
@@ -127,28 +141,35 @@
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
         }
+
         .card-hover {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .card-hover:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
+
         /* Animations */
         @keyframes blink-effect {
+
             0%,
             100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.3;
                 color: #ef4444;
             }
         }
+
         .blink {
             animation: blink-effect 1.5s ease-in-out infinite;
 
         }
+
         .scroll-down {
             position: absolute;
             bottom: 110px;
@@ -160,6 +181,7 @@
             cursor: pointer;
             z-index: 20;
         }
+
         /* --- New: Modern Transition Effects --- */
         .bottom-mask {
             position: absolute;
@@ -171,6 +193,7 @@
             z-index: 5;
             pointer-events: none;
         }
+
         .section-divider {
             position: absolute;
             bottom: -1px;
@@ -180,16 +203,20 @@
             line-height: 0;
             z-index: 10;
         }
+
         .section-divider svg {
             position: relative;
             display: block;
             width: calc(100% + 1.3px);
             height: 85px;
         }
+
         .section-divider .shape-fill {
             fill: #f8fafc;
         }
+
         @keyframes bounce {
+
             0%,
             20%,
             50%,
@@ -197,13 +224,16 @@
             100% {
                 transform: translateX(-50%) translateY(0);
             }
+
             40% {
                 transform: translateX(-50%) translateY(-10px);
             }
+
             60% {
                 transform: translateX(-50%) translateY(-5px);
             }
         }
+
         /* Modal */
         .modal-overlay {
             position: fixed;
@@ -220,149 +250,203 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
+
         .modal-overlay.active {
             opacity: 1;
         }
+
         .modal-content {
             background-color: rgba(255, 255, 255, 0.95);
-            padding: 2.5rem;
+            padding: 1.5rem; /* 모바일 대응 패딩 축소 */
             border-radius: 1rem;
             max-width: 830px;
-            width: 90%;
-            max-height: 93vh;
-            overflow: auto;
+            width: 92%; /* 너비 소폭 확대 */
+            margin: 0 auto;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
             transform: scale(0.95);
             transition: transform 0.3s ease;
         }
+
+        @media (min-width: 768px) {
+            .modal-content {
+                padding: 2.5rem;
+                width: 90%;
+            }
+        }
+
         .modal-overlay.active .modal-content {
             transform: scale(1);
         }
     </style>
     <style>
-/* --- Updated Document List Styles (Premium Light Theme) --- */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
-.doc-section-wrapper {
-    background: #f8fafc; /* Matches original background */
-    padding: 60px 0;
-    margin: 20px 0;
-    color: #1e293b;
-}
-.new-section-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #1e293b;
-    position: relative;
-    padding-bottom: 12px;
-}
-.new-section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #9d50ff);
-    border-radius: 2px;
-}
-.doc-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-    padding: 0 20px;
-}
-.doc-card-premium {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 16px;
-    padding: 20px;
-    text-decoration: none;
-    color: #1e293b;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-}
-.doc-card-premium:hover {
-    border-color: #3b82f6;
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-}
-.card-top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-.doc-icon-box {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-}
+        /* --- Updated Document List Styles (Premium Light Theme) --- */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
-.icon-purple { background: rgba(157, 80, 255, 0.1); color: #9d50ff; }
-.icon-red { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-.icon-blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
-.icon-green { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
-.icon-indigo { background: rgba(99, 102, 241, 0.1); color: #6366f1; }
+        .doc-section-wrapper {
+            background: #f8fafc;
+            /* Matches original background */
+            padding: 60px 0;
+            margin: 20px 0;
+            color: #1e293b;
+        }
 
-.badge-premium {
-    padding: 3px 8px;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        .new-section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1e293b;
+            position: relative;
+            padding-bottom: 12px;
+        }
 
-.badge-core { background: #fee2e2; color: #ef4444; border: 1px solid #fecaca; }
-.badge-advanced { background: #f3e8ff; color: #9333ea; border: 1px solid #e9d5ff; }
-.badge-start { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .new-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #9d50ff);
+            border-radius: 2px;
+        }
 
-.doc-card-premium h4 {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-    line-height: 1.3;
-    color: #0f172a;
-}
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* 최소 너비 축소 */
+            gap: 16px;
+            padding: 0 16px;
+        }
 
-.doc-card-premium p {
-    font-size: 0.85rem;
-    color: #64748b;
-    margin-bottom: 15px;
-    flex-grow: 1;
-}
+        .doc-card-premium {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            padding: 20px;
+            text-decoration: none;
+            color: #1e293b;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
 
-.doc-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    border-top: 1px solid #f1f5f9;
-    padding-top: 12px;
-}
+        .doc-card-premium:hover {
+            border-color: #3b82f6;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
 
-.arrow-link {
-    color: #cbd5e1;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
+        .card-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
 
-.doc-card-premium:hover .arrow-link {
-    transform: translateX(3px);
-    color: #3b82f6;
-}
+        .doc-icon-box {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .icon-purple {
+            background: rgba(157, 80, 255, 0.1);
+            color: #9d50ff;
+        }
+
+        .icon-red {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .icon-blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .icon-green {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .icon-indigo {
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
+        }
+
+        .badge-premium {
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-core {
+            background: #fee2e2;
+            color: #ef4444;
+            border: 1px solid #fecaca;
+        }
+
+        .badge-advanced {
+            background: #f3e8ff;
+            color: #9333ea;
+            border: 1px solid #e9d5ff;
+        }
+
+        .badge-start {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .doc-card-premium h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            line-height: 1.3;
+            color: #0f172a;
+        }
+
+        .doc-card-premium p {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .doc-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 12px;
+        }
+
+        .arrow-link {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .doc-card-premium:hover .arrow-link {
+            transform: translateX(3px);
+            color: #3b82f6;
+        }
     </style>
     <style>
         .live-pulse-btn {
@@ -372,40 +456,54 @@
             box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
             animation: pulse-red 2s infinite;
         }
+
         @keyframes pulse-red {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div id="hero-section">
         <div id="video-background" data-vbg="https://www.youtube.com/watch?v=T-58DjYQlIQ"></div>
         <div class="video-overlay"></div>
-        <header class="absolute top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
+        <header class="absolute top-0 left-0 w-full z-50 px-4 py-4 md:px-6 md:py-6 flex flex-col md:flex-row justify-between items-center gap-3 bg-black/20 md:bg-transparent backdrop-blur-[2px] md:backdrop-blur-0">
+            <div class="flex items-center space-x-3 flex-shrink-0">
                 <div
-                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/30">
+                    class="w-7 h-7 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-sm md:text-lg shadow-lg shadow-blue-500/30">
                     W</div>
-                <span class="font-bold text-sm tracking-tight text-white hidden md:block">WeJump Investment Labs</span>
+                <span class="font-bold text-[13px] md:text-sm tracking-tight text-white uppercase">WeJump Investment Labs</span>
             </div>
-            <div class="flex space-x-2">
-                <a href="#wiki-bookmark" class="inline-block text-xs font-bold text-white bg-blue-600/20 border border-blue-500/50 px-4 py-2 rounded-full hover:bg-blue-600 transition">Wiki</a>
-                <a href="#youtube-bookmark" class="inline-block text-xs font-bold text-white bg-red-600/20 border border-red-500/50 px-4 py-2 rounded-full hover:bg-red-600 transition">Youtube</a>
-                <a href="https://wejump3.tistory.com/" target="_blank" class="inline-block text-xs font-bold text-white bg-orange-600/20 border border-orange-500/50 px-4 py-2 rounded-full hover:bg-orange-600 transition">Blog</a>
-                <a href="https://litt.ly/wejump" target="_blank" class="inline-block text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-2 rounded-full hover:scale-105 transition shadow-lg shadow-purple-500/20">Contact Us</a>
+            <div class="flex flex-wrap items-center justify-center gap-1.5 md:gap-2 w-full md:w-auto">
+                <a href="#wiki-bookmark"
+                    class="inline-block text-[10px] md:text-xs font-bold text-white bg-blue-600/20 border border-blue-500/50 px-2.5 py-1.5 md:px-4 md:py-2 rounded-full hover:bg-blue-600 transition whitespace-nowrap">Wiki</a>
+                <a href="#youtube-bookmark"
+                    class="inline-block text-[10px] md:text-xs font-bold text-white bg-red-600/20 border border-red-500/50 px-2.5 py-1.5 md:px-4 md:py-2 rounded-full hover:bg-red-600 transition whitespace-nowrap">Youtube</a>
+                <a href="https://wejump3.tistory.com/" target="_blank"
+                    class="inline-block text-[10px] md:text-xs font-bold text-white bg-yellow-600/20 border border-yellow-500/50 px-2.5 py-1.5 md:px-4 md:py-2 rounded-full hover:bg-yellow-600 transition whitespace-nowrap">Blog</a>
+                <a href="https://litt.ly/wejump" target="_blank"
+                    class="inline-block text-[10px] md:text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1.5 md:px-5 md:py-2 rounded-full hover:scale-105 transition shadow-lg shadow-purple-500/20 whitespace-nowrap">Contact Us</a>
             </div>
         </header>
 
-        <div class="hero-content mt-10">
+        <div class="hero-content mt-32 md:mt-10">
             <div class="text-center mb-16 relative">
                 <span
                     class="inline-block py-1 px-3 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-400 text-xs font-bold tracking-widest mb-4 uppercase shadow-[0_0_10px_rgba(59,130,246,0.5)]">
                     Systematic Alpha Strategy
                 </span>
-                <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
+                <h1 class="text-3xl sm:text-4xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
                     <span class="gradient-text-glow">Data Driven</span><br>
                     <span class="white-text-glow">Investment Engine</span>
                 </h1>
@@ -462,7 +560,8 @@
     <main id="main-content" class="container mx-auto px-6 py-20 relative z-10">
         <section id="wiki-bookmark" class="mb-16 text-center max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                전략 탐구의 <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">두 가지 방식</span>
+                전략 탐구의 <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">두 가지
+                    방식</span>
             </h2>
             <p class="text-gray-600 mb-10 text-lg">
                 궁금한 정보는 AI에게 즉시 묻고, 체계적인 전략 명세는 위키에서 깊이 있게 탐구하세요.
@@ -478,14 +577,16 @@
                     <div
                         class="relative bg-white rounded-2xl p-6 flex flex-col items-start shadow-xl border border-gray-100 group-hover:-translate-y-1 transition-all duration-300 h-full">
                         <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mr-3">
+                            <div
+                                class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mr-3">
                                 <i class="fas fa-magic-wand-sparkles text-xl"></i>
                             </div>
                             <span class="font-bold text-gray-800">AI Assistant</span>
                         </div>
                         <div class="w-full bg-gray-50 rounded-xl p-4 flex items-center mb-4 border border-gray-100">
                             <span class="text-gray-400 text-sm font-medium">"CBVR 전략의 핵심 로직이 뭐야?"</span>
-                            <div class="ml-auto bg-gray-200 p-2 rounded-lg text-gray-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <div
+                                class="ml-auto bg-gray-200 p-2 rounded-lg text-gray-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                 <i class="fas fa-arrow-up text-xs"></i>
                             </div>
                         </div>
@@ -494,15 +595,16 @@
                 </a>
 
                 <!-- Strategic Wiki (Right) -->
-                <a href="https://crowmag2.github.io/wejump/cbvr_wiki/"
-                    class="group relative block w-full text-left" target=_blank>
+                <a href="https://crowmag2.github.io/wejump/cbvr_wiki/" class="group relative block w-full text-left"
+                    target=_blank>
                     <div
                         class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
                     </div>
                     <div
                         class="relative bg-white rounded-2xl p-6 flex flex-col items-start shadow-xl border border-gray-100 group-hover:-translate-y-1 transition-all duration-300 h-full">
                         <div class="flex items-center mb-4">
-                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
+                            <div
+                                class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mr-3">
                                 <i class="fas fa-book-open-reader text-xl"></i>
                             </div>
                             <span class="font-bold text-gray-800">Official Strategic Wiki</span>
@@ -515,7 +617,8 @@
                         </div>
                         <div class="flex items-center justify-between w-full">
                             <p class="text-gray-500 text-xs">철학, 엔진 설계, 자본 공학 및 실증 성능을 체계적으로 망라한 공식 위키입니다.</p>
-                            <div class="ml-4 w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all">
+                            <div
+                                class="ml-4 w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all">
                                 <i class="fas fa-chevron-right text-sm"></i>
                             </div>
                         </div>
@@ -670,239 +773,261 @@
         </section>
 
         <div class="space-y-12">
-<section id="youtube-bookmark" class="container mx-auto px-6 mb-12">
-    <div class="flex items-center mb-8 pl-2 border-l-4 border-red-500">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Adaptive Alpha & CBVR 실시간 모니터링 데스크</h2>
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-        <div class="lg:col-span-4 flex flex-col gap-4">
-            <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm h-full">
-                <div class="flex items-center mb-4">
-                    <div class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-red-500 mr-3">
-                        <i class="fas fa-satellite-dish"></i>
+            <section id="youtube-bookmark" class="container mx-auto px-6 mb-12">
+                <div class="flex items-center mb-8 pl-2 border-l-4 border-red-500">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Adaptive Alpha & CBVR 실시간 모니터링 데스크</h2>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <div class="lg:col-span-4 flex flex-col gap-4">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm h-full">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-red-500 mr-3">
+                                    <i class="fas fa-satellite-dish"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-900">전략 라이브 방송 안내</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                본 채널에서는 <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5"
+                                    target=_blank><strong>CBVR 코어 로직</strong></a>의 실시간 포지션과 서브 시스템인 <a
+                                    href="https://crowmag2.github.io/wejump/adaptivealpha/"
+                                    target=_blank><strong>Adaptive Alpha</strong></a>의 비중 조절 현황을 상시 송출합니다.
+                            </p>
+                            <ul class="text-xs text-gray-500 space-y-2">
+                                <li><i class="fas fa-check text-green-500 mr-1"></i> 시장별 벡터 에너지(Vector Energy) 정밀 분석
+                                </li>
+                                <li><i class="fas fa-check text-green-500 mr-1"></i> 주요 지수별 단기 추세선 및 지지/저항 구간</li>
+                                <li><i class="fas fa-check text-green-500 mr-1"></i> 시스템 오더플로우 및 실시간 비중 변화</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 h-full">
+                            <div class="flex items-center mb-4">
+                                <div
+                                    class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white mr-3 shadow-md">
+                                    <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank><i
+                                            class="fas fa-seedling"></i></a>
+                                </div>
+                                <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank>
+                                    <h3 class="font-bold text-blue-900">WeJump Adaptive Alpha</h3>
+                                </a>
+                            </div>
+                            <p class="text-blue-800 text-sm leading-relaxed">
+                                <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank>
+                                    매일 공유되는 CBVR 코어 전략과는 별개로 운용되는 독립 시스템입니다.
+                                    <strong>매매 호흡이 길고 빈도가 낮아</strong>, 복잡한 대응이 어려운 초보 투자자분들이 가장 편안하게 시스템적 알파를 향유할 수 있는
+                                    <strong>'느슨한 신호'</strong>를 지향합니다.
+                                </a>
+                            </p>
+                        </div>
                     </div>
-                    <h3 class="font-bold text-gray-900">전략 라이브 방송 안내</h3>
-                </div>
-                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                    본 채널에서는 <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5" target=_blank><strong>CBVR 코어 로직</strong></a>의 실시간 포지션과 서브 시스템인 <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank><strong>Adaptive Alpha</strong></a>의 비중 조절 현황을 상시 송출합니다.
-                </p>
-                <ul class="text-xs text-gray-500 space-y-2">
-                    <li><i class="fas fa-check text-green-500 mr-1"></i> 시장별 벡터 에너지(Vector Energy) 정밀 분석</li>
-                    <li><i class="fas fa-check text-green-500 mr-1"></i> 주요 지수별 단기 추세선 및 지지/저항 구간</li>
-                    <li><i class="fas fa-check text-green-500 mr-1"></i> 시스템 오더플로우 및 실시간 비중 변화</li>
-                </ul>
-            </div>
-            <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 h-full">
-                <div class="flex items-center mb-4">
-                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white mr-3 shadow-md">
-                        <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank><i class="fas fa-seedling"></i></a>
+                    <div class="lg:col-span-8">
+                        <div class="bg-white p-2 rounded-2xl shadow-xl border border-gray-100 h-full flex flex-col">
+                            <div class="relative flex-grow overflow-hidden rounded-xl bg-black"
+                                style="padding-bottom: 56.25%; height: 0;">
+                                <iframe src="https://www.youtube.com/embed/live_stream?channel=UCGWqvLb19a1RmQrPxUtUCBg"
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div
+                                class="p-4 flex justify-between items-center bg-gray-50 rounded-b-xl border-t border-gray-100">
+                                <span class="text-xs font-bold text-red-500 flex items-center">
+                                    <span class="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></span> LIVE
+                                    STREAMING
+                                </span>
+                                <a href="https://www.youtube.com/@wejump3/live" target="_blank"
+                                    class="text-xs text-gray-400 hover:text-blue-600 transition">
+                                    View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank><h3 class="font-bold text-blue-900">WeJump Adaptive Alpha</h3></a>
                 </div>
-                <p class="text-blue-800 text-sm leading-relaxed">
-                    <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank>
-                    매일 공유되는 CBVR 코어 전략과는 별개로 운용되는 독립 시스템입니다. 
-                    <strong>매매 호흡이 길고 빈도가 낮아</strong>, 복잡한 대응이 어려운 초보 투자자분들이 가장 편안하게 시스템적 알파를 향유할 수 있는 <strong>'느슨한 신호'</strong>를 지향합니다.
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="lg:col-span-8">
-            <div class="bg-white p-2 rounded-2xl shadow-xl border border-gray-100 h-full flex flex-col">
-                <div class="relative flex-grow overflow-hidden rounded-xl bg-black" style="padding-bottom: 56.25%; height: 0;">
-                    <iframe 
-                        src="https://www.youtube.com/embed/live_stream?channel=UCGWqvLb19a1RmQrPxUtUCBg" 
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="p-4 flex justify-between items-center bg-gray-50 rounded-b-xl border-t border-gray-100">
-                    <span class="text-xs font-bold text-red-500 flex items-center">
-                        <span class="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></span> LIVE STREAMING
-                    </span>
-                    <a href="https://www.youtube.com/@wejump3/live" target="_blank" class="text-xs text-gray-400 hover:text-blue-600 transition">
-                        View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </section>
 
-<section class="doc-section-wrapper">
-    <div class="container mx-auto">
-        <h2 class="new-section-title">전략 리서치 및 기술 문서</h2>
-        <div class="doc-grid">
-            <!-- 1 -->
-            <a href="https://crowmag2.github.io/wejump/CBVRinfo.html" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-purple"><i class="fas fa-chart-pie"></i></div>
-                        <span class="badge-premium badge-start">Start Here</span>
+            <section class="doc-section-wrapper">
+                <div class="container mx-auto">
+                    <h2 class="new-section-title">전략 리서치 및 기술 문서</h2>
+                    <div class="doc-grid">
+                        <!-- 1 -->
+                        <a href="https://crowmag2.github.io/wejump/CBVRinfo.html" class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-purple"><i class="fas fa-chart-pie"></i></div>
+                                    <span class="badge-premium badge-start">Start Here</span>
+                                </div>
+                                <h4>CBVR 전략 대화형 인포그래픽</h4>
+                                <p>시각적 데이터와 AI 대화를 통해 전략을 가장 쉽게 이해하는 첫 단계입니다.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-blue-500 font-medium">Interactive Guide</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 2 -->
+                        <a href="https://crowmag2.github.io/wejump/PPT_CBVR.pdf" class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-red"><i class="fas fa-file-powerpoint"></i></div>
+                                    <span class="badge-premium" style="background: #f1f5f9; color: #64748b;">PDF</span>
+                                </div>
+                                <h4>CBVR 전략 프레젠테이션 (PPT)</h4>
+                                <p>핵심 로직과 성과 분석을 요약한 공식 발표용 시각 자료입니다.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-gray-500 font-medium">Core Strategy</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 3 -->
+                        <a href="https://crowmag2.github.io/wejump/PPT_CBVR2.3.pdf" class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-red"><i class="fas fa-file-powerpoint"></i></div>
+                                    <span class="badge-premium badge-advanced">Advanced</span>
+                                </div>
+                                <h4>CBVR 2.3 프레젠테이션 (PPT)</h4>
+                                <p>3-Bucket 구조와 자본 효율화 알고리즘의 상세 설계 공유.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-blue-600 font-medium">v2.3 Core Logic</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 4 -->
+                        <a href="https://crowmag2.github.io/wejump/CBVR%EC%A0%84%EB%9E%B5%EB%A1%9C%EC%A7%81%EC%84%A4%EB%AA%85%EC%84%9C.pdf"
+                            class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-blue"><i class="fas fa-cogs"></i></div>
+                                    <span class="badge-premium badge-core">Core Spec</span>
+                                </div>
+                                <h4>CBVR 전략 로직 설명서</h4>
+                                <p>운용 알고리즘과 개별 매매 규칙에 대한 공학적인 상세 가이드.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-indigo-500 font-medium">System Spec</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 5 -->
+                        <a href="https://crowmag2.github.io/wejump/CBVRsim.html" class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-indigo"><i class="fas fa-gamepad"></i></div>
+                                    <span class="badge-premium"
+                                        style="background: #e0f2fe; color: #0369a1;">Simulator</span>
+                                </div>
+                                <h4>인터랙티브 시뮬레이터</h4>
+                                <p>데이터 기반 의사결정 프로세스를 직접 체험하고 로직을 검증.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-sky-600 font-medium">Interactive Demo</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 6 -->
+                        <a href="https://crowmag2.github.io/wejump/CBVR%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC_%EB%B6%84%EC%84%9D%EA%B3%BC_%EC%9D%B4%EB%A1%A0%EC%A0%81_%ED%86%A0%EB%8C%80.pdf"
+                            class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-indigo"><i class="fas fa-book"></i></div>
+                                    <span class="badge-premium badge-advanced">Theory</span>
+                                </div>
+                                <h4>프레임워크 분석 및 이론적 토대</h4>
+                                <p>동적 적응형 퀀트 프레임워크의 수학적 배경과 금융공학 리서치.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-indigo-600 font-medium">Technology Alpha</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 7 -->
+                        <a href="https://crowmag2.github.io/wejump/CBVR%20%EC%A0%84%EB%9E%B5%20%EB%85%BC%EB%AC%B8%20%EC%9E%91%EC%84%B1.pdf"
+                            class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-indigo"><i class="fas fa-graduation-cap"></i></div>
+                                    <span class="badge-premium badge-advanced">Paper</span>
+                                </div>
+                                <h4>CBVR 전략 학술 논문</h4>
+                                <p>성과 분포의 정량 분석 모델링을 통한 전략 유효성 검증 논문.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-slate-500 font-medium">Peer Reviewed Context</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 8 -->
+                        <a href="https://crowmag2.github.io/wejump/CBVR%EC%BD%94%EC%96%B4%EC%97%94%EC%A7%84%ED%99%95%EC%9E%A5(%EA%B8%B0%EA%B4%80%EC%9A%A9TargetBeta).pdf"
+                            class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-red"><i class="fas fa-layer-group"></i></div>
+                                    <span class="badge-premium badge-advanced">Institutional</span>
+                                </div>
+                                <h4>CBVR 2.3 코어 엔진 확장 (Target Beta)</h4>
+                                <p>선물 복제 및 Target Beta 연동을 통한 기관용 확장 모델 설계.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-red-600 font-medium">Advanced Module</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 9 -->
+                        <a href="https://crowmag2.github.io/wejump/%5BCBVR2.3%20%EC%8B%AC%EC%B8%B5%20%EB%B6%84%EC%84%9D%5D%20%EA%B5%AC%EC%A1%B0%EC%A0%81%20%EC%95%8C%ED%8C%8C%EC%99%80%20%EB%A6%AC%ED%85%8C%EC%9D%BC%20%ED%80%80%ED%8A%B8%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%9D%98%20%EA%B3%B5%ED%95%99%EC%A0%81%20%EC%9E%AC%EA%B5%AC%84%B1.pdf"
+                            class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-red"><i class="fas fa-graduation-cap"></i></div>
+                                    <span class="badge-premium badge-advanced">Deep Analysis</span>
+                                </div>
+                                <h4>CBVR 2.3 구조적 알파의 실체 분석</h4>
+                                <p>금융 공학적 이론을 통해 퀀트 아키텍처의 알파 창출 원리 규명.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-red-600 font-medium">Quantitative Analysis</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 10 -->
+                        <a href="https://crowmag2.github.io/wejump/PPT_%EB%B2%A1%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%EC%B6%94%EC%84%B8%EC%84%A0%20%EB%B6%84%EC%84%9D%EC%9D%84%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EC%A3%BC%EC%8B%9D%20%EB%B0%8F%20ETF%20%EB%A7%A4%EB%A7%A4%20%EC%A0%84%EB%9E%B5%20%EA%B0%95%ED%99%94.pdf"
+                            class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-green"><i class="fas fa-bezier-curve"></i></div>
+                                    <span class="badge-premium"
+                                        style="background: #f1f5f9; color: #64748b;">Strategy</span>
+                                </div>
+                                <h4>벡터 기반 추세선 분석 전략</h4>
+                                <p>매매 타이밍 정밀화를 위한 기술적 분석 이론과 벡터 모델 제안.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-green-600 font-medium">Technical Analysis</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
+                        <!-- 11 -->
+                        <a href="https://crowmag2.github.io/wejump/CBVR%EA%B3%BC%ED%83%80%EC%A0%84%EB%9E%B5%EB%B9%84%EA%B5%90%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8.pdf"
+                            class="doc-card-premium">
+                            <div>
+                                <div class="card-top-row">
+                                    <div class="doc-icon-box icon-indigo"><i class="fas fa-balance-scale"></i></div>
+                                    <span class="badge-premium"
+                                        style="background: #f1f5f9; color: #64748b;">Comparison</span>
+                                </div>
+                                <h4>CBVR vs 타 전략 비교 분석</h4>
+                                <p>주요 퀀트 전략들과의 비교를 통해 CBVR의 차별성과 우위 검증 리포트.</p>
+                            </div>
+                            <div class="doc-footer">
+                                <span class="text-xs text-indigo-500 font-medium">Alpha Edge</span>
+                                <i class="fas fa-arrow-right arrow-link"></i>
+                            </div>
+                        </a>
                     </div>
-                    <h4>CBVR 전략 대화형 인포그래픽</h4>
-                    <p>시각적 데이터와 AI 대화를 통해 전략을 가장 쉽게 이해하는 첫 단계입니다.</p>
                 </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-blue-500 font-medium">Interactive Guide</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 2 -->
-            <a href="https://crowmag2.github.io/wejump/PPT_CBVR.pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-red"><i class="fas fa-file-powerpoint"></i></div>
-                        <span class="badge-premium" style="background: #f1f5f9; color: #64748b;">PDF</span>
-                    </div>
-                    <h4>CBVR 전략 프레젠테이션 (PPT)</h4>
-                    <p>핵심 로직과 성과 분석을 요약한 공식 발표용 시각 자료입니다.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-gray-500 font-medium">Core Strategy</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 3 -->
-            <a href="https://crowmag2.github.io/wejump/PPT_CBVR2.3.pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-red"><i class="fas fa-file-powerpoint"></i></div>
-                        <span class="badge-premium badge-advanced">Advanced</span>
-                    </div>
-                    <h4>CBVR 2.3 프레젠테이션 (PPT)</h4>
-                    <p>3-Bucket 구조와 자본 효율화 알고리즘의 상세 설계 공유.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-blue-600 font-medium">v2.3 Core Logic</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 4 -->
-            <a href="https://crowmag2.github.io/wejump/CBVR%EC%A0%84%EB%9E%B5%EB%A1%9C%EC%A7%81%EC%84%A4%EB%AA%85%EC%84%9C.pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-blue"><i class="fas fa-cogs"></i></div>
-                        <span class="badge-premium badge-core">Core Spec</span>
-                    </div>
-                    <h4>CBVR 전략 로직 설명서</h4>
-                    <p>운용 알고리즘과 개별 매매 규칙에 대한 공학적인 상세 가이드.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-indigo-500 font-medium">System Spec</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 5 -->
-            <a href="https://crowmag2.github.io/wejump/CBVRsim.html" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-indigo"><i class="fas fa-gamepad"></i></div>
-                        <span class="badge-premium" style="background: #e0f2fe; color: #0369a1;">Simulator</span>
-                    </div>
-                    <h4>인터랙티브 시뮬레이터</h4>
-                    <p>데이터 기반 의사결정 프로세스를 직접 체험하고 로직을 검증.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-sky-600 font-medium">Interactive Demo</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 6 -->
-            <a href="https://crowmag2.github.io/wejump/CBVR%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC_%EB%B6%84%EC%84%9D%EA%B3%BC_%EC%9D%B4%EB%A1%A0%EC%A0%81_%ED%86%A0%EB%8C%80.pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-indigo"><i class="fas fa-book"></i></div>
-                        <span class="badge-premium badge-advanced">Theory</span>
-                    </div>
-                    <h4>프레임워크 분석 및 이론적 토대</h4>
-                    <p>동적 적응형 퀀트 프레임워크의 수학적 배경과 금융공학 리서치.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-indigo-600 font-medium">Technology Alpha</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 7 -->
-            <a href="https://crowmag2.github.io/wejump/CBVR%20%EC%A0%84%EB%9E%B5%20%EB%85%BC%EB%AC%B8%20%EC%9E%91%EC%84%B1.pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-indigo"><i class="fas fa-graduation-cap"></i></div>
-                        <span class="badge-premium badge-advanced">Paper</span>
-                    </div>
-                    <h4>CBVR 전략 학술 논문</h4>
-                    <p>성과 분포의 정량 분석 모델링을 통한 전략 유효성 검증 논문.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-slate-500 font-medium">Peer Reviewed Context</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 8 -->
-            <a href="https://crowmag2.github.io/wejump/CBVR%EC%BD%94%EC%96%B4%EC%97%94%EC%A7%84%ED%99%95%EC%9E%A5(%EA%B8%B0%EA%B4%80%EC%9A%A9TargetBeta).pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-red"><i class="fas fa-layer-group"></i></div>
-                        <span class="badge-premium badge-advanced">Institutional</span>
-                    </div>
-                    <h4>CBVR 2.3 코어 엔진 확장 (Target Beta)</h4>
-                    <p>선물 복제 및 Target Beta 연동을 통한 기관용 확장 모델 설계.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-red-600 font-medium">Advanced Module</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 9 -->
-            <a href="https://crowmag2.github.io/wejump/%5BCBVR2.3%20%EC%8B%AC%EC%B8%B5%20%EB%B6%84%EC%84%9D%5D%20%EA%B5%AC%EC%A1%B0%EC%A0%81%20%EC%95%8C%ED%8C%8C%EC%99%80%20%EB%A6%AC%ED%85%8C%EC%9D%BC%20%ED%80%80%ED%8A%B8%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%9D%98%20%EA%B3%B5%ED%95%99%EC%A0%81%20%EC%9E%AC%EA%B5%AC%84%B1.pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-red"><i class="fas fa-graduation-cap"></i></div>
-                        <span class="badge-premium badge-advanced">Deep Analysis</span>
-                    </div>
-                    <h4>CBVR 2.3 구조적 알파의 실체 분석</h4>
-                    <p>금융 공학적 이론을 통해 퀀트 아키텍처의 알파 창출 원리 규명.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-red-600 font-medium">Quantitative Analysis</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 10 -->
-            <a href="https://crowmag2.github.io/wejump/PPT_%EB%B2%A1%ED%84%B0%20%EA%B8%B0%EB%B0%98%20%EC%B6%94%EC%84%B8%EC%84%A0%20%EB%B6%84%EC%84%9D%EC%9D%84%20%ED%99%9C%EC%9A%A9%ED%95%9C%20%EC%A3%BC%EC%8B%9D%20%EB%B0%8F%20ETF%20%EB%A7%A4%EB%A7%A4%20%EC%A0%84%EB%9E%B5%20%EA%B0%95%ED%99%94.pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-green"><i class="fas fa-bezier-curve"></i></div>
-                        <span class="badge-premium" style="background: #f1f5f9; color: #64748b;">Strategy</span>
-                    </div>
-                    <h4>벡터 기반 추세선 분석 전략</h4>
-                    <p>매매 타이밍 정밀화를 위한 기술적 분석 이론과 벡터 모델 제안.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-green-600 font-medium">Technical Analysis</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-            <!-- 11 -->
-            <a href="https://crowmag2.github.io/wejump/CBVR%EA%B3%BC%ED%83%80%EC%A0%84%EB%9E%B5%EB%B9%84%EA%B5%90%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8.pdf" class="doc-card-premium">
-                <div>
-                    <div class="card-top-row">
-                        <div class="doc-icon-box icon-indigo"><i class="fas fa-balance-scale"></i></div>
-                        <span class="badge-premium" style="background: #f1f5f9; color: #64748b;">Comparison</span>
-                    </div>
-                    <h4>CBVR vs 타 전략 비교 분석</h4>
-                    <p>주요 퀀트 전략들과의 비교를 통해 CBVR의 차별성과 우위 검증 리포트.</p>
-                </div>
-                <div class="doc-footer">
-                    <span class="text-xs text-indigo-500 font-medium">Alpha Edge</span>
-                    <i class="fas fa-arrow-right arrow-link"></i>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
+            </section>
 
             <section>
                 <div class="flex items-center mb-6 pl-2 border-l-4 border-purple-500">
@@ -945,8 +1070,7 @@
                         <a href="https://www.youtube.com/@wejump3" target="_blank"
                             class="block text-gray-500 hover:text-red-600 transition"><i
                                 class="fab fa-youtube mr-2"></i>유튜브 채널</a>
-                        <a href="https://litt.ly/wejump"
-                            class="block text-gray-500 hover:text-green-600 transition"><i
+                        <a href="https://litt.ly/wejump" class="block text-gray-500 hover:text-green-600 transition"><i
                                 class="fas fa-envelope mr-2"></i>문의하기</a>
                     </div>
                 </div>
@@ -1083,4 +1207,5 @@
     <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 
 </body>
+
 </html>
