@@ -179,22 +179,28 @@
 
         .portal-btn {
             display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #58a6ff, #bc8cff);
+            padding: 8px 16px;
             color: white;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 20px;
             font-weight: 700;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(188, 140, 255, 0.3);
+            font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-left: 5px;
+            margin-bottom: 5px;
         }
+
+        .btn-portal { background: linear-gradient(135deg, #58a6ff, #bc8cff); }
+        .btn-blog { background: #eb5757; }
+        .btn-docs { background: #2f80ed; }
+        .btn-youtube { background: #ff0000; }
 
         .portal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(188, 140, 255, 0.5);
-            filter: brightness(1.1);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.2);
         }
 
         .portal-btn i {
@@ -214,9 +220,10 @@
     <div class="container">
         <!-- PORTAL LINK CTA -->
         <div class="portal-btn-container">
-            <a href="https://litt.ly/wejump" target="_blank" class="portal-btn">
-                🔗 WeJump Labs Official Portal (Linktree)
-            </a>
+            <a href="https://litt.ly/wejump" target="_blank" class="portal-btn btn-portal">🔗 Portal</a>
+            <a href="https://wejump3.tistory.com/" target="_blank" class="portal-btn btn-blog">📝 Blog</a>
+            <a href="https://crowmag2.github.io/wejump/" target="_blank" class="portal-btn btn-docs">📚 Docs</a>
+            <a href="https://www.youtube.com/@wejump3" target="_blank" class="portal-btn btn-youtube">📺 YouTube</a>
         </div>
 
         <header>
@@ -443,7 +450,8 @@
                 </ul>
                 <div class="insight-text"
                     style="background: rgba(0, 242, 255, 0.05); color: #00f2ff; border: 1px solid rgba(0, 242, 255, 0.2);">
-                    <strong>Forensic Conclusion:</strong> 우리는 "진입할 때 조심하자"고 했지만, 데이터는 **"보유 중에 방계심하지 마라"**고 말하고 있습니다. 5일
+                    <strong>Forensic Conclusion:</strong> 우리는 "진입할 때 조심하자"고 했지만, 데이터는 <b>"보유 중에 방계심하지 마라"</b>고 말하고 있습니다.
+                    5일
                     이상 정체되는 모든 포지션에 대해 아노말리 감시 강도를 상향 조정해야 합니다.
                 </div>
             </div>
