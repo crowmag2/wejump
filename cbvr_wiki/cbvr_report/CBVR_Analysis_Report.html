@@ -171,6 +171,36 @@
             color: #3fb950;
         }
 
+        /* PORTAL BUTTON STYLE */
+        .portal-btn-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .portal-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #58a6ff, #bc8cff);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(188, 140, 255, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .portal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(188, 140, 255, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .portal-btn i {
+            margin-right: 8px;
+        }
+
         footer {
             text-align: center;
             margin-top: 80px;
@@ -182,6 +212,13 @@
 
 <body>
     <div class="container">
+        <!-- PORTAL LINK CTA -->
+        <div class="portal-btn-container">
+            <a href="https://litt.ly/wejump" target="_blank" class="portal-btn">
+                🔗 WeJump Labs Official Portal (Linktree)
+            </a>
+        </div>
+
         <header>
             <h1>CBVR 전략 아노말리 정밀 분석 (Forensic Report)</h1>
             <p style="color: var(--text-muted); margin-top: 10px;">매수 vs 매도 포지션별 실패 패턴 및 생존율 분석 결과</p>
