@@ -73,13 +73,22 @@
                     position: relative;
                     z-index: 10;
                 }
-/* --- Header 텍스트 스타일 (크기 원복 및 줄바꿈 허용) --- */
+/* --- 오리지널 헤더 구조 유지 + 텍스트 가독성(네온) 효과만 추가 --- */
+.header {
+    text-align: center; /* 원래의 중앙 정렬 복구 */
+    padding: 20px 0 40px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 40px;
+    /* 배경 박스 없음 */
+}
+
 .header h1 { 
     margin: 0; 
-    font-size: 2.2rem; /* 원본 크기로 원복 */
-    color: #ffffff; 
-    font-weight: 800; /* 900에서 800으로 축소하여 가로 너비 확보 */
-    word-break: keep-all; /* 가로폭이 부족할 때 단어 단위로 자연스럽게 줄바꿈 */
+    font-size: 2.2rem; /* 오리지널 크기 유지 */
+    color: #ffffff; /* 가독성을 위해 흰색 베이스 */
+    word-break: keep-all; /* 모바일 넘침을 방어하는 최소한의 안전장치 */
+    
+    /* 텍스트 외곽선 및 다중 그림자 (네온 발광 효과) */
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.8);
     text-shadow: 
         -1px -1px 0 #000, 
@@ -87,34 +96,24 @@
         -1px  1px 0 #000, 
          1px  1px 0 #000, 
          0 0 15px var(--highlight), 
-         0 0 30px var(--highlight), 
-         0 5px 15px rgba(0, 0, 0, 1);
+         0 4px 10px rgba(0, 0, 0, 1);
 }
 
 .header p { 
-    color: #ffffff; 
+    color: var(--text-sub); /* 오리지널 색상 유지 */
     margin-top: 10px; 
-    font-size: 1.1rem; /* 원본 크기로 원복 */
-    font-weight: 600;
+    font-size: 1.1rem; /* 오리지널 크기 유지 */
     line-height: 1.5; 
-    word-break: keep-all; /* 모바일 넘침 방지 */
-    -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.9);
+    word-break: keep-all;
+    
+    /* 서브 텍스트 가독성 강화 */
+    -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.8);
     text-shadow: 
         -1px -1px 0 #000, 
          1px -1px 0 #000, 
         -1px  1px 0 #000, 
          1px  1px 0 #000, 
-         0 3px 10px rgba(0, 0, 0, 1);
-}
-
-/* --- 모바일 전용 반응형 폰트 축소 방어막 --- */
-@media screen and (max-width: 480px) {
-    .header h1 {
-        font-size: 1.8rem; /* 모바일 기기에서는 폰트 크기를 더 줄여 가로 스크롤 원천 차단 */
-    }
-    .header p {
-        font-size: 0.95rem;
-    }
+         0 2px 5px rgba(0, 0, 0, 1);
 }
                 
                 .refresh-btn {
@@ -205,7 +204,7 @@
         
             <div class="header">
                 <h1>WeJump 시장 리스크 분석기</h1>
-                <p style="color: #e0b0ff; font-weight: 900; margin-bottom: 5px; -webkit-text-stroke: 0.5px #000; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 15px var(--highlight), 0 3px 8px rgba(0,0,0,1);">(WeJump 투자전략연구소 제공)</p>
+                <p style="color: var(--highlight); font-weight: bold; margin-bottom: 5px; word-break: keep-all; -webkit-text-stroke: 0.5px rgba(0,0,0,0.8); text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 10px var(--highlight), 0 2px 5px rgba(0,0,0,1);">(WeJump 투자전략연구소 제공)</p>
                 <p style="margin-top: 5px;">기준일자 (Data Date): 2026-04-14 | 최종 업데이트: 2026-04-14<br>매일(평일) 오후 4시 30분 ~ 5시 30분 사이 업데이트</p>
                 
                 <button class="refresh-btn" onclick="location.href=location.pathname+'?v='+new Date().getTime()">
