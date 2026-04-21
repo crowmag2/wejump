@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeJump Investment Labs | 이재원 (Jaewon Lee)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Inter:wght@300;400;700;800&family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+
+        :root {
+            --bg-deep: #020408;
+            --surface: #0d1117;
+            --accent-cyan: #00d2ff;
+            --accent-blue: #0070f3;
+            --accent-green: #00ff41;
+            --accent-orange: #ffab70;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --border-dim: #30363d;
+            --glass: rgba(13, 17, 23, 0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            line-height: 1.8;
+            word-break: keep-all;
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 210, 255, 0.03) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; width: 100%; background: var(--glass);
+            backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-dim);
+            z-index: 1000; height: 65px; display: flex; align-items: center;
+        }
+        .nav-inner { width: 100%; max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 24px; font-size: 0.85rem; font-weight: 800; letter-spacing: 1px; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; margin-left: 30px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-cyan); }
+
+        /* Header Section - Logo & Info Side-by-Side */
+        header { padding: 180px 0 100px 0; border-bottom: 1px solid var(--border-dim); }
+        .header-main { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+        .logo-main { width: 240px; filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.2)); flex-shrink: 0; }
+        
+        .title-group { flex: 1; min-width: 320px; }
+        .title-group h1 { font-size: 4rem; font-weight: 900; letter-spacing: -3px; line-height: 1; margin-bottom: 25px; }
+        .title-group h1 span { color: var(--accent-cyan); font-weight: 200; font-size: 2.2rem; letter-spacing: -1px; margin-left: 10px; }
+        .header-desc { font-size: 1.4rem; color: var(--text-secondary); font-weight: 300; line-height: 1.6; }
+        .header-desc strong { color: var(--accent-cyan); font-weight: 700; }
+
+        /* Contact Grid with Link Hub Highlight */
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 60px; }
+        .contact-item { background: var(--surface); padding: 25px; border: 1px solid var(--border-dim); border-radius: 4px; transition: 0.3s; text-decoration: none; display: block; }
+        .contact-item:hover { border-color: var(--accent-cyan); transform: translateY(-5px); }
+        .contact-item label { display: block; color: var(--accent-cyan); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 2px; }
+        .contact-item span { color: var(--text-primary); font-size: 0.95rem; font-weight: 600; }
+        .contact-item.highlight { border-color: var(--accent-blue); background: rgba(0, 112, 243, 0.05); }
+
+        /* Section Global */
+        section { padding: 140px 0; border-bottom: 1px solid var(--border-dim); }
+        .section-label { font-size: 0.85rem; color: var(--accent-cyan); font-weight: 800; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 25px; display: block; opacity: 0.8; }
+        h2 { font-size: 3.2rem; font-weight: 900; margin-bottom: 70px; letter-spacing: -2px; }
+
+        /* Research Domains */
+        .domain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .domain-card { background: var(--surface); padding: 45px; border: 1px solid var(--border-dim); position: relative; overflow: hidden; }
+        .domain-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent-blue); }
+        .domain-card h3 { font-size: 1.5rem; margin-bottom: 20px; color: var(--text-primary); }
+        .domain-card ul { list-style: none; color: var(--text-secondary); font-size: 0.95rem; }
+        .domain-card li { margin-bottom: 10px; padding-left: 15px; position: relative; }
+        .domain-card li::before { content: '·'; position: absolute; left: 0; color: var(--accent-cyan); font-weight: 900; }
+
+        /* Strategy Layout */
+        .strategy-block { margin-bottom: 120px; }
+        .strategy-header { display: flex; align-items: baseline; gap: 20px; margin-bottom: 35px; }
+        .strategy-num { font-family: 'Fira Code'; font-size: 1.5rem; color: var(--accent-cyan); opacity: 0.5; }
+        .strategy-title { font-size: 2.3rem; font-weight: 800; }
+        .strategy-content { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; }
+        .strategy-desc { font-size: 1.15rem; color: var(--text-secondary); }
+        
+        .logic-panel { background: #000; border: 1px solid var(--border-dim); border-left: 4px solid var(--accent-green); padding: 30px; border-radius: 4px; }
+        .logic-panel h4 { font-family: 'Fira Code'; color: var(--accent-green); font-size: 0.8rem; margin-bottom: 15px; text-transform: uppercase; }
+        .formula { font-family: 'Fira Code', monospace; font-size: 0.9rem; color: #a5d6ff; line-height: 1.6; }
+
+        .link-group { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+        .link-btn { text-decoration: none; background: rgba(255,255,255,0.03); border: 1px solid var(--border-dim); color: var(--text-primary); padding: 12px 20px; font-size: 0.85rem; border-radius: 4px; transition: 0.3s; font-weight: 600; }
+        .link-btn:hover { border-color: var(--accent-cyan); background: rgba(0, 210, 255, 0.1); color: var(--accent-cyan); }
+
+        /* Timeline Card */
+        .exp-card { background: var(--surface); border: 1px solid var(--border-dim); padding: 45px; margin-bottom: 40px; border-radius: 4px; }
+        .exp-date { font-family: 'Fira Code'; color: var(--accent-blue); font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; display: block; }
+        .exp-card h3 { font-size: 2rem; margin-bottom: 20px; }
+        .exp-card p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+
+        /* Publication Grid */
+        .pub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .pub-card { padding: 45px; border: 1px solid var(--border-dim); text-decoration: none; color: inherit; transition: 0.4s; background: var(--surface); }
+        .pub-card:hover { border-color: var(--accent-cyan); transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1); }
+        .pub-card h4 { font-size: 1.5rem; margin-bottom: 15px; line-height: 1.4; }
+        .pub-card p { font-size: 1rem; color: var(--text-secondary); }
+
+        footer { padding: 120px 0 60px 0; background: #000; border-top: 1px solid var(--border-dim); }
+        .footer-content { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; }
+        .footer-brand h2 { font-size: 2rem; margin-bottom: 25px; letter-spacing: -1px; }
+
+        @media (max-width: 900px) {
+            .header-main { gap: 40px; text-align: center; justify-content: center; }
+            .title-group h1 { font-size: 3.5rem; }
+            .domain-grid, .strategy-content, .pub-grid, .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <div>WEJUMP INVESTMENT LABS</div>
+        <div class="nav-links">
+            <a href="#research">RESEARCH</a>
+            <a href="#strategies">STRATEGIES</a>
+            <a href="#experience">EXPERIENCE</a>
+            <a href="#publications">PUBLICATIONS</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <header>
+        <div class="header-main">
+            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FS08iw%2FbtsN4anq3a6%2FAAAAAAAAAAAAAAAAAAAAAMBt5ZhU8OOZgWYQwaiiIFf-PT5xIQDyO58H9ydpfJ9v%2Fimg.jpg%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1767193199%26allow_ip%3D%26allow_referer%3D%26signature%3DC1bI%252FtaX2w5u1TkBB4LC1OtAH8g%253D" alt="WeJump Logo" class="logo-main">
+            <div class="title-group">
+                <h1>이재원 <span>Jaewon Lee</span></h1>
+                <p class="header-desc">
+                    시장 구조와 거시 환경에 대한 깊은 이해를 바탕으로, 불확실성을 통제하고 <strong>구조적 알파(Structural Alpha)</strong>를 창출하는 퀀트 투자 전략을 설계합니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="contact-grid">
+            <a href="https://litt.ly/wejump" target="_blank" class="contact-item highlight">
+                <label>Main Link Hub</label>
+                <span>Littly Link Tree (전체 채널)</span>
+            </a>
+            <a href="https://crowmag2.github.io/wejump/" target="_blank" class="contact-item">
+                <label>Strategy Repository</label>
+                <span>GitHub Project Documentation</span>
+            </a>
+            <a href="https://wejump3.tistory.com" target="_blank" class="contact-item">
+                <label>Official Blog</label>
+                <span>wejump3.tistory.com</span>
+            </a>
+            <a href="mailto:crowmg2@gmail.com" class="contact-item">
+                <label>Direct Contact</label>
+                <span>crowmg2@gmail.com</span>
+            </a>
+        </div>
+    </header>
+
+    <section id="research">
+        <span class="section-label">Core Domains</span>
+        <h2>전문 연구 영역</h2>
+        <div class="domain-grid">
+            <div class="domain-card">
+                <h3>시장 구조</h3>
+                <ul>
+                    <li>Regime 분석 및 팩터 모델링</li>
+                    <li>가격 구조 기반 시장 상태 정의</li>
+                    <li>변동성 에너지 전환 메커니즘 연구</li>
+                </ul>
+            </div>
+            <div class="domain-card">
+                <h3>거시 경제</h3>
+                <ul>
+                    <li>유동성 및 통화 시스템 구조 분석</li>
+                    <li>폐쇄 생태계 기반 경제 유동성 연구</li>
+                    <li>글로벌 매크로 트렌드 대응 로직</li>
+                </ul>
+            </div>
+            <div class="domain-card">
+                <h3>대안 경제</h3>
+                <ul>
+                    <li>AI 시대 자본주의 재설계</li>
+                    <li>감가상각 화폐 및 순환 경제 모델링</li>
+                    <li>자본 축적의 구조적 한계 고찰</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="strategies">
+        <span class="section-label">Quant Systems</span>
+        <h2>핵심 운용 아키텍처</h2>
+
+        <div class="strategy-block">
+            <div class="strategy-header">
+                <span class="strategy-num">01</span>
+                <h3 class="strategy-title">CBVR Strategy (Dynamic Engine)</h3>
+            </div>
+            <div class="strategy-content">
+                <div>
+                    <p class="strategy-desc">채권 자산의 불확실성에 의존하지 않고, 주식 100% 포트폴리오의 <strong>MDD를 공학적으로 제어</strong>합니다. 변동성을 회피 대상이 아닌 복리 보존을 위한 에너지원으로 활용합니다.</p>
+                    <div class="link-group">
+                        <a href="https://crowmag2.github.io/wejump/cbvr_wiki/cbvr_report/CBVR_Analysis_Report.html" class="link-btn" target="_blank">📄 아노말리 정밀 분석 보고서</a>
+                        <a href="https://www.youtube.com/@wejump3/live" class="link-btn" target="_blank">📡 라이브 시그널 채널</a>
+                        <a href="https://notebooklm.google.com/notebook/6327a245-fd58-4033-a176-05da06c80ff9" class="link-btn" target="_blank">🤖 전략 안내 AI 챗봇</a>
+                    </div>
+                </div>
+                <div class="logic-panel">
+                    <h4>Core Execution Logic</h4>
+                    <div class="formula">
+                        Net_Exposure = (3 * Ticker_Weight) - 1;<br>
+                        IF (Market == Anomaly) {<br>
+                        &nbsp;&nbsp;Execute_CounterTrend_Logic();<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="strategy-block">
+            <div class="strategy-header">
+                <span class="strategy-num">02</span>
+                <h3 class="strategy-title">Adaptive Alpha ETF Strategy</h3>
+            </div>
+            <div class="strategy-content">
+                <div>
+                    <p class="strategy-desc">추세 상승 구간에서 레버리지를 활용해 자본 효율을 극대화하고, 위험 국면에서는 전량 청산 후 <strong>단기 국채 및 현금 자산으로 스위칭</strong>하는 하이브리드 추세 추종 모델입니다.</p>
+                    <div class="link-group">
+                        <a href="https://wejump3.tistory.com/entry/WeJump-Adaptive-Alpha-ETF-%EC%8B%9C%EB%A6%AC%EC%A6%88" class="link-btn" target="_blank">🔗 전략 상세 대시보드 및 영상</a>
+                    </div>
+                </div>
+                <div class="logic-panel" style="border-left-color: var(--accent-blue);">
+                    <h4>Asset Allocation Ratio</h4>
+                    <div class="formula">
+                        Risk-On: 1x & 2x ETF (5:5 Mix)<br>
+                        Risk-Off: 100% Short-term Treasury<br>
+                        Signal: Multi-Factor Regime Filter
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="strategy-block" style="margin-bottom: 0;">
+            <div class="strategy-header">
+                <span class="strategy-num">03</span>
+                <h3 class="strategy-title">Fundamental Quality Overlay</h3>
+            </div>
+            <div class="strategy-content">
+                <div>
+                    <p class="strategy-desc">코스닥 소형주를 철저히 배제하고, <strong>코스피 200 우량주</strong> 내에서 현금 창출력(FCF)과 밸류에이션을 다각도로 검증하여 '가치 함정'을 기계적으로 차단합니다.</p>
+                    <div class="link-group">
+                        <a href="https://wejump3.tistory.com/119" class="link-btn" target="_blank" style="border-color: var(--accent-orange); color: var(--accent-orange);">📊 종목 선정 실전 매매 로직 상세</a>
+                    </div>
+                </div>
+                <div class="logic-panel" style="border-left-color: var(--accent-cyan);">
+                    <h4>Quality Scoring Workflow</h4>
+                    <div class="formula">
+                        1. FCF Yield Rank Extraction<br>
+                        2. Sector PER & EV/EBITDA Cross-Check<br>
+                        3. ROE Quality Factor Weighting
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <span class="section-label">Track Record</span>
+        <h2>실무 경험 및 방송 아카이브</h2>
+        <div class="timeline">
+            <div class="exp-card">
+                <span class="exp-date">2016</span>
+                <h3>AV자산운용 (구 에스크베리타스자산운용)</h3>
+                <p>VIX 선물 기반 변동성 매매 시스템 운용 참여 및 알고리즘 로직 고도화 지원 업무를 수행했습니다.</p>
+            </div>
+            <div class="exp-card">
+                <span class="exp-date">2016</span>
+                <h3>Qraft Technologies 협업</h3>
+                <p>금융 투자 콘텐츠의 SEO 최적화와 프리지를 활용한 알고리즘 시각화 홍보 영상 기획 및 제작을 담당했습니다.</p>
+            </div>
+            <div class="exp-card">
+                <span class="exp-date">2015 - 2016</span>
+                <h3>Draco Labs 운영 및 방송 활동</h3>
+                <p>주식·금융 전문 콘텐츠 채널을 총괄하며 <strong>한국경제TV(WOW TV)</strong> 등 경제 방송에 출연하여 거시적 투자 인사이트를 공유했습니다.</p>
+                <a href="https://youtu.be/kHscBg6Xkj8" target="_blank" style="color: var(--accent-cyan); font-weight: 700; text-decoration: none;">📺 한국경제TV 출연 및 방송 영상 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <span class="section-label">Deep Research</span>
+        <h2>리서치 에세이 아카이브</h2>
+        <div class="pub-grid">
+            <a href="https://wejump3.tistory.com/97" class="pub-card" target="_blank">
+                <h4>구조적 알파 추구 (Structural Alpha)의 본질</h4>
+                <p>단순 통계 수치를 넘어 시장의 구조적 메커니즘을 이용한 수익 창출 전략 연구.</p>
+            </a>
+            <a href="https://wejump3.tistory.com/105" class="pub-card" target="_blank">
+                <h4>"고인 돈은 썩어야 한다" : 자본 축적 고찰</h4>
+                <p>감가상각 화폐와 순환 경제를 가정한 AI 사고 실험 및 자본주의의 한계 조명.</p>
+            </a>
+            <a href="https://wejump3.tistory.com/118" class="pub-card" target="_blank">
+                <h4>유리병(에코스피어) 속의 세계 경제</h4>
+                <p>폐쇄 생태계 모델을 통해 현대 경제 시스템의 유동성 문제와 구조적 취약성 설명.</p>
+            </a>
+            <a href="https://wejump3.tistory.com/55" class="pub-card" target="_blank">
+                <h4>돌봄 리스크 : 대한민국 경제의 미래</h4>
+                <p>인구 구조 변화가 노동 시장과 거시 경제 트렌드에 미치는 영향 분석 리포트.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>WeJump Investment Labs</h2>
+                    <p style="color: var(--text-dim); font-size: 0.95rem;">본 포트폴리오는 이재원(Jaewon Lee)의 연구 성과와 실무 궤적을 기록한 공식 문서입니다.</p>
+                </div>
+                <div class="footer-nav">
+                    <h5>Resource Hub</h5>
+                    <ul>
+                        <li><a href="https://litt.ly/wejump" target="_blank">Official Link Hub</a></li>
+                        <li><a href="https://wejump3.tistory.com" target="_blank">Engineering Blog</a></li>
+                        <li><a href="https://www.youtube.com/@wejump3" target="_blank">YouTube Channel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h5>Connect</h5>
+                    <ul>
+                        <li><a href="https://t.me/wejumplabs" target="_blank">Telegram: @wejumplabs</a></li>
+                        <li><a href="mailto:crowmg2@gmail.com">Email Inquiry</a></li>
+                        <li><a href="https://crowmag2.github.io/wejump/" target="_blank">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 80px; border-top: 1px solid #1a1a1a; padding-top: 35px; display: flex; justify-content: space-between; font-size: 0.75rem; color: #444; letter-spacing: 1px;">
+                <p>INSTITUTIONAL QUANT ARCHITECTURE &copy; 2026</p>
+                <p>ALL STRATEGIC ASSETS PROTECTED BY WEJUMP INVESTMENT LABS.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
