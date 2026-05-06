@@ -779,7 +779,7 @@
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                     <div class="lg:col-span-4 flex flex-col gap-4">
-                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm h-full">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm h-full flex flex-col">
                             <div class="flex items-center mb-4">
                                 <div
                                     class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center text-red-500 mr-3">
@@ -787,37 +787,39 @@
                                 </div>
                                 <h3 class="font-bold text-gray-900">전략 라이브 방송 안내</h3>
                             </div>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
                                 본 채널에서는 <a href="https://wejump3.tistory.com/category/CBVR%20%EC%A0%84%EB%9E%B5"
-                                    target=_blank><strong>CBVR 코어 로직</strong></a>의 실시간 포지션과 서브 시스템인 <a
+                                    target=_blank class="text-blue-600 hover:underline"><strong>CBVR 코어 로직</strong></a>의 실시간 포지션과 서브 시스템인 <a
                                     href="https://crowmag2.github.io/wejump/adaptivealpha/"
-                                    target=_blank><strong>Adaptive Alpha</strong></a>의 비중 조절 현황을 상시 송출합니다.
+                                    target=_blank class="text-blue-600 hover:underline"><strong>Adaptive Alpha</strong></a>의 비중 조절 현황을 상시 송출합니다.
                             </p>
-                            <ul class="text-xs text-gray-500 space-y-2">
-                                <li><i class="fas fa-check text-green-500 mr-1"></i> 시장별 벡터 에너지(Vector Energy) 정밀 분석
-                                </li>
+                            <ul class="text-xs text-gray-500 space-y-2 mb-6">
+                                <li><i class="fas fa-check text-green-500 mr-1"></i> 시장별 벡터 에너지(Vector Energy) 정밀 분석</li>
                                 <li><i class="fas fa-check text-green-500 mr-1"></i> 주요 지수별 단기 추세선 및 지지/저항 구간</li>
                                 <li><i class="fas fa-check text-green-500 mr-1"></i> 시스템 오더플로우 및 실시간 비중 변화</li>
                             </ul>
+                            <a href="https://www.youtube.com/@wejump3/live" target="_blank"
+                                class="w-full flex items-center justify-center bg-red-600 text-white py-3 rounded-xl hover:bg-red-700 transition-all duration-300 font-bold text-sm shadow-lg shadow-red-100 group">
+                                <i class="fab fa-youtube mr-2 group-hover:scale-120 transition-transform"></i> 라이브 방송 시청하기
+                            </a>
                         </div>
-                        <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 h-full">
+                        <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 h-full flex flex-col">
                             <div class="flex items-center mb-4">
                                 <div
                                     class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white mr-3 shadow-md">
-                                    <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank><i
-                                            class="fas fa-seedling"></i></a>
+                                    <i class="fas fa-seedling"></i>
                                 </div>
-                                <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank>
-                                    <h3 class="font-bold text-blue-900">WeJump Adaptive Alpha</h3>
-                                </a>
+                                <h3 class="font-bold text-blue-900">WeJump Adaptive Alpha</h3>
                             </div>
-                            <p class="text-blue-800 text-sm leading-relaxed">
-                                <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target=_blank>
-                                    매일 공유되는 CBVR 코어 전략과는 별개로 운용되는 독립 시스템입니다.
-                                    <strong>매매 호흡이 길고 빈도가 낮아</strong>, 복잡한 대응이 어려운 초보 투자자분들이 가장 편안하게 시스템적 알파를 향유할 수 있는
-                                    <strong>'느슨한 신호'</strong>를 지향합니다.
-                                </a>
+                            <p class="text-blue-800 text-sm leading-relaxed mb-6 flex-grow">
+                                매일 공유되는 CBVR 코어 전략과는 별개로 운용되는 독립 시스템입니다.
+                                <strong>매매 호흡이 길고 빈도가 낮아</strong>, 복잡한 대응이 어려운 초보 투자자분들이 가장 편안하게 시스템적 알파를 향유할 수 있는
+                                <strong>'느슨한 신호'</strong>를 지향합니다.
                             </p>
+                            <a href="https://crowmag2.github.io/wejump/adaptivealpha/" target="_blank"
+                                class="w-full flex items-center justify-center bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-all duration-300 font-bold text-sm shadow-lg shadow-blue-100 group">
+                                <i class="fas fa-file-alt mr-2 group-hover:scale-120 transition-transform"></i> 전략 설명 문서 보기
+                            </a>
                         </div>
                     </div>
                     <div class="lg:col-span-8">
