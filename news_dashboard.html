@@ -1,0 +1,606 @@
+
+        <!DOCTYPE html>
+        <html lang="ko">
+        <head>
+            <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+            <meta http-equiv="Pragma" content="no-cache">
+            <meta http-equiv="Expires" content="0">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>실시간 경제 뉴스</title>
+            <style>
+                body {
+                    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+                    background-color: #121212;
+                    color: #ffffff;
+                    padding: 20px;
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+                h1 {
+                    text-align: center;
+                    border-bottom: 2px solid #bb86fc;
+                    padding-bottom: 10px;
+                    margin-bottom: 30px;
+                }
+                .header-buttons {
+                    display: flex;
+                    gap: 15px;
+                    margin-bottom: 30px;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                }
+                .btn {
+                    display: inline-block;
+                    padding: 12px 24px;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    color: white;
+                    font-weight: bold;
+                    transition: all 0.3s ease;
+                    text-align: center;
+                }
+                .btn:hover {
+                    transform: translateY(-3px);
+                    filter: brightness(1.1);
+                }
+                .btn-notice {
+                    background: linear-gradient(135deg, #bb86fc 0%, #7c4dff 100%);
+                    box-shadow: 0 4px 15px rgba(187, 134, 252, 0.4);
+                }
+                .btn-live {
+                    background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+                    box-shadow: 0 4px 15px rgba(255, 8, 68, 0.4);
+                }
+                .btn-telegram {
+                    background: linear-gradient(135deg, #0088cc 0%, #00aaff 100%);
+                    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+                }
+                .news-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                }
+                .news-item {
+                    background: rgba(30, 30, 30, 0.85);
+                    padding: 15px 20px;
+                    border-radius: 12px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    transition: transform 0.2s, background 0.2s;
+                }
+                .news-item:hover {
+                    transform: translateY(-2px);
+                    background: rgba(45, 45, 45, 0.95);
+                    border-color: rgba(255, 255, 255, 0.3);
+                }
+                .news-item a {
+                    color: #e0e0e0;
+                    text-decoration: none;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    display: block;
+                    margin-bottom: 8px;
+                    line-height: 1.4;
+                }
+                .news-item a:hover {
+                    color: #bb86fc;
+                }
+                .pub-date {
+                    font-size: 0.85rem;
+                    color: #888;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>실시간 경제 뉴스</h1>
+            <div class="header-buttons">
+                <a href="https://wejump3.tistory.com/notice/88" target="_blank" class="btn btn-notice">뉴스 및 종목 분석 / 경제지표 일정</a>
+                <a href="https://www.youtube.com/@wejump3/live" target="_blank" class="btn btn-live">24시간 퀀트 전략 라이브</a>
+                <a href="https://t.me/wejumplabs" target="_blank" class="btn btn-telegram">위점프랩스 텔레그램</a>
+            </div>
+            <div class="news-list">
+        
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043595" target="_blank">코인시장 옥죄는 ‘특금법 시행령’…FIU, 13일 업계 만나 해법 찾을까</a>
+                    <div class="pub-date">Mon, 11 May 2026 18:35:31 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043589" target="_blank">“언제까지 올라요? 저 언제 팔아요?”…1만2천피 전망까지 등장했다</a>
+                    <div class="pub-date">Mon, 11 May 2026 18:20:23 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043582" target="_blank">매경증권대상 NH투자證 … 퇴직연금 대상에 삼성證</a>
+                    <div class="pub-date">Mon, 11 May 2026 18:03:03 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042714" target="_blank">SK스퀘어처럼…삼전 업고 삼성물산도 ‘훨훨’ [종목 돋보기]</a>
+                    <div class="pub-date">Mon, 11 May 2026 18:00:59 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043570" target="_blank">대성하이텍, 100억 원 규모 전환사채 발행</a>
+                    <div class="pub-date">Mon, 11 May 2026 18:00:19 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043569" target="_blank">옵트론텍, 250억 원 규모 전환사채 발행</a>
+                    <div class="pub-date">Mon, 11 May 2026 18:00:18 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042712" target="_blank">MBK, 日 알루미늄社 알테미라 1.1조에 인수…사전심사 승인 [시그널]</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:59:00 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043561" target="_blank">1년 만에 확 높아진 눈높이 … 목표가 상향 보고서 1331건</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:57:04 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043559" target="_blank">[포토] '2026 매경 증권·연금대상' 수상자 한자리에</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:57:03 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043560" target="_blank">천장 안보이는 코스피 … 1만2천피 전망도 나왔다</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:57:03 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043556" target="_blank">국세청, 하나금융 이어 메리츠증권도 세무조사</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:57:02 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043557" target="_blank">삼전닉스 절반인 ETF … 토큰으로 내놓은 OKX</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:57:02 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043558" target="_blank">1분기 '전쟁통'에도 개미 80%는 벌었다</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:57:02 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043555" target="_blank">불장 올라탄 삼성증권, 1분기 '어닝 서프라이즈'</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:57:01 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043553" target="_blank">코스피 8000 턱밑까지…삼성전자, SK하이닉스 역사적 신고가 돌파 [매경 자이앤트]</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:56:39 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042711" target="_blank">상폐 요건 강화하자…동전주들 병합 러시</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:56:11 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042710" target="_blank">[투자의 창] 글로벌 자산배분 시 고려할 점</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:55:30 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042708" target="_blank">커버드콜 ETF 몸집 커지지만…제각각 분배율 계산에 혼란</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:54:44 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042703" target="_blank">금감원, 한화솔루션 유증 신고서 보완 압박…“미흡땐 무한 정정요구”</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:52:27 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042702" target="_blank">“이러다 나만 벼락거지”…개미, 사흘간 13조 샀다</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:52:15 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043512" target="_blank">'AI수혜' 롯데에너지머티, 시총 4조 육박</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:51:28 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043511" target="_blank">MBK, 日 알루미늄 기업 인수</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:51:27 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042700" target="_blank">삼성證도 어닝 서프라이즈…1분기 순익 4509억</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:50:49 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042690" target="_blank">한방 노리는 단타족…전선·건설주로 쏠림</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:46:25 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042689" target="_blank">“1만피 간다” 전망까지…포모 더 커지나</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:45:37 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042688" target="_blank">“내년까지 반도체 슈퍼사이클”…3분기부터 수요 둔화 신중론도</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:44:52 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042669" target="_blank">NH투자증권서 다시 ‘빚투’ 가능…“12일부터 신용거래융자 재개”</a>
+                    <div class="pub-date">Mon, 11 May 2026 17:22:13 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042634" target="_blank">포스코, 해양환경공단과 ‘무인도서’ 해양 환경 개선 맞손</a>
+                    <div class="pub-date">Mon, 11 May 2026 16:21:32 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043340" target="_blank">개미 초단타에 ETF 회전율 역대 최고...금감원 “단기매매 리스크·종목 양극화” 경고</a>
+                    <div class="pub-date">Mon, 11 May 2026 16:07:57 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042620" target="_blank">‘28만전자·194만닉스’ 질주…코스피 7800 시대 열렸다 [코주부]</a>
+                    <div class="pub-date">Mon, 11 May 2026 16:04:04 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043334" target="_blank">“외국인 4조 던져도 더 올랐다”…반도체 불기둥에 코스피 7900 눈앞</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:59:17 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043329" target="_blank">“반도체 주가 상승도 먹고 월말엔 배당까지”…KODEX 반도체타겟위클리커버드콜 상장</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:48:55 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043314" target="_blank">비트코인판 VIX 나온다…CME그룹, 비트코인 변동성 추종 지수 6월 출시</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:39:00 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043308" target="_blank">가상자산거래소에 등장한 ‘한국 반도체ETF 토큰’…상장 3일만에 145억원 몰렸다</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:36:40 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042602" target="_blank">[코스피] 324.24포인트(4.32%) 오른 7822.24 마감</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:34:56 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042598" target="_blank">[코스닥] 0.38포인트(0.03%) 내린 1207.34 마감</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:33:47 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043302" target="_blank">“AI 인프라 투자 사이클 더 간다”…삼성전자 쓸어담아 [주식 초고수는 지금]</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:32:06 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042591" target="_blank">진양곤 의장, HLB이노베이션 주식 추가 매수… “CAR-T 신약 기대감”</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:26:40 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042583" target="_blank">인벤티지랩, ‘경구 세마글루타이드’ 韓특허 등록… “생체이용률 개선”</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:15:59 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042582" target="_blank">케이엔에스, 올해 1분기 영업익 13억 원…전년比 22%↑</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:13:18 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042566" target="_blank">금감원 “삼천당제약 예의 주시…6월 말 바이오 공시 가이드라인 배포”</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:00:05 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042567" target="_blank">금감원 “스페이스X 개인 청약, 미래에셋증권도 결정 못해”</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:00:05 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042570" target="_blank">금감원, 한화솔루션 유증 엄정 심사 “정보 제대로 기재 안할 시 계속 정정 요구”</a>
+                    <div class="pub-date">Mon, 11 May 2026 15:00:05 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043264" target="_blank">“기술보다 인프라 설계가 승부처”…제도권 편입 앞둔 토큰증권 생존전략</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:59:07 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042551" target="_blank">“AI로 에너지·사회문제 해결”…SK이노, 스타트업 모집</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:41:49 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042548" target="_blank">윤창현 코스콤 사장 “토큰증권 시장 안착엔 인프라·제도 기반 필수”</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:36:51 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042545" target="_blank">엘앤씨바이오, 리투오 시장 안착에 수익성 개선…영업익 흑자전환</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:32:24 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042536" target="_blank">로킷헬스케어 美 자회사, 증권신고서 제출…나스닥 상장 속도</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:18:02 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043197" target="_blank">뉴온 “살림백서 제로, 호주 W코스메틱 전 매장 입점”…글로벌 시장 공략 본격화</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:14:48 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042530" target="_blank">8000피 넘어 ‘1만피’까지 나왔다…“더 오른다” 증권사들 내놓은 시나리오는</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:14:21 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042529" target="_blank">미래에셋박현주재단, 제8회 ‘MEET-UP 프로젝트’ 개최</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:12:19 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043187" target="_blank">노머스, 옹성우 프롬 입점...글로벌 팬덤 플랫폼 경쟁력 강화</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:08:05 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042525" target="_blank">스맥, 반도체 장비 공급계약 체결…관련 수주 본격화</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:06:42 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042522" target="_blank">한국콜마 7%·코스메카 12% 급등…K-뷰티 실적 랠리 [마켓시그널]</a>
+                    <div class="pub-date">Mon, 11 May 2026 14:02:36 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043183" target="_blank">웨이브릿지, 국내 대표 블록체인 VC 해시드 자산 수탁</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:58:24 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042515" target="_blank">미래에셋자산운용 “국내 최초 구글 AI 생태계 투자 솔루션 ETF 출시”</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:57:15 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043182" target="_blank">DB證, 부산시 블록체인 특화사업 ‘STO 플랫폼’ 우협 선정</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:56:44 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043180" target="_blank">바이낸스 규제 책임자 “규제 무서워 발전 멈추면 안 돼” [매일코인]</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:56:22 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042512" target="_blank">“삼전·닉스 성장성에 월배당까지”…삼성운용, 반도체 커버드콜 ETF 출시</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:43:18 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042510" target="_blank">대원미디어, 카드 컬쳐 종합 페스티벌 ‘KCCF 2026’ 개최</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:39:44 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043170" target="_blank">유럽마저 내연차 버리고 전동화차량으로…한온시스템 52주 신고가 [매경 자이앤트]</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:37:29 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043169" target="_blank">트럼프가 뭘 하든 삼전닉스 믿은 개미들...1분기 10명 중 8명이 돈 벌었다</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:36:07 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043157" target="_blank">“삼성전자·하이닉스 절반 담았다”…삼성운용 ‘반도체 커버드콜 ETF’ 출격</a>
+                    <div class="pub-date">Mon, 11 May 2026 13:17:47 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043127" target="_blank">UCK, 2100억원에 만전식품 품는다</a>
+                    <div class="pub-date">Mon, 11 May 2026 11:45:18 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043125" target="_blank">토스증권, 한국콜마 실적 잘못표기 또 반복했나…7개월 전에도 오류 주장 나와</a>
+                    <div class="pub-date">Mon, 11 May 2026 11:43:14 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042471" target="_blank">‘28만전자·188만닉스’에도…초고수들 삼성전자·SK하이닉스 쓸어담았다 [주식 초고수는 지금]</a>
+                    <div class="pub-date">Mon, 11 May 2026 11:33:12 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043115" target="_blank">교보증권, 국내주식 투자 이벤트 실시</a>
+                    <div class="pub-date">Mon, 11 May 2026 11:30:02 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042467" target="_blank">예별손보 매각 재공고…단독 응찰 땐 수의계약 가능성 [시그널]</a>
+                    <div class="pub-date">Mon, 11 May 2026 11:30:00 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042458" target="_blank">미래에셋證, 개인투자용 국채 5월 청약 실시</a>
+                    <div class="pub-date">Mon, 11 May 2026 11:08:53 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042444" target="_blank">한화투자증권, 중개형 ISA 순입금 이벤트 실시…최대 100만 원 지급</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:47:54 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042443" target="_blank">오늘의 메모[5월 12일]</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:41:53 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043039" target="_blank">[MK시그널] 엘빗 시스템즈 매도신호 포착, 수익률 65.5% 달성</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:39:20 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/business/12043032" target="_blank">“반도체주 너무 올라 아찔? 그래도 꽉 붙잡아야”…차익실현 말리는 증권사</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:34:44 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043021" target="_blank">한국투자증권, 비과세 혜택 갖춘 ‘KRX 금현물’ 투자 이벤트 진행</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:25:53 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043018" target="_blank">삼성증권, ‘적립식 증여 서비스’ 및 ‘자녀자산관리 서비스’ 동시 출시</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:25:00 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12043017" target="_blank">한화투자증권, 중개형 ISA 순입금 이벤트 실시</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:24:39 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042425" target="_blank">키움증권, 6월 IRP 출시 앞두고 사전등록 이벤트</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:22:39 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042420" target="_blank">DB증권, 부산 블록체인 특화사업 우선협상대상자 선정</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:20:29 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042417" target="_blank">[속보] 불붙은 증시 랠리…한국 증시 시가총액 7000조 넘었다</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:11:49 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042975" target="_blank">[속보] ‘불장’에 국내증시 시가총액 사상 처음 7000조원 돌파</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:02:54 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042400" target="_blank">1분기 동학개미 80%는 웃었다…수익·손실 1위는 모두 삼성전자</a>
+                    <div class="pub-date">Mon, 11 May 2026 10:00:55 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042968" target="_blank">[MK 골든크로스 돌파종목 : 휴젤(145020) & 한솔홀딩스(004150)]</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:54:04 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042961" target="_blank">[MK시그널] 케이에스피, AI 데이터센터용 엔진 공급 확대에 주가 상승세... MK시그널 추천 후 상승률 35.63% 기록</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:47:03 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042392" target="_blank">JK머트리얼즈 “금강유역환경청으로부터 유해화학물질 영업허가증 수령”</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:46:41 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042391" target="_blank">비트맥스, AI 기반 보안 플랫폼 ‘패치가드’ 공식 출시</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:44:39 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042384" target="_blank">[속보] 코스피 매수 사이드카 발동</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:33:51 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042943" target="_blank">[속보] 급등장에 코스피 매수 사이드카 발동</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:33:05 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042376" target="_blank">코스모로보틱스, 코스닥 데뷔 첫날 ‘따따블’…공모가 대비 250% 급등 [이런국장 저런주식]</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:26:44 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042926" target="_blank">스테이블코인이 카드 대체할 수 밖에 없는 이유…AI에이전트 시대 다가온다</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:21:35 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042923" target="_blank">a16z, 디지털애셋에 3억달러 베팅…블록체인 인프라에 M&A·투자 집중</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:17:36 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042922" target="_blank">‘클래리티 법안’ 미국 상원처리 눈앞…은행권, 스테이블코인 이자 금지 총력전</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:17:14 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042921" target="_blank">“테슬라 로봇 눈 만드는 이 회사 아직 저평가”…목표주가 20만원 올렸다 [오늘 나온 보고서]</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:16:14 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042364" target="_blank">애경케미칼, 첨단소재 전환 가속…“애경스페셜티와 시너지로 고부가 시장 공략”</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:15:53 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/economy/12042909" target="_blank">“이러다 정말 한방에 훅 간다”…7천피 불장에 ‘이것’ 하루 2400억씩 불어</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:09:37 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042357" target="_blank">[코스닥] 5.16포인트(0.43%) 오른 1212.88 출발</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:06:13 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042356" target="_blank">[코스피] 277.31포인트(3.70%) 오른 7775.31 출발</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:06:02 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042889" target="_blank">[속보] 코스피, 3.70% 오른 7775.31로 출발…사상 최고 경신</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:05:36 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.sedaily.com/article/20042351" target="_blank">[속보] 코스피, 사상 첫 7800선 돌파…‘28만전자·185만 닉스’</a>
+                    <div class="pub-date">Mon, 11 May 2026 09:02:24 +0900</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042875" target="_blank">“3분기부터는 관심 가질만”…와이지엔터, 목표가 하향</a>
+                    <div class="pub-date">Mon, 11 May 2026 08:25:37 +09:00</div>
+                </div>
+            
+                <div class="news-item">
+                    <a href="https://www.mk.co.kr/news/stock/12042870" target="_blank">삼전닉스 숨 고르자 돈 흐름 향한 곳은…‘피지컬AI·바이오’ 순환매 조짐</a>
+                    <div class="pub-date">Mon, 11 May 2026 08:14:39 +09:00</div>
+                </div>
+            
+            </div>
+        </body>
+        </html>
+        
