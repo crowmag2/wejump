@@ -360,10 +360,15 @@
         </body>
 <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
 <script type="text/javascript">
-if(!wcs_add) var wcs_add = {};
-wcs_add["wa"] = "c39dd3557d67b0";
-if(window.wcs) {
-  wcs_do();
+// 1. 현재 주소의 쿼리 스트링을 가져옵니다.
+var urlParams = new URLSearchParams(window.location.search);
+// 2. 쿼리에 'notrack' 값이 '1'이 아닐 때만 애널리틱스를 실행하도록 조건문을 겁니다.
+if (urlParams.get('notrack') !== '1') {
+  if(!wcs_add) var wcs_add = {};
+  wcs_add["wa"] = "c39dd3557d67b0";
+  if(window.wcs) {
+    wcs_do();
+  }
 }
 </script>
         </html>
