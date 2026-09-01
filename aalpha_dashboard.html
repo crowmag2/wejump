@@ -10,7 +10,7 @@
             <title>WeJump Adaptive Alpha Dashboard - WeJump Investment Labs</title>
             
             <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-            <script type="text/javascript" src="https://unpkg.com/youtube-background/jquery.youtube-background.min.js"></script>
+            <script type="text/javascript" src="https://unpkg.com/youtube-background/dist/youtube-background.min.js"></script>
             <link rel="shortcut icon" href="https://wejump3.tistory.com/favicon.ico" />
             
             <style>
@@ -363,12 +363,13 @@
                 종목 추천은 하지 않습니다.</p>
                 <p>Copyright 2025 WeJump Investment Labs 모든 권리 보유.</p>
             </footer>
-        </div> <script>
-            // Init Youtube Background
-            jQuery(document).ready(function () {
-                jQuery('[data-vbg]').youtube_background();
-            });
-        </script>
+        </div>
+<script>
+    // Init Youtube Background (최신 Vanilla JS 방식)
+    document.addEventListener('DOMContentLoaded', function () {
+        new VideoBackgrounds('[data-vbg]');
+    });
+</script>
 <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
 <script type="text/javascript">
 // 1. 현재 주소의 쿼리 스트링을 가져옵니다.
