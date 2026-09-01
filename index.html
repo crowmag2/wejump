@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
         rel="stylesheet">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/youtube-background/jquery.youtube-background.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/youtube-background/dist/youtube-background.min.js"></script>
     <link rel="shortcut icon" href="https://wejump3.tistory.com/favicon.ico" />
     <style>
         body {
@@ -1157,9 +1157,8 @@ CBVR(Channel-Vector Based Volatility Rebalancing) 시스템과
 
     <script>
         // Init Youtube Background
-        jQuery(document).ready(function () {
-
-            jQuery('[data-vbg]').youtube_background();
+        document.addEventListener('DOMContentLoaded', function () {
+            new VideoBackgrounds('[data-vbg]');
         });
         // --- Common Utils (Modal, Cookie, ChannelIO) ---
         function setCookie(name, value, days) {
