@@ -388,31 +388,29 @@
             }
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            };
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('reveal');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
             });
+        }, observerOptions);
 
-            // Initialize YouTube Background
-            document.addEventListener('DOMContentLoaded', function () {
-				new VideoBackgrounds('[data-vbg]');
-			});
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
         });
-    </script>
+
+        // 유튜브 백그라운드 초기화 (중첩 제거)
+        new VideoBackgrounds('[data-vbg]');
+    });
+</script>
 </head>
 
 <body>
