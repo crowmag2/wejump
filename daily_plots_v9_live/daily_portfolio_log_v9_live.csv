@@ -499,3 +499,8 @@
 2026-10-02,2026-10-02,KOSPI,180,300,0.0,20,Bear (Safe),0,0,1.0,KIWOOM 단기자금,19.8,-24.66,0.99,3.9
 2026-10-02,2026-10-02,Global_Trinity_EqWeight,Mix,Mix,Mix,DownVol,Diversified (3 Asset),0.34,0.33,0.33,Mix,17.46,-18.11,1.38,13.5
 2026-10-02,2026-10-02,Global_Trinity_RelMom,6M_Mom,Top1+Abs,Monthly,DownVol,Selected: KOSPI,0,0,0,Dynamic,26.22,-27.22,1.33,9.1
+2026-10-05,2026-10-02,SNP,140,240,2.5,25,Bull (Mix),0.5,0.5,0,SHY (US Bond),13.74,-21.6,1.0,4.6
+2026-10-05,2026-10-02,Nasdaq,100,170,0.0,25,Bull (Mix),0.5,0.5,0,SHY (US Bond),21.02,-22.83,1.17,5.0
+2026-10-05,2026-10-02,KOSPI,180,300,0.0,20,Bear (Safe),0,0,1.0,KIWOOM 단기자금,19.8,-24.66,0.99,3.9
+2026-10-05,2026-10-02,Global_Trinity_EqWeight,Mix,Mix,Mix,DownVol,Diversified (3 Asset),0.34,0.33,0.33,Mix,17.55,-18.11,1.38,13.5
+2026-10-05,2026-10-02,Global_Trinity_RelMom,6M_Mom,Top1+Abs,Monthly,DownVol,Selected: KOSPI,0,0,0,Dynamic,26.22,-27.22,1.33,9.1
